@@ -607,6 +607,11 @@ img {
 	margin-left: 30px !important;
 }
 
+.welcome-message a{
+	text-decoration: none;
+	color: #000;
+}
+
 .welcome-names {
 	font-weight: 100;
 }
@@ -741,7 +746,7 @@ button {
 	cursor: pointer;
 }
 .upvote:hover:before {
-	content: "\f164";
+	content: "\f0aa";
 }
 .downvote {
 	color: #960000;
@@ -749,7 +754,7 @@ button {
 	cursor: pointer;
 }
 .downvote:hover:before {
-	content: "\f165";
+	content: "\f0ab";
 }
 
 #question-form {
