@@ -810,7 +810,6 @@ textarea.question-area::placeholder {
 
 
 .statistics-box {
-	border-radius: 5px;
     width: 32%;
     border: 3px solid #fafafa;
     float: left;
@@ -828,10 +827,14 @@ textarea.question-area::placeholder {
 	padding: 5px 5px;
 }
 
+.user-info {
+	margin-bottom: 25px;
+}
+
 table.user-profile {
 	border-collapse: collapse;
-	width: 40%;
-	margin-left: 30%;
+	width: 60%;
+	margin-left: 15%;
 }
 
 .user-profile th,.user-profile td {
@@ -875,7 +878,7 @@ table.user-profile {
 }
 
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: 1106px) {
 	.navbar {
 		display: flex;
 		justify-content: space-between;
@@ -914,5 +917,83 @@ table.user-profile {
 
 	.logo:hover, .nav-links:hover {
 		color: #960000;
+	}
+}
+@media screen and (max-width: 1106px) {
+	.column-half {
+		width: 100%;
+		float: left;
+		height: auto;
+	}
+	.column-third {
+		width: 100%;
+		float: left;
+		height: auto;
+	}
+	.column-third-quarter {
+		width: 100%;
+		float: left;
+		height: auto;
+	}
+	.column-two-third {
+		width: 100%;
+		float: left;
+		height: auto;
+	}
+	.column-fourth {
+		width: 100%;
+		float: left;
+		height: auto;
+	}
+
+	.meetup-details .home-header {
+		padding-bottom: 35px;
+	}
+	.meetups .home-header {
+		text-align: center;
+		padding-top: 35px;
+	}
+	table.user-profile {
+		width: 90%;
+		margin-left: 5%;
+	}
+	.profile-page .statistics-box {
+		width: 96%;
+	}
+	.meetups .header-action {
+		width: 50%;
+		margin-left: 25%;
+		margin-bottom: 0px;
+	}
+	.meetup-single {
+		width: 90%;
+		margin-left: 5%;
+	}
+	.meetup-single .meetup-header .meetup-details {
+		width: 100%;
+	}
+	.meetup-single .meetup-header .meetup-rsvp {
+		text-align: center;
+		width: 100%;
+	}
+	.header-home-transparent {
+		background-repeat: round;
+	}
+	.login .row-login {
+		background: #960000;
+		width: 80%;
+		margin-left: 10%;
+	}
+	.login .login-col {
+		display: none;
+	}
+	.login-section {
+		height: 350px !important;
+	}
+
+	.create-account .row-create-account {
+		background: #960000;
+		width: 80%;
+		margin-left: 10%;
 	}
 }
