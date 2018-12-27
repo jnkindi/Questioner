@@ -542,7 +542,6 @@ h1, h2, h3, h4, h5, h6 {
 
 
 
-
 .slide {
 	display: none
 }
@@ -833,17 +832,47 @@ table.user-profile {
 	border-collapse: collapse;
 	width: 40%;
 	margin-left: 30%;
-  }
-  
-  .user-profile th,.user-profile td {
+}
+
+.user-profile th,.user-profile td {
 	padding: 8px;
 	text-align: left;
 	border-bottom: 1px solid #000;
 	padding: 10px;
-  }
+}
 
+.add-meetup-form {
+	width: 70%;
+	height: 45px;
+	margin-left: 15%;
+}
 
+.add-meetup-form input {
+	background: #fafafa;
+	padding-left: 5px;
+	border: 1px solid #003366;
+}
+.add-meetup-form input::placeholder{
+	color: #000000;
+}
+.add-meetup-form input:focus {
+	background: #fafafa;
+	border-bottom: 4px solid #003366;
+}
 
+.add-meetup-form textarea {
+	background: #fafafa;
+	padding-left: 5px;
+	border: 1px solid #003366;
+	height: 80px;
+}
+.add-meetup-form textarea::placeholder{
+	color: #000000;
+}
+.add-meetup-form textarea:focus {
+	background: #fafafa;
+	border-bottom: 4px solid #003366;
+}
 
 
 @media screen and (min-width: 768px) {

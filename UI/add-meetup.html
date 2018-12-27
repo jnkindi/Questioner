@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Questioner - Add meetup</title>
+	<meta name="description" content="Questioner a crowd-source questions for meetups"/>
+	<link rel="shortcut icon" type="image/png" href="images/favicon.ico"/>
+	<link rel="stylesheet" type="text/css" href="css/style.css">
+</head>
+<body class="meetups meetup-details">
+	<div class="row navigation-bar">
+		<nav class="navbar bg-orange">
+			<span class="navbar-toggle" id="js-navbar-toggle">
+				<img src="images/menu-icon.png" class="menu-nav">
+			</span>
+			<a href="meetups.html" class="app-logo">
+				Questioner
+			</a>
+			<ul class="main-nav" id="js-menu">
+				<li>
+					<a href="meetups.html" class="nav-links">Meetups</a>
+				</li>
+				<li>
+					<a href="add-meetup.html" class="nav-links">Add Meetup</a>
+				</li>
+				<li class="welcome-message">
+					<span>Welcome, <span class="welcome-names"><a href="profile.html">Jacques</a></span></span>
+				</li>
+				<li>
+					<a href="login.html" class="nav-links"><i class="fa fa-sign-out"></i></a>
+				</li>
+			</ul>
+		</nav>
+	</div>
+	<div class="header-home-transparent row">
+		<div class="home-header">
+			<h1 class="txt-white">Add meetup</h1>
+		</div>
+	</div>
+	<div class="row bg-lightgrey">
+		<div class="meetup-details-section bg-lightgrey column-full">
+			<div class="meetup-details">
+				<div class="row">
+					<form class="form">
+						<div class="add-meetup-form">
+							<input class="input txt-black" type="text" placeholder="Meetup Title">
+							<textarea class="input txt-black" placeholder="Description"></textarea>
+							<input class="input txt-black" type="text" placeholder="Tags separate by ,">
+							<input type="date" class="input txt-black" type="text" placeholder="Happening on">
+							<input class="input txt-black" type="text" placeholder="Meetup Image I Link (Optional)">
+							<input class="input txt-black" type="text" placeholder="Meetup Image II Link (Optional)">
+							<input class="input txt-black" type="text" placeholder="Meetup Image III Link (Optional)">
+							<button class="button bg-blue txt-white">Add</button>
+						</div>
+					</form>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row bg-orange txt-black footer">
+		&copy; 2018-2019 - Jacques Nyilinkindi
+	</div>
+	<script type="text/javascript" src="js/script.js"></script>
+</body>
+</html>
