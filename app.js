@@ -2,8 +2,14 @@ const express = require('express');
 
 const app = express();
 
+const meetups = require('./endpoints/meetups');
+
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+
+app.use('/api/v1/meetups', meetups);
 
 
 // Welcoming
@@ -13,7 +19,7 @@ app.get('/', (req, res)=> {
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  const err = new Error('Not Found');
+  const err = new Error('Unknown Instruction');
   err.status = 404;
   next(err);
 });
@@ -22,8 +28,8 @@ app.use(function(req, res, next) {
 app.use(function(err, req, res, next) {
   res.status(err.status || 500);
   res.json({
-    message: err.message,
-    error: req.app.get('env') === 'development' ? err : {}
+    status: err.status,
+    message: err.message
   });
 });
 
