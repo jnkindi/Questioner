@@ -74,4 +74,17 @@ describe('Questioner API Tests', () => {
             done();
         });
     });
+
+    it('Upvoting a question...', (done) => {
+        request(app)
+        .patch('/api/v1/questions/1/upvote')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+            expect(res.body).to.be.a('object');
+            expect(res.body.status).to.be.equal(200);
+            done();
+        });
+    });
 });

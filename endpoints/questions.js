@@ -43,4 +43,29 @@ router.post('/', (req, res) => {
 // End Create a question for a specific meetup.
 
 
+// Upvote (increase votes by 1) a specific question.
+
+router.patch('/:id/upvote', (req, res)=> {
+    const arrIndex = questions.findIndex(q => q.id === parseInt(req.params.id));
+    const question = questions.find(q => q.id === parseInt(req.params.id));
+    if(!question) res.status(404).send({ "status":404, "error":"Question with given ID was not found"});
+    // Adding a vote
+    questions[arrIndex].votes++;
+    if(recordQuestion(questions)){
+        let response = {
+            "status" : 200,
+            "data" : [{
+                "meetup": question.meetup,
+                "title": question.title,
+                "body": question.body,
+                "votes": question.votes
+            }]
+        };
+        res.send(response);
+    }
+});
+
+// End Upvote (increase votes by 1) a specific question.
+
+
 module.exports = router;
