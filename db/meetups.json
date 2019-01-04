@@ -28,7 +28,7 @@
     ],
     "topic": "Fellowship Talks",
     "description": "We shall talk about everything on fellowship and how to get started",
-    "happeningOn": "01-01-2019",
+    "happeningOn": "02-01-2019",
     "tags": [
       "Andela",
       "Fellowship",
@@ -46,7 +46,7 @@
     ],
     "topic": "Fellowship Talks",
     "description": "We shall talk about everything on fellowship and how to get started",
-    "happeningOn": "01-01-2019",
+    "happeningOn": "03-01-2019",
     "tags": [
       "Andela",
       "Fellowship",
@@ -64,7 +64,7 @@
     ],
     "topic": "Fellowship Talks",
     "description": "We shall talk about everything on fellowship and how to get started",
-    "happeningOn": "01-01-2019",
+    "happeningOn": "15-01-2019",
     "tags": [
       "Andela",
       "Fellowship",
@@ -82,7 +82,7 @@
     ],
     "topic": "Fellowship Talks",
     "description": "We shall talk about everything on fellowship and how to get started",
-    "happeningOn": "01-01-2019",
+    "happeningOn": "25-01-2019",
     "tags": [
       "Andela",
       "Fellowship",
@@ -100,7 +100,7 @@
     ],
     "topic": "Fellowship Talks",
     "description": "We shall talk about everything on fellowship and how to get started",
-    "happeningOn": "01-01-2019",
+    "happeningOn": "30-01-2019",
     "tags": [
       "Andela",
       "Fellowship",
@@ -118,7 +118,7 @@
     ],
     "topic": "Fellowship Talks",
     "description": "We shall talk about everything on fellowship and how to get started",
-    "happeningOn": "01-01-2019",
+    "happeningOn": "01-02-2019",
     "tags": [
       "Andela",
       "Fellowship",
@@ -136,7 +136,7 @@
     ],
     "topic": "Fellowship Talks",
     "description": "We shall talk about everything on fellowship and how to get started",
-    "happeningOn": "01-01-2019",
+    "happeningOn": "05-02-2019",
     "tags": [
       "Andela",
       "Fellowship",
@@ -380,6 +380,60 @@
   {
     "id": 22,
     "createdOn": "2019-01-04 03:32:32",
+    "location": "Telecom House, Kigali",
+    "images": [
+      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
+    ],
+    "topic": "Fellowship Talks",
+    "description": "We shall talk about everything on fellowship and how to get started",
+    "happeningOn": "01-01-2019",
+    "tags": [
+      "Andela",
+      "Fellowship",
+      "jgjj"
+    ]
+  },
+  {
+    "id": 23,
+    "createdOn": "2019-01-04 03:38:59",
+    "location": "Telecom House, Kigali",
+    "images": [
+      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
+    ],
+    "topic": "Fellowship Talks",
+    "description": "We shall talk about everything on fellowship and how to get started",
+    "happeningOn": "01-01-2019",
+    "tags": [
+      "Andela",
+      "Fellowship",
+      "jgjj"
+    ]
+  },
+  {
+    "id": 24,
+    "createdOn": "2019-01-04 03:39:08",
+    "location": "Telecom House, Kigali",
+    "images": [
+      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
+    ],
+    "topic": "Fellowship Talks",
+    "description": "We shall talk about everything on fellowship and how to get started",
+    "happeningOn": "01-01-2019",
+    "tags": [
+      "Andela",
+      "Fellowship",
+      "jgjj"
+    ]
+  },
+  {
+    "id": 25,
+    "createdOn": "2019-01-04 03:39:14",
     "location": "Telecom House, Kigali",
     "images": [
       "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",

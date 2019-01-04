@@ -61,5 +61,34 @@ router.get('/', (req, res)=> {
 
 // End Fetch all ​ meetup​​ records.
 
+// Fetch all ​ upcoming​​ ​ meetup​​ records.
+
+router.get('/upcoming/', (req, res)=> {
+    //Sort by date in ascending order for getting upcoming
+    meetups.sort((a,b) => {
+        return new Date(a.happeningOn) - new Date(b.happeningOn);
+    });
+
+    
+    let data = [];
+    let count = 0;
+    meetups.forEach( (meetup) => {
+        // Limiting 5 upcoming meetup
+        if(count <= 5 && new Date(meetup.happeningOn) >= new Date()) {
+            delete meetup['createdOn'];
+            delete meetup['images'];
+            data.push(meetup);
+            count ++;
+        }
+    });
+    let response = {
+        "status" : 200,
+        "data" : data
+    };
+    res.send(response);
+});
+
+// Fetch all ​ upcoming​​ ​ meetup​​ records.
+
 
 module.exports = router;

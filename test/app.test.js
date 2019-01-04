@@ -33,4 +33,17 @@ describe('Questioner API Tests', () => {
             done();
         });
     });
+
+    it('Fetching upcoming meetups...', (done) => {
+        request(app)
+        .get('/api/v1/meetups/upcoming')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+            expect(res.body).to.be.a('object');
+            expect(res.body.status).to.be.equal(200);
+            done();
+        });
+    });
 });
