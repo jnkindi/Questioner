@@ -90,5 +90,26 @@ router.get('/upcoming/', (req, res)=> {
 
 // Fetch all ​ upcoming​​ ​ meetup​​ records.
 
+// Fetch a specific ​ meetup​​ record.
+
+router.get('/:id', (req, res)=> {
+    const meetup = meetups.find(m => m.id === parseInt(req.params.id));
+    if(!meetup) res.status(404).send({ "status":404, "error":"Meetup with given ID was not found"});
+    let response = {
+        "status" : 200,
+        "data" : [{
+            "id": meetup.id,
+            "topic": meetup.topic,
+            "description": meetup.description,
+            "location": meetup.location,
+            "happeningOn": meetup.happeningOn,
+            "tags": meetup.tags
+        }]
+    };
+    res.send(response);
+});
+
+// End Fetch a specific ​ meetup​​ record.
+
 
 module.exports = router;

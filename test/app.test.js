@@ -46,4 +46,18 @@ describe('Questioner API Tests', () => {
             done();
         });
     });
+
+    it('Fetching meetup by ID...', (done) => {
+        request(app)
+        .get('/api/v1/meetups/1')
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+            expect(res.body).to.be.a('object');
+            expect(res.body.status).to.be.equal(200);
+            expect(res.body.data.length).to.deep.equal(1);
+            done();
+        });
+    });
 });
