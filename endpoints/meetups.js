@@ -43,5 +43,23 @@ router.post('/', (req, res) => {
 
 // End Create an ​ meetup​​ record
 
+// Fetch all ​ meetup​​ records.
+
+router.get('/', (req, res)=> {
+    let data = [];
+    meetups.forEach( (meetup) => {
+        delete meetup['createdOn'];
+        delete meetup['images'];
+        data.push(meetup);
+    });
+    let response = {
+        "status" : 200,
+        "data" : data
+    };
+    res.send(response);
+});
+
+// End Fetch all ​ meetup​​ records.
+
 
 module.exports = router;
