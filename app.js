@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 
 const meetups = require('./endpoints/meetups');
+const questions = require('./endpoints/questions');
 
 
 app.use(express.json());
@@ -10,6 +11,7 @@ app.use(express.urlencoded({ extended: false }));
 
 
 app.use('/api/v1/meetups', meetups);
+app.use('/api/v1/questions', questions);
 
 
 // Welcoming

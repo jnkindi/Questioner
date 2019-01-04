@@ -60,4 +60,18 @@ describe('Questioner API Tests', () => {
             done();
         });
     });
+
+    it('Adding new question...', (done) => {
+        request(app)
+        .post('/api/v1/questions')
+        .send(fixtures.question_post)
+        .set('Accept', 'application/json')
+        .expect('Content-Type', /json/)
+        .expect(200)
+        .end((err, res) => {
+            expect(res.body).to.be.a('object');
+            expect(res.body.status).to.be.equal(200);
+            done();
+        });
+    });
 });
