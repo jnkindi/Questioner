@@ -8,6 +8,10 @@ let {meetups} = database;
 const {validateMeetup} = database;
 const {recordMeetup} = database;
 
+let {rsvps} = database;
+const {validateRsvp} = database;
+const {recordRsvp} = database;
+
 
 // Create an ​ meetup​​ record
 router.post('/', (req, res) => {
@@ -94,7 +98,7 @@ router.get('/upcoming/', (req, res)=> {
 
 router.get('/:id', (req, res)=> {
     const meetup = meetups.find(m => m.id === parseInt(req.params.id));
-    if(!meetup) res.status(404).send({ "status":404, "error":"Meetup with given ID was not found"});
+    if(!meetup) return res.status(404).send({ "status":404, "error":"Meetup with given ID was not found"});
     let response = {
         "status" : 200,
         "data" : [{
@@ -110,6 +114,40 @@ router.get('/:id', (req, res)=> {
 });
 
 // End Fetch a specific ​ meetup​​ record.
+
+// Respond to meetup RSVP.
+router.post('/:id/rsvps', (req, res) => {
+    // Validate Data
+    const { error } = validateRsvp(req.body);
+    if(error) return res.status(400).send({ "status":400, "error":error.details[0].message});
+
+    const meetup = meetups.find(m => m.id === parseInt(req.params.id));
+    if(!meetup) return res.status(404).send({ "status":404, "error":"Meetup with given ID was not found"});
+    const {topic} = meetups.find(m => m.id === parseInt(req.params.id));
+
+    const rsvp = {
+        id: rsvps.length +1,
+        meetup: req.params.id,
+        user: req.body.user,
+        response: req.body.response,
+    };
+
+    rsvps.push(rsvp);
+
+    if(recordRsvp(rsvps)){
+        const response = {
+            "status" : 200,
+            "data" : [{
+                "meetup": req.body.meetup,
+                "topic": topic,
+                "status": req.body.response,
+            }]
+        };
+        res.send(response);
+    }
+});
+
+// End Respond to meetup RSVP.
 
 
 module.exports = router;

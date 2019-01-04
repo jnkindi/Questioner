@@ -1,6 +1,7 @@
 const Joi = require('joi');
 let fs = require('fs');
 
+let rsvpsFetched = [];
 let meetupsFetched = [];
 try{
     meetupsFetched = require('../db/meetups.json');
@@ -12,8 +13,19 @@ if(typeof(meetupsFetched) !== 'object'){
     meetupsFetched = [];
 }
 
+try{
+    rsvpsFetched = require('../db/rsvps.json');
+} catch(err){
+    rsvpsFetched = [];
+}
+
+if(typeof(rsvpsFetched) !== 'object'){
+    rsvpsFetched = [];
+}
+
 module.exports = {
     meetups: meetupsFetched,
+    rsvps: rsvpsFetched,
     validateMeetup: (meetup) => {
         // Validation F(x) for Meetup
         const schema = {
@@ -30,6 +42,21 @@ module.exports = {
     recordMeetup: (data) => {
         fs.writeFile('./db/meetups.json', JSON.stringify(data, null, 2), (err) => {
             if (err) return response = {"status":500,"error":err};
+        });
+        return true;
+    },
+    validateRsvp: (rsvp) => {
+        // Validation F(x) for Rsvp
+        const schema = {
+            meetup: Joi.number().required(),
+            user: Joi.number().required(),
+            response: Joi.string().required()
+        };
+        return Joi.validate(rsvp, schema);
+    },
+    recordRsvp: (data) => {
+        fs.writeFile('./db/rsvps.json', JSON.stringify(data, null, 2), (err) => {
+            if (err) throw err;
         });
         return true;
     }

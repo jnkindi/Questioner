@@ -17,7 +17,14 @@ const question_post = {
     "body": "We shall talk about everything on fellowship and how to get started"
 };
 
+const rsvp_post = {
+	"meetup": 1,
+	"user": 1,
+	"response": "maybe"
+};
+
 module.exports = {
     meetup_post,
-    question_post
+    question_post,
+    rsvp_post
 }
