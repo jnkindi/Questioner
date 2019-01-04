@@ -1,5 +1,4 @@
 const express = require('express');
-let fs = require('fs');
 const database = require('../db_queries/meetups');
 
 const router = express.Router();

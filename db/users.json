@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "firstname": "Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-04 12:04:19",
+    "isAdmin": false
+  },
+  {
+    "id": 2,
+    "firstname": "Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-04 12:04:23",
+    "isAdmin": false
+  }
+]
