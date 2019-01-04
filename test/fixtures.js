@@ -23,8 +23,20 @@ const rsvp_post = {
 	"response": "maybe"
 };
 
+const user_post = {
+	"firstname": "TEST Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "isAdmin": false
+};
+
 module.exports = {
     meetup_post,
     question_post,
-    rsvp_post
+    rsvp_post,
+    user_post
 }

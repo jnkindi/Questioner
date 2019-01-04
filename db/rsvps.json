@@ -94,5 +94,17 @@
     "meetup": "1",
     "user": 1,
     "response": "maybe"
+  },
+  {
+    "id": 17,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
+  },
+  {
+    "id": 18,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
   }
 ]
