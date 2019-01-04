@@ -1,14 +1,14 @@
 const Joi = require('joi');
-let fs = require('fs');
+const fs = require('fs');
 
 let questionsFetched = [];
-try{
+try {
     questionsFetched = require('../db/questions.json');
-} catch(err){
+} catch (err) {
     questionsFetched = [];
 }
 
-if(typeof(questionsFetched) !== 'object'){
+if (typeof (questionsFetched) !== 'object') {
     questionsFetched = [];
 }
 

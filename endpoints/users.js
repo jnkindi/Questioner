@@ -3,18 +3,23 @@ const database = require('../db_queries/users');
 
 const router = express.Router();
 
-let {users} = database;
-const {validateUser} = database;
-const {recordUser} = database;
+const { users } = database;
+const { validateUser } = database;
+const { recordUser } = database;
 
 
 // Create a user record
 router.post('/', (req, res) => {
     // Validate Data
     const { error } = validateUser(req.body);
-    if(error) return res.status(400).send({ "status":400, "error":error.details[0].message});
+    if (error) {
+        return res.status(400).send({
+            status: 400,
+            error: error.details[0].message
+        });
+    }
     const user = {
-        id: users.length +1,
+        id: users.length + 1,
         firstname: req.body.firstname,
         lastname: req.body.lastname,
         othername: req.body.othername,
@@ -27,23 +32,24 @@ router.post('/', (req, res) => {
     };
 
     users.push(user);
-    if(recordUser(users)){
+    if (recordUser(users)) {
         const response = {
-            "status" : 200,
-            "data" : [{
-                "firstname": req.body.firstname,
-                "lastname": req.body.lastname,
-                "othername": req.body.othername,
-                "email": req.body.email,
-                "phoneNumber": req.body.phoneNumber,
-                "username": req.body.username,
-                "isAdmin": req.body.isAdmin
+            status: 200,
+            data: [{
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                othername: req.body.othername,
+                email: req.body.email,
+                phoneNumber: req.body.phoneNumber,
+                username: req.body.username,
+                isAdmin: req.body.isAdmin
             }]
         };
         res.send(response);
     }
+    return true;
 });
 
-// End Create a​ user record
+// End Create a user record
 
 module.exports = router;

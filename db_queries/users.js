@@ -1,14 +1,14 @@
 const Joi = require('joi');
-let fs = require('fs');
+const fs = require('fs');
 
 let usersFetched = [];
-try{
+try {
     usersFetched = require('../db/users.json');
-} catch(err){
+} catch (err) {
     usersFetched = [];
 }
 
-if(typeof(usersFetched) !== 'object'){
+if (typeof (usersFetched) !== 'object') {
     usersFetched = [];
 }
 
@@ -20,7 +20,9 @@ module.exports = {
             firstname: Joi.string().min(5).required(),
             lastname: Joi.string().min(5).required(),
             othername: Joi.string(),
-            email: Joi.string().email({ minDomainAtoms: 2 }).required(),
+            email: Joi.string().email({
+                minDomainAtoms: 2
+            }).required(),
             phoneNumber: Joi.number().required(),
             username: Joi.string().min(5).required(),
             password: Joi.string().min(8).required(),
@@ -28,11 +30,17 @@ module.exports = {
             isAdmin: Joi.boolean().required()
         };
         return Joi.validate(user, schema);
-        // End Create an ​ user record
+        // End Create an user record
     },
     recordUser: (data) => {
         fs.writeFile('./db/users.json', JSON.stringify(data, null, 2), (err) => {
-            if (err) return response = {"status":500,"error":err};
+            if (err) {
+                return {
+                    status: 500,
+                    error: err
+                };
+            }
+            return true;
         });
         return true;
     }

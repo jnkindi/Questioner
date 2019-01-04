@@ -1,25 +1,25 @@
 const Joi = require('joi');
-let fs = require('fs');
+const fs = require('fs');
 
 let rsvpsFetched = [];
 let meetupsFetched = [];
-try{
+try {
     meetupsFetched = require('../db/meetups.json');
-} catch(err){
+} catch (err) {
     meetupsFetched = [];
 }
 
-if(typeof(meetupsFetched) !== 'object'){
+if (typeof (meetupsFetched) !== 'object') {
     meetupsFetched = [];
 }
 
-try{
+try {
     rsvpsFetched = require('../db/rsvps.json');
-} catch(err){
+} catch (err) {
     rsvpsFetched = [];
 }
 
-if(typeof(rsvpsFetched) !== 'object'){
+if (typeof (rsvpsFetched) !== 'object') {
     rsvpsFetched = [];
 }
 
@@ -37,11 +37,17 @@ module.exports = {
             tags: Joi.array()
         };
         return Joi.validate(meetup, schema);
-        // End Create an ​ meetup​​ record
+        // End Create an meetup record
     },
     recordMeetup: (data) => {
         fs.writeFile('./db/meetups.json', JSON.stringify(data, null, 2), (err) => {
-            if (err) return response = {"status":500,"error":err};
+            if (err) {
+                return {
+                    status: 500,
+                    error: err
+                };
+            }
+            return true;
         });
         return true;
     },
