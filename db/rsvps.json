@@ -16,5 +16,35 @@
     "meetup": "1",
     "user": 1,
     "response": "maybe"
+  },
+  {
+    "id": 4,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
+  },
+  {
+    "id": 5,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
+  },
+  {
+    "id": 6,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
+  },
+  {
+    "id": 7,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
+  },
+  {
+    "id": 8,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
   }
 ]

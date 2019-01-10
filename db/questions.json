@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "createdOn": "2019-01-10 23:05:37",
+    "createdBy": 5,
+    "meetup": 3,
+    "title": "Test Fellowship Talks",
+    "body": "We shall talk about everything on fellowship and how to get started",
+    "votes": 0
+  },
+  {
+    "id": 2,
+    "createdOn": "2019-01-10 23:06:14",
+    "createdBy": 5,
+    "meetup": 3,
+    "title": "Test Fellowship Talks",
+    "body": "We shall talk about everything on fellowship and how to get started",
+    "votes": 0
+  },
+  {
+    "id": 3,
+    "createdOn": "2019-01-10 23:07:01",
+    "createdBy": 5,
+    "meetup": 3,
+    "title": "Test Fellowship Talks",
+    "body": "We shall talk about everything on fellowship and how to get started",
+    "votes": 0
+  },
+  {
+    "id": 4,
+    "createdOn": "2019-01-10 23:07:39",
+    "createdBy": 5,
+    "meetup": 3,
+    "title": "Test Fellowship Talks",
+    "body": "We shall talk about everything on fellowship and how to get started",
+    "votes": 0
+  },
+  {
+    "id": 5,
+    "createdOn": "2019-01-10 23:08:15",
+    "createdBy": 5,
+    "meetup": 3,
+    "title": "Test Fellowship Talks",
+    "body": "We shall talk about everything on fellowship and how to get started",
+    "votes": 0
+  }
+]

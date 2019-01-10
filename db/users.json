@@ -7,7 +7,7 @@
     "email": "jack@u.com",
     "phoneNumber": "078887878",
     "username": "j_nkindi",
-    "password": "12345678",
+    "password": "12345678910",
     "registered": "2019-01-04 20:45:06",
     "isAdmin": false
   },
@@ -19,7 +19,7 @@
     "email": "jack@u.com",
     "phoneNumber": "078887878",
     "username": "j_nkindi",
-    "password": "12345678",
+    "password": "123456789",
     "registered": "2019-01-04 20:45:27",
     "isAdmin": false
   },
@@ -33,6 +33,66 @@
     "username": "j_nkindi",
     "password": "12345678",
     "registered": "2019-01-10 22:10:21",
+    "isAdmin": false
+  },
+  {
+    "id": 4,
+    "firstname": "TEST Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-10 23:05:37",
+    "isAdmin": false
+  },
+  {
+    "id": 5,
+    "firstname": "TEST Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-10 23:06:14",
+    "isAdmin": false
+  },
+  {
+    "id": 6,
+    "firstname": "TEST Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-10 23:07:01",
+    "isAdmin": false
+  },
+  {
+    "id": 7,
+    "firstname": "TEST Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-10 23:07:39",
+    "isAdmin": false
+  },
+  {
+    "id": 8,
+    "firstname": "TEST Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-10 23:08:15",
     "isAdmin": false
   }
 ]

@@ -139,3 +139,30 @@ describe('Questioner API Tests', () => {
             });
     });
 });
+
+describe('Login API Tests', () => {
+    it('Testing Invalid Credentials...', (done) => {
+        request(app)
+            .post('/auth/login')
+            .send(fixtures.user_login_invalid)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(404)
+            .end((err, res) => {
+                expect(res.body).to.be.a('object');
+                expect(res.body.error).to.be.equal('"username" length must be at least 5 characters long');
+                done();
+            });
+    });
+    it('Testing Valid Credentials...', (done) => {
+        request(app)
+            .post('/auth/login')
+            .send(fixtures.user_login)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .end((err, res) => {
+                expect(res.body).to.be.a('object');
+                done();
+            });
+    });
+});

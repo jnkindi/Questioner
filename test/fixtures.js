@@ -35,9 +35,21 @@ const userPost = {
     isAdmin: false
 };
 
+const userLoginInvalid = {
+    username: 'Jac',
+    password: 'Nyilinkindi'
+};
+
+const userLogin = {
+    username: 'JacquesNY',
+    password: 'Nyilinkindi'
+};
+
 module.exports = {
     meetup_post: meetupPost,
     question_post: questionPost,
     rsvp_post: rsvpPost,
-    user_post: userPost
+    user_post: userPost,
+    user_login: userLogin,
+    user_login_invalid: userLoginInvalid
 };

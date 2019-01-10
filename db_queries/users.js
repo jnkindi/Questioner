@@ -32,6 +32,15 @@ module.exports = {
         return Joi.validate(user, schema);
         // End Create an user record
     },
+    validateLogin: (access) => {
+        // Validation F(x) for login
+        const schema = {
+            username: Joi.string().min(5).required(),
+            password: Joi.string().min(8).required()
+        };
+        return Joi.validate(access, schema);
+        // End validation F(x) for login
+    },
     recordUser: (data) => {
         fs.writeFile('./db/users.json', JSON.stringify(data, null, 2), (err) => {
             if (err) {

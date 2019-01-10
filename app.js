@@ -5,6 +5,7 @@ const app = express();
 const meetups = require('./endpoints/meetups');
 const questions = require('./endpoints/questions');
 const users = require('./endpoints/users');
+const authentication = require('./endpoints/authentication');
 
 
 app.use(express.json());
@@ -16,6 +17,7 @@ app.use(express.urlencoded({
 app.use('/api/v1/meetups', meetups);
 app.use('/api/v1/questions', questions);
 app.use('/api/v1/users', users);
+app.use('/auth', authentication);
 
 
 // Welcoming
