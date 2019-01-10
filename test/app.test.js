@@ -127,4 +127,15 @@ describe('Questioner API Tests', () => {
                 done();
             });
     });
+
+    it('Delete meetup...', (done) => {
+        request(app)
+            .delete('/api/v1/meetups/10')
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .end((err, res) => {
+                expect(res.body).to.be.a('object');
+                done();
+            });
+    });
 });

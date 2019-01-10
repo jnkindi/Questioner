@@ -126,44 +126,8 @@
     ]
   },
   {
-    "id": 8,
-    "createdOn": "2019-01-04 02:37:46",
-    "location": "Telecom House, Kigali",
-    "images": [
-      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
-      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
-      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
-    ],
-    "topic": "Fellowship Talks",
-    "description": "We shall talk about everything on fellowship and how to get started",
-    "happeningOn": "05-02-2019",
-    "tags": [
-      "Andela",
-      "Fellowship",
-      "jgjj"
-    ]
-  },
-  {
     "id": 9,
     "createdOn": "2019-01-04 02:38:25",
-    "location": "Telecom House, Kigali",
-    "images": [
-      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
-      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
-      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
-    ],
-    "topic": "Fellowship Talks",
-    "description": "We shall talk about everything on fellowship and how to get started",
-    "happeningOn": "01-01-2019",
-    "tags": [
-      "Andela",
-      "Fellowship",
-      "jgjj"
-    ]
-  },
-  {
-    "id": 10,
-    "createdOn": "2019-01-04 02:38:42",
     "location": "Telecom House, Kigali",
     "images": [
       "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
@@ -955,6 +919,24 @@
   {
     "id": 54,
     "createdOn": "2019-01-04 20:45:27",
+    "location": "Test Telecom House, Kigali",
+    "images": [
+      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
+    ],
+    "topic": "Test Fellowship Talks",
+    "description": "We shall talk about everything on fellowship and how to get started",
+    "happeningOn": "01-01-2019",
+    "tags": [
+      "Andela",
+      "Fellowship",
+      "jgjj"
+    ]
+  },
+  {
+    "id": 53,
+    "createdOn": "2019-01-10 22:10:21",
     "location": "Test Telecom House, Kigali",
     "images": [
       "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",

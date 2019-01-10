@@ -169,5 +169,32 @@ router.post('/:id/rsvps', (req, res) => {
 
 // End Respond to meetup RSVP.
 
+// Delete meetup.
+router.delete('/:id', (req, res) => {
+    // Validate Data
+
+    const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
+    if (!meetup) {
+        return res.status(404).send({
+            status: 404,
+            error: 'Meetup with given ID was not found'
+        });
+    }
+
+    const index = meetups.indexOf(meetup);
+    meetups.splice(index, 1);
+
+    if (recordMeetup(meetups)) {
+        const response = {
+            status: 200,
+            data: 'Meetup deleted'
+        };
+        res.send(response);
+    }
+    return true;
+});
+
+// End Delete meetup.
+
 
 module.exports = router;
