@@ -116,7 +116,7 @@ describe('Questioner API Tests', () => {
 
     it('Adding new user...', (done) => {
         request(app)
-            .post('/api/v1/users')
+            .post('/auth/signup')
             .send(fixtures.user_post)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)

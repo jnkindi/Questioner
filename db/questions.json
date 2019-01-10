@@ -43,5 +43,23 @@
     "title": "Test Fellowship Talks",
     "body": "We shall talk about everything on fellowship and how to get started",
     "votes": 0
+  },
+  {
+    "id": 6,
+    "createdOn": "2019-01-10 23:21:59",
+    "createdBy": 5,
+    "meetup": 3,
+    "title": "Test Fellowship Talks",
+    "body": "We shall talk about everything on fellowship and how to get started",
+    "votes": 0
+  },
+  {
+    "id": 7,
+    "createdOn": "2019-01-10 23:22:16",
+    "createdBy": 5,
+    "meetup": 3,
+    "title": "Test Fellowship Talks",
+    "body": "We shall talk about everything on fellowship and how to get started",
+    "votes": 0
   }
 ]
