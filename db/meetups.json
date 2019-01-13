@@ -1077,5 +1077,77 @@
       "Fellowship",
       "jgjj"
     ]
+  },
+  {
+    "id": 61,
+    "createdOn": "2019-01-13 17:53:56",
+    "location": "Test Telecom House, Kigali",
+    "images": [
+      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
+    ],
+    "topic": "Test Fellowship Talks",
+    "description": "We shall talk about everything on fellowship and how to get started",
+    "happeningOn": "01-01-2019",
+    "tags": [
+      "Andela",
+      "Fellowship",
+      "jgjj"
+    ]
+  },
+  {
+    "id": 62,
+    "createdOn": "2019-01-13 18:03:40",
+    "location": "Test Telecom House, Kigali",
+    "images": [
+      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
+    ],
+    "topic": "Test Fellowship Talks",
+    "description": "We shall talk about everything on fellowship and how to get started",
+    "happeningOn": "01-01-2019",
+    "tags": [
+      "Andela",
+      "Fellowship",
+      "jgjj"
+    ]
+  },
+  {
+    "id": 63,
+    "createdOn": "2019-01-13 18:12:29",
+    "location": "Test Telecom House, Kigali",
+    "images": [
+      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
+    ],
+    "topic": "Test Fellowship Talks",
+    "description": "We shall talk about everything on fellowship and how to get started",
+    "happeningOn": "01-01-2019",
+    "tags": [
+      "Andela",
+      "Fellowship",
+      "jgjj"
+    ]
+  },
+  {
+    "id": 64,
+    "createdOn": "2019-01-13 18:12:35",
+    "location": "Test Telecom House, Kigali",
+    "images": [
+      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
+    ],
+    "topic": "Test Fellowship Talks",
+    "description": "We shall talk about everything on fellowship and how to get started",
+    "happeningOn": "01-01-2019",
+    "tags": [
+      "Andela",
+      "Fellowship",
+      "jgjj"
+    ]
   }
 ]

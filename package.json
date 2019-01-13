@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "clear && nodemon",
-    "test": "mocha --exit"
+    "test": "mocha --exit",
+    "coverage": "istanbul cover _mocha -x *.test.js",
+    "showcoverage": "xdg-open coverage/lcov-report/index.html"
   },
   "dependencies": {
     "express": "~4.16.0",
@@ -18,6 +20,7 @@
     "eslint-config-prettier": "^3.3.0",
     "eslint-plugin-import": "^2.14.0",
     "eslint-plugin-mocha": "^5.2.0",
+    "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
     "prettier-eslint": "^8.8.2",
