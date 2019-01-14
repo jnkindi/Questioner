@@ -6,8 +6,8 @@
     "start": "node ./bin/www",
     "dev": "clear && nodemon",
     "test": "mocha --exit",
-    "coverage": "istanbul cover _mocha -x *.test.js",
-    "showcoverage": "xdg-open coverage/lcov-report/index.html"
+    "cover": "istanbul cover _mocha",
+    "coveralls": "npm run cover -- --report lcovonly"
   },
   "dependencies": {
     "express": "~4.16.0",
@@ -15,6 +15,8 @@
   },
   "devDependencies": {
     "chai": "^4.2.0",
+    "codeclimate-test-reporter": "^0.5.1",
+    "coveralls": "^3.0.2",
     "eslint": "^5.9.0",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-config-prettier": "^3.3.0",
