@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./bin/www",
     "dev": "clear && nodemon",
-    "test": "mocha --exit",
+    "test": "nyc mocha --exit",
     "cover": "istanbul cover _mocha",
     "coveralls": "npm run cover -- --report lcovonly"
   },
@@ -25,6 +25,7 @@
     "istanbul": "^0.4.5",
     "mocha": "^5.2.0",
     "nodemon": "^1.18.9",
+    "nyc": "^13.1.0",
     "prettier-eslint": "^8.8.2",
     "supertest": "^3.3.0"
   }
