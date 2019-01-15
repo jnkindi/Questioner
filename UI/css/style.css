@@ -1,0 +1,999 @@
+@import url("https://fonts.googleapis.com/css?family=Quicksand:300,500");
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
+body {
+	background-color: #003366;
+	background-image: url("../images/events-texture.png");
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 300;
+	width: 100%;
+	padding: 0px;
+	margin: 0px;
+}
+div, p {
+	margin: 0px;
+	padding: 0px;
+}
+h1, h2, h3, h4, h5, h6 {
+	font-weight: 500;
+	margin: 0px;
+	padding: 0px;
+}
+.row {
+	width: 100%;
+	float: left;
+}
+.left {
+	float: left !important;
+}
+.right {
+	float: right !important;
+}
+.login {
+	text-align: center;
+}
+.column-full {
+	width: 100%;
+	float: left;
+	height: auto;
+}
+.column-half {
+	width: 50%;
+	float: left;
+	height: auto;
+}
+.column-third {
+	width: 33.33%;
+	float: left;
+	height: auto;
+}
+.column-third-quarter {
+	width: 75%;
+	float: left;
+	height: auto;
+}
+.column-two-third {
+	width: 66.66%;
+	float: left;
+	height: auto;
+}
+.column-fourth {
+	width: 25%;
+	float: left;
+	height: auto;
+}
+.row-login {
+	margin-left: 16.5%;
+	margin-top: 200px;
+	margin-bottom: 200px;
+	height: auto;
+	background: linear-gradient(to left, #960000 50%, #960000 50%, #ffa300 50% );
+	border-radius: 10px;
+	box-shadow: 0px 4px 14px whitesmoke;
+}
+.row-login {
+	margin-left: 16.5%;
+	margin-top: 150px;
+	margin-bottom: 150px;
+	height: auto;
+	background: linear-gradient(to left, #960000 50%, #960000 50%, #ffa300 50% );
+	border-radius: 10px;
+	box-shadow: 0px 4px 14px whitesmoke;
+}
+.row-create-account {
+	margin-left: 25%;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	height: auto;
+	border-radius: 10px;
+	box-shadow: 0px 4px 14px whitesmoke;
+}
+.bg-orange {
+	background-color: #ffa300;
+}
+.bg-blue {
+	background-color: #003366;
+}
+.bg-chocolate {
+	background-color: #960000;
+}
+.bg-white {
+	background-color: #ffffff;
+}
+.bg-black {
+	background-color: #000000;
+}
+.bg-grey {
+	background-color: #f9d38a;
+}
+.bg-lightgrey {
+	background-color: #fafafa;
+}
+.txt-orange {
+	color: #ffa300;
+}
+.txt-blue {
+	color: #003366;
+}
+.txt-chocolate {
+	color: #960000;
+}
+.txt-black {
+	color: #000000;
+}
+.txt-white {
+	color: #ffffff;
+}
+.txt-grey {
+	color: #f9d38a;
+}
+.logo-section .logo {
+	width: 70%;
+}
+.p-col-login {
+	padding: 20px 0px 20px 0px;
+}
+.description-section p {
+	font-size: 21px;
+	margin: 0px;
+	line-height: 35px;
+}
+.row-login h2 {
+	font-size: 35px;
+	margin: 18px 0px 18px 0px;
+}
+.description h2 {
+	margin: 10px 0px 10px 0px;
+}
+.description-section {
+	padding-bottom: 35px;
+}
+.login-col {
+	padding: 75px 0px 20px 0px;
+}
+.line {
+	border: 0px;
+	height: 2px;
+	width: 100%;
+	box-shadow: 0px 1px #0033668f;
+}
+.create-account-section h2{
+	padding-top: 10px;
+}
+.login-form {
+	width: 90%;
+	height: 45px;
+	margin-left: 5%;
+}
+.input, .button {
+	font-family: 'Quicksand', sans-serif;
+	font-weight: 100;
+	height: 45px;
+	border: 0px;
+	border-bottom: 1px solid #ffffff;
+	outline: 0;
+	margin-bottom: 12.5px;
+	font-size: 18px;
+}
+.input:focus, .button:focus {
+	border-bottom: 1px solid #ffa300;
+}
+.input {
+	float: left;
+	width: 100%;
+}
+.button {
+	float: left;
+	width: 100%;
+	line-height: 45px;
+	border-bottom: 4px solid #ffa300;
+	text-align: center;
+	text-decoration: none;
+	font-weight: bold;
+	cursor: pointer;
+}
+
+.button:hover {
+	background: #ffa300;
+	color: #003366;
+	border-bottom: 4px solid #003366;
+}
+
+::placeholder {
+	color: #f9d38a;
+	opacity: 1;
+}
+.login-section {
+	height: 350px;
+}
+.create-account-section {
+	height: 650px;
+}
+.login-form a {
+	text-decoration: none;
+	font-weight: 500;
+}
+.login-form a:hover {
+	color: #003366;
+}
+.forgot-password .login-form {
+	padding-top: 30px;
+}
+
+.alert {
+	padding: 10px;
+	width: 80%;
+	margin-left: 10%;
+}
+
+.closebtn {
+	margin-left: 15px;
+	font-weight: bold;
+	float: right;
+	font-size: 22px;
+	line-height: 20px;
+	cursor: pointer;
+}
+
+.closebtn:hover {
+	color: black;
+}
+
+.navbar {
+	font-size: 18px;
+	border: 1px solid rgba(0, 0, 0, 0.2);
+	padding-bottom: 10px;
+}
+
+.main-nav {
+	list-style-type: none;
+	display: none;
+}
+
+.nav-links, .app-logo {
+	text-decoration: none;
+	color: #003366;
+	font-weight: 500;
+}
+
+.main-nav li {
+	text-align: center;
+	margin: 15px auto;
+}
+
+.app-logo {
+	display: inline-block;
+	font-size: 22px;
+	margin-top: 10px;
+	margin-left: 20px;
+}
+.app-logo img{
+	width: 20%;
+	height: auto;
+}
+
+.navbar-toggle {
+	position: absolute;
+	top: 10px;
+	right: 20px;
+	cursor: pointer;
+	font-size: 24px;
+}
+
+.active {
+	display: block;
+}
+
+.menu-nav {
+	width: 21px;
+	height: 27px;
+}
+
+.home .home-header h2 {
+	text-align: center;
+	font-weight: 500;
+	margin: 0px;
+}
+.home .home-header {
+	text-align: center;
+	padding-top: 200px;
+	padding-bottom: 0px;
+}
+.meetups .home-header h2 {
+	text-align: center;
+	font-weight: 300;
+	margin: 0px;
+}
+.meetups .home-header {
+	text-align: center;
+	padding-top: 100px;
+	padding-bottom: 0px;
+}
+.header-home-transparent {
+	background-image: url("../images/slider-1.png");
+	background-repeat: space;
+    box-shadow: inset 1000px 1000px 1000px 1000px #003366a6;
+	background-size: 100%;
+}
+.header-logo {
+	width: 200px;
+	background: #ffffffa3;
+	padding: 10px;
+	margin-bottom: 10px;
+}
+
+.header-action {
+  padding-top: 10px;
+  text-align: center;
+  margin-bottom: 120px; 
+}
+
+.header-action a {
+	font-weight: 500;
+}
+
+.slider-buttons-section .slider-button {
+	margin: 5px;
+	padding: 0px 10px 5px 10px;
+	font-size: 30px;
+	text-decoration: none;
+	position: relative;
+	display: inline-block;
+	cursor: pointer;
+	border-radius: 11px;
+	font-weight: 500;
+}
+
+.slider-buttons-section .slider-button:hover{
+	color: #ffa300;
+	background: #003366;
+}
+
+.button-header {
+  padding: 10px 40px;
+  font-size: 22px;
+  text-decoration: none;
+  margin: 5px;
+  position: relative;
+  display: inline-block;
+}
+
+.button-header:active {
+  transform: translate(0px, 5px);
+  -webkit-transform: translate(0px, 5px);
+  box-shadow: 0px 1px 0px 0px;
+}
+
+.button-orange {
+  box-shadow: 0px 5px 0px 0px #003366;
+}
+
+.button-orange:hover {
+  background-color: #003366;
+  color: #ffa300;
+  box-shadow: 0px 5px 0px 0px #ffa300;
+}
+
+.button-blue {
+  box-shadow: 0px 5px 0px 0px #ffa300;
+}
+
+.button-blue:hover {
+  background-color: #ffa300;
+  color: #003366;
+  box-shadow: 0px 5px 0px 0px #003366;
+}
+.slider-buttons-section {
+	margin-bottom: 30px;
+}
+.footer {
+	text-align: center;
+	padding: 10px 0px;
+}
+.meetups .header-action {
+	width: 30%;
+	margin-left: 35%;
+}
+.meetups .header-action .bg-transparent{
+	background: #036c;
+}
+.meetups .header-action input{
+	text-align: center;
+	padding: auto 50px;
+}
+.meetups .header-action input::placeholder {
+	color: #000;
+}
+.meetups .header-action span{
+	text-align: center;
+	padding: 0px 6px;
+	border-radius: 4px;
+	cursor: pointer;
+}
+.trending-tags {
+	text-align: left;
+	color: #f9d38a;
+}
+.trending-tags span:hover {
+	background: #003366;
+	color: #f9d38a;
+}
+.search-section {
+	width: 100%;
+}
+.search-section input{
+	width: 100%;
+	float: left;
+	background-image: url('../images/searchicon.png');
+	background-position: 10px 10px;
+	background-repeat: no-repeat;
+	font-size: 16px;
+	padding: 0px 20px 0px 40px;
+	border: 1px solid #ddd;
+}
+.main-nav .names {
+	font-weight: 100;
+}
+.meetups .meetup-title {
+	text-align: center;
+	padding: 0px;
+}
+.meetup-list {
+	width: 100%;
+	padding-bottom: 30px;
+}
+.meetup-single {
+	width: 80%;
+	margin-left: 10%;
+	margin-bottom: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+.meetup-single .meetup-header{
+	width: 100%;
+	height: auto;
+	float: left;
+}
+.meetup-single .meetup-footer{
+	width: 100%;
+	height: auto;
+	float: left;
+}
+.meetup-single .meetup-header .meetup-details{
+	width: 80%;
+	padding: 0px;
+	float: left;
+}
+.meetup-single .meetup-header .meetup-rsvp {
+	width: 20%;
+	padding: 30px 0px;
+	text-align: center;
+	float: left;
+}
+.meetups .meetup-title-single {
+	padding: 10px 20px;
+	font-weight: 400;
+	font-size: 1.5em;
+	float: left;
+}
+.meetups .meetup-details-single {
+	padding: 0px 20px 10px;
+	font-weight: 200;
+	float: left;
+}
+.tags-list {
+	padding: 10px 0px 10px 20px;
+}
+.tag {
+	padding: 1px 5px 3px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.tag:hover {
+	background: #f9d38a;
+	color: #003366;
+}
+.tag-invert .tag:hover {
+	background: #003366;
+	color: #f9d38a;
+}
+.meetup-icon {
+	padding: 5px 5px 5px 20px;
+	vertical-align: middle;
+	float: left;
+	display: inline-block;
+	line-height: 30px;
+	font-weight: 500;
+}
+.meetup-icon img {
+	width: 20px;
+	height: auto;
+	vertical-align: middle;
+}
+.meetup-title h1 {
+	padding: 15px;
+	font-size: 2.3em;
+}
+.meetup-details h3:hover {
+	color: #960000;
+}
+.meetup-details {
+	text-align: justify;
+}
+.meetup-details h2{
+	text-align: center;
+	padding: 10px;
+}
+.meetup-details .rsvp-details{
+	text-align: center;
+	padding: 5px;
+}
+.meetups .show-more-action {
+	text-align: center;
+	margin: 0px 0px 30px 0px;
+}
+.meetups .show-more-action a {
+	padding: 8px 35px;
+}
+.meetup-details .home-header {
+	padding-bottom: 50px;
+}
+.meetup-details-section .photo-slider,.meetup-details-section .meetup-details{
+	padding: 15px 15px 0px;
+}
+
+
+
+.slide {
+	display: none
+}
+img {
+	vertical-align: middle;
+}
+
+.slideshow {
+	max-width: 1000px;
+	width: 100%;
+	position: relative;
+	margin: auto;
+}
+
+.prev, .next {
+	cursor: pointer;
+	position: absolute;
+	top: 50%;
+	width: auto;
+	padding: 16px;
+	margin-top: -22px;
+	color: white;
+	font-weight: bold;
+	font-size: 18px;
+	transition: 0.6s ease;
+	border-radius: 0 3px 3px 0;
+	user-select: none;
+}
+
+.next {
+	right: 0;
+	border-radius: 3px 0 0 3px;
+}
+
+.prev:hover, .next:hover {
+	background-color: #f1f1f1;
+	color: black;
+}
+
+.slideshow .slide img {
+	width: 100%;
+}
+
+.meetup-details .meetup-details-text {
+	margin: 40px 0px 20px;
+}
+
+.form-section {
+	margin: 10px 0px;
+}
+
+.rsvp-section {
+	background-color: #003366;
+}
+
+.logout {
+	width: 10%;
+}
+
+.welcome-message {
+	font-weight: 500;
+	margin-left: 30px !important;
+}
+
+.welcome-message a{
+	text-decoration: none;
+	color: #000;
+}
+
+.welcome-names {
+	font-weight: 100;
+}
+
+.small-button {
+	padding: 2px 20px;
+	font-size: 20px;
+}
+
+.clear { clear: both; }
+
+.rsvp-details form span {
+	font-weight: 400;
+}
+button {
+	font-family: 'Quicksand', sans-serif;
+	border: 0px;
+	font-weight: 100;
+	cursor: pointer;
+}
+.left-search-section input{
+	width: 100%;
+	float: left;
+	font-size: 16px;
+	padding: 0px 0px 0px 0px;
+	border: 0px;
+	text-align: center;
+	font-weight: 500;
+}
+.left-search-section input:focus{
+	border-bottom: 5px solid #f9d38a;
+}
+
+.left-search-section form {
+	padding-bottom: 50px;
+}
+
+.left-side-title {
+	font-size: 1.1em;
+    padding: 8px;
+}
+
+.tags-list {
+	text-align: justify !important;
+	margin: 0px;
+	font-weight: 400;
+}
+
+.tags-list li::before {
+	display: none;
+}
+
+.tags-list li {
+	margin-bottom: 25px;
+	padding: 5px 0px 5px 0px;
+	width: 100%;
+}
+
+.tags-list ul {
+	list-style: none;
+	padding: 0;
+	margin: 0;
+}
+
+.tags-list a {
+	text-decoration: none;
+}
+
+.tags-list a:hover {
+	color: #ffa300;
+}
+
+.tags-list span.right {
+	padding: 3px 8px;
+	border-radius: 5px;
+}
+
+.upcoming-meetup div {
+	text-align: left;
+	padding: 10px 0px 10px 5px;
+	margin-bottom: 5px;
+    border-bottom: 2px solid #003366;
+}
+
+.upcoming-meetup div:hover {
+    border-bottom: 2px solid #ffa300;
+}
+
+.upcoming-meetup a {
+	text-decoration: none;
+	font-weight: 400;
+}
+
+.upcoming-meetup a:hover {
+	color: #003366;
+}
+
+.questions-section .meetup-icon {
+	line-height: 20px;
+}
+
+.questions-section {
+	width: 90%;
+	margin-left: 5%;
+	margin-bottom: 20px;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.questions-section p {
+	margin-bottom: 10px;
+}
+
+.questions-section .usernames {
+	text-decoration: none;
+}
+
+.questions-section a.user-names {
+	text-decoration: none;
+}
+
+.questions-section a.user-names:hover {
+	color: #960000;
+}
+
+.questions-section .meetup-footer {
+	border-top: 1px solid #000;
+}
+
+.upvote {
+	color: #003366;
+	font-size: 25px;
+	cursor: pointer;
+}
+.upvote:hover:before {
+	content: "\f0aa";
+}
+.downvote {
+	color: #960000;
+	font-size: 25px;
+	cursor: pointer;
+}
+.downvote:hover:before {
+	content: "\f0ab";
+}
+
+#question-form {
+	margin-top: 1.5rem;
+}
+
+textarea.question-area {
+	width: 90%;
+	padding: 0.5rem;
+	font-size: 1rem;
+	border: 1px solid #D9D9D9;
+	border-radius: 3px;
+	box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.1);
+	margin-bottom: 0.6rem;
+	outline: none;
+}
+
+textarea.question-area::placeholder {
+	color: #000;
+}
+
+.question-form button {
+	display: inline-block;
+	border-radius: 3px;
+	border: none;
+	font-size: 0.9rem;
+	padding: 0.4rem 1em;
+	color: #ffa300;
+	margin: 0 0.25rem;
+	text-align: center;
+	background: #003366;
+	border-bottom: 1px solid #999;
+	font-weight: 500;
+}
+
+.question-form button[type="submit"] {
+	background: #003366;
+	border-bottom: 1px solid #003366;
+}
+
+.question-form button:hover {
+	opacity: 0.9;
+	cursor: pointer;
+}
+
+.questions-reply {
+	width: 80%;
+    margin-left: 15%;
+}
+
+.no-box {
+	box-shadow: none;
+}
+
+
+.statistics-box {
+    width: 32%;
+    border: 3px solid #fafafa;
+    float: left;
+}
+.statistics-box .number{
+	width: 100%;
+	float: left;
+	font-weight: 500;
+	font-size: 45px;
+	padding: 5px 5px;
+}
+.statistics-box .summary{
+	width: 100%;
+	float: left;
+	padding: 5px 5px;
+}
+
+.user-info {
+	margin-bottom: 25px;
+}
+
+table.user-profile {
+	border-collapse: collapse;
+	width: 60%;
+	margin-left: 15%;
+}
+
+.user-profile th,.user-profile td {
+	padding: 8px;
+	text-align: left;
+	border-bottom: 1px solid #000;
+	padding: 10px;
+}
+
+.add-meetup-form {
+	width: 70%;
+	height: 45px;
+	margin-left: 15%;
+}
+
+.add-meetup-form input {
+	background: #fafafa;
+	padding-left: 5px;
+	border: 1px solid #003366;
+}
+.add-meetup-form input::placeholder{
+	color: #000000;
+}
+.add-meetup-form input:focus {
+	background: #fafafa;
+	border-bottom: 4px solid #003366;
+}
+
+.add-meetup-form textarea {
+	background: #fafafa;
+	padding-left: 5px;
+	border: 1px solid #003366;
+	height: 80px;
+}
+.add-meetup-form textarea::placeholder{
+	color: #000000;
+}
+.add-meetup-form textarea:focus {
+	background: #fafafa;
+	border-bottom: 4px solid #003366;
+}
+
+
+@media screen and (min-width: 1106px) {
+	.navbar {
+		display: flex;
+		justify-content: space-between;
+		padding-bottom: 0;
+		height: 70px;
+		align-items: center;
+    }
+
+    .app-logo img{
+  		width: 50%;
+  		height: auto;
+	}
+
+	.main-nav {
+		display: flex;
+		margin-right: 30px;
+		flex-direction: row;
+		justify-content: flex-end;
+	}
+
+	.main-nav li {
+		margin: 0;
+	}
+
+	.nav-links {
+		margin-left: 30px;
+	}
+
+	.app-logo {
+		margin-top: 0;
+	}
+
+	.navbar-toggle {
+		display: none;
+	}
+
+	.logo:hover, .nav-links:hover {
+		color: #960000;
+	}
+}
+@media screen and (max-width: 1106px) {
+	.column-half {
+		width: 100%;
+		float: left;
+		height: auto;
+	}
+	.column-third {
+		width: 100%;
+		float: left;
+		height: auto;
+	}
+	.column-third-quarter {
+		width: 100%;
+		float: left;
+		height: auto;
+	}
+	.column-two-third {
+		width: 100%;
+		float: left;
+		height: auto;
+	}
+	.column-fourth {
+		width: 100%;
+		float: left;
+		height: auto;
+	}
+
+	.meetup-details .home-header {
+		padding-bottom: 35px;
+	}
+	.meetups .home-header {
+		text-align: center;
+		padding-top: 35px;
+	}
+	table.user-profile {
+		width: 90%;
+		margin-left: 5%;
+	}
+	.profile-page .statistics-box {
+		width: 96%;
+	}
+	.meetups .header-action {
+		width: 50%;
+		margin-left: 25%;
+		margin-bottom: 0px;
+	}
+	.meetup-single {
+		width: 90%;
+		margin-left: 5%;
+	}
+	.meetup-single .meetup-header .meetup-details {
+		width: 100%;
+	}
+	.meetup-single .meetup-header .meetup-rsvp {
+		text-align: center;
+		width: 100%;
+	}
+	.header-home-transparent {
+		background-repeat: round;
+	}
+	.login .row-login {
+		background: #960000;
+		width: 80%;
+		margin-left: 10%;
+	}
+	.login .login-col {
+		display: none;
+	}
+	.login-section {
+		height: 350px !important;
+	}
+
+	.create-account .row-create-account {
+		background: #960000;
+		width: 80%;
+		margin-left: 10%;
+	}
+}
