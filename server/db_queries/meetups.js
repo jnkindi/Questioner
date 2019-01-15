@@ -40,7 +40,7 @@ module.exports = {
         // End Create an meetup record
     },
     recordMeetup: (data) => {
-        fs.writeFile('./db/meetups.json', JSON.stringify(data, null, 2), (err) => {
+        fs.writeFile('./server/db/meetups.json', JSON.stringify(data, null, 2), (err) => {
             if (err) {
                 return {
                     status: 500,
@@ -61,7 +61,7 @@ module.exports = {
         return Joi.validate(rsvp, schema);
     },
     recordRsvp: (data) => {
-        fs.writeFile('./db/rsvps.json', JSON.stringify(data, null, 2), (err) => {
+        fs.writeFile('./server/db/rsvps.json', JSON.stringify(data, null, 2), (err) => {
             if (err) throw err;
         });
         return true;

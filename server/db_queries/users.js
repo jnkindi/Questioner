@@ -42,7 +42,7 @@ module.exports = {
         // End validation F(x) for login
     },
     recordUser: (data) => {
-        fs.writeFile('./db/users.json', JSON.stringify(data, null, 2), (err) => {
+        fs.writeFile('./server/db/users.json', JSON.stringify(data, null, 2), (err) => {
             if (err) {
                 return {
                     status: 500,

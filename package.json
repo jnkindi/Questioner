@@ -3,13 +3,14 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "node ./server/bin/www",
     "dev": "clear && nodemon",
-    "test": "nyc mocha --exit",
-    "cover": "istanbul cover _mocha",
+    "test": "nyc mocha ./server/test/app.test --exit",
+    "cover": "istanbul cover _mocha ./server/test/app.test",
     "coveralls": "npm run cover -- --report lcovonly"
   },
   "dependencies": {
+    "debug": "^4.1.1",
     "express": "~4.16.0",
     "joi": "^14.3.1"
   },
