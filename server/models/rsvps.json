@@ -274,5 +274,23 @@
     "meetup": "1",
     "user": 1,
     "response": "maybe"
+  },
+  {
+    "id": 47,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
+  },
+  {
+    "id": 48,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
+  },
+  {
+    "id": 49,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
   }
 ]
