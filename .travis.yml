@@ -1,0 +1,13 @@
+language: node_js
+node_js:
+  - "stable"
+script:
+  - npm test
+after_success:
+  - npm run coveralls
+  - codeclimate-test-reporter < ./coverage/lcov.info
+  - nyc report --reporter=text-lcov | coveralls
+addons:
+  code_climate:
+    repo_token:
+      secure: "81a5c1667f0962dcf6fc55964266315486190569bc3876865163d802649e86f9"

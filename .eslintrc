@@ -1,0 +1,24 @@
+{
+  "extends": "airbnb-base",
+  "env": {
+    "browser": true,
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "rules": {
+    "no-use-before-define": ["error", {
+      "variables": false,
+      "functions": false
+    }],
+    "no-const-assign": "warn",
+    "no-unused-vars": "warn",
+    "valid-typeof": "warn",
+    "no-console": "off",
+    "linebreak-style": "off",
+    "comma-dangle": "off",
+    "indent": ["off", ["tab", 2, 4, 8]],
+    "global-require": "off",
+    "eol-last": "off"
+  }
+}

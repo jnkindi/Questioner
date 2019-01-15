@@ -1,0 +1,33 @@
+{
+  "name": "questioner-app",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "node ./server/config/index",
+    "dev": "clear && nodemon",
+    "test": "nyc mocha ./server/tests/app.test --exit",
+    "cover": "istanbul cover _mocha ./server/tests/app.test",
+    "coveralls": "npm run cover -- --report lcovonly"
+  },
+  "dependencies": {
+    "debug": "^4.1.1",
+    "express": "~4.16.0",
+    "joi": "^14.3.1"
+  },
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "codeclimate-test-reporter": "^0.5.1",
+    "coveralls": "^3.0.2",
+    "eslint": "^5.9.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-config-prettier": "^3.3.0",
+    "eslint-plugin-import": "^2.14.0",
+    "eslint-plugin-mocha": "^5.2.0",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.2.0",
+    "nodemon": "^1.18.9",
+    "nyc": "^13.1.0",
+    "prettier-eslint": "^8.8.2",
+    "supertest": "^3.3.0"
+  }
+}
