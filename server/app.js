@@ -2,10 +2,10 @@ const express = require('express');
 
 const app = express();
 
-const meetups = require('./endpoints/meetups');
-const questions = require('./endpoints/questions');
-const users = require('./endpoints/users');
-const authentication = require('./endpoints/authentication');
+const meetups = require('./routes/meetups');
+const questions = require('./routes/questions');
+const users = require('./routes/users');
+const authentication = require('./routes/authentication');
 
 
 app.use(express.json());

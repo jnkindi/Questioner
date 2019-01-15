@@ -3,7 +3,7 @@ const fs = require('fs');
 
 let usersFetched = [];
 try {
-    usersFetched = require('../db/users.json');
+    usersFetched = require('../data/users.json');
 } catch (err) {
     usersFetched = [];
 }
@@ -42,7 +42,7 @@ module.exports = {
         // End validation F(x) for login
     },
     recordUser: (data) => {
-        fs.writeFile('./server/db/users.json', JSON.stringify(data, null, 2), (err) => {
+        fs.writeFile('./server/data/users.json', JSON.stringify(data, null, 2), (err) => {
             if (err) {
                 return {
                     status: 500,

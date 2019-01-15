@@ -1,5 +1,5 @@
 const express = require('express');
-const database = require('../db_queries/meetups');
+const database = require('../controllers/meetups');
 
 const router = express.Router();
 

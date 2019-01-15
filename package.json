@@ -3,10 +3,10 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server/bin/www",
+    "start": "node ./server/config/index",
     "dev": "clear && nodemon",
-    "test": "nyc mocha ./server/test/app.test --exit",
-    "cover": "istanbul cover _mocha ./server/test/app.test",
+    "test": "nyc mocha ./server/tests/app.test --exit",
+    "cover": "istanbul cover _mocha ./server/tests/app.test",
     "coveralls": "npm run cover -- --report lcovonly"
   },
   "dependencies": {
