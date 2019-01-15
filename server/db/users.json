@@ -454,5 +454,41 @@
     "password": "12345678",
     "registered": "2019-01-15 10:33:59",
     "isAdmin": false
+  },
+  {
+    "id": 39,
+    "firstname": "TEST Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-15 11:14:54",
+    "isAdmin": false
+  },
+  {
+    "id": 40,
+    "firstname": "TEST Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-15 11:15:14",
+    "isAdmin": false
+  },
+  {
+    "id": 41,
+    "firstname": "TEST Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-15 11:15:31",
+    "isAdmin": false
   }
 ]
