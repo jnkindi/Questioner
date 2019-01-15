@@ -3,7 +3,7 @@ const fs = require('fs');
 
 let questionsFetched = [];
 try {
-    questionsFetched = require('../data/questions.json');
+    questionsFetched = require('../models/questions.json');
 } catch (err) {
     questionsFetched = [];
 }
@@ -25,7 +25,7 @@ module.exports = {
         return Joi.validate(question, schema);
     },
     recordQuestion: (data) => {
-        fs.writeFile('./server/data/questions.json', JSON.stringify(data, null, 2), (err) => {
+        fs.writeFile('./server/models/questions.json', JSON.stringify(data, null, 2), (err) => {
             if (err) throw err;
         });
         return true;
