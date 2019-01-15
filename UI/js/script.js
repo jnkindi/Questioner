@@ -1,10 +1,10 @@
-let mainNav = document.getElementById("js-menu");
-let navBarToggle = document.getElementById("js-navbar-toggle");
-
-navBarToggle.addEventListener("click", function() {
-  mainNav.classList.toggle("active");
-});
-
+if(document.getElementById("js-navbar-toggle")) {
+	let mainNav = document.getElementById("js-menu");
+	let navBarToggle = document.getElementById("js-navbar-toggle");
+	navBarToggle.addEventListener("click", function() {
+	mainNav.classList.toggle("active");
+	});
+}
 let clicknbr = 0;
 function nextimage(){
 	clicknbr++;
@@ -20,7 +20,7 @@ function nextimage(){
 	}
 	let section = document.getElementsByClassName('header-home-transparent');
 	section[0].removeAttribute("href");
-	section[0].setAttribute("style", "background-image: url('images/"+image+"')");
+	section[0].setAttribute("style", "background-image: url('../images/"+image+"')");
 }
 
 function previousimage(){
