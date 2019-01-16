@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Quicksand:300,500");
 @import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css");
 body {
-	background-color: #003366;
+	background-color: #131d27;
 	background-image: url("../images/events-texture.png");
 	font-family: 'Quicksand', sans-serif;
 	font-weight: 300;
@@ -63,19 +63,10 @@ h1, h2, h3, h4, h5, h6 {
 }
 .row-login {
 	margin-left: 16.5%;
-	margin-top: 200px;
-	margin-bottom: 200px;
-	height: auto;
-	background: linear-gradient(to left, #960000 50%, #960000 50%, #ffa300 50% );
-	border-radius: 10px;
-	box-shadow: 0px 4px 14px whitesmoke;
-}
-.row-login {
-	margin-left: 16.5%;
 	margin-top: 150px;
 	margin-bottom: 150px;
 	height: auto;
-	background: linear-gradient(to left, #960000 50%, #960000 50%, #ffa300 50% );
+	background: linear-gradient(to left, #131d27 50%, #ffffff 50%, #f9d38a 50% );
 	border-radius: 10px;
 	box-shadow: 0px 4px 14px whitesmoke;
 }
@@ -107,6 +98,9 @@ h1, h2, h3, h4, h5, h6 {
 }
 .bg-lightgrey {
 	background-color: #fafafa;
+}
+.bg-darkblack {
+	background-color: #131d27;
 }
 .txt-orange {
 	color: #ffa300;
@@ -213,7 +207,7 @@ h1, h2, h3, h4, h5, h6 {
 	font-weight: 500;
 }
 .login-form a:hover {
-	color: #003366;
+	color: #ffa300;
 }
 .forgot-password .login-form {
 	padding-top: 30px;
@@ -498,7 +492,6 @@ h1, h2, h3, h4, h5, h6 {
 .meetup-icon {
 	padding: 5px 5px 5px 20px;
 	vertical-align: middle;
-	float: left;
 	display: inline-block;
 	line-height: 30px;
 	font-weight: 500;
@@ -980,7 +973,7 @@ table.user-profile {
 		background-repeat: round;
 	}
 	.login .row-login {
-		background: #960000;
+		background: #131d27;
 		width: 80%;
 		margin-left: 10%;
 	}
@@ -992,7 +985,7 @@ table.user-profile {
 	}
 
 	.create-account .row-create-account {
-		background: #960000;
+		background: #131d27;
 		width: 80%;
 		margin-left: 10%;
 	}
