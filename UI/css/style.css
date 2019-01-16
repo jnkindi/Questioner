@@ -869,6 +869,11 @@ table.user-profile {
 	background: #fafafa;
 	border-bottom: 4px solid #003366;
 }
+.delete-button {
+	padding: 8px;
+	border-radius: 3px;
+	cursor: pointer;
+}
 
 
 @media screen and (min-width: 1106px) {
