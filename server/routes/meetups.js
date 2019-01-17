@@ -77,12 +77,10 @@ router.get('/upcoming/', (req, res) => {
 
 
     const data = [];
-    let count = 0;
     meetups.forEach((meetup) => {
-        // Limiting 5 upcoming meetup
-        if (count <= 5 && new Date(meetup.happeningOn) >= new Date()) {
+        // Showing only upcoming
+        if (new Date(meetup.happeningOn) >= new Date()) {
             data.push(meetup);
-            count += 1;
         }
     });
     const response = {
