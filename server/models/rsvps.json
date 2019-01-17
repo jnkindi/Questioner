@@ -382,5 +382,11 @@
     "meetup": "1",
     "user": 1,
     "response": "maybe"
+  },
+  {
+    "id": 65,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
   }
 ]
