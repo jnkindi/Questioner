@@ -225,7 +225,8 @@ router.post('/:id/questions', (req, res) => {
         meetup: parseInt(req.params.id, 10),
         title: req.body.title,
         body: req.body.body,
-        votes: 0
+        upvotes: 0,
+        downvotes: 0
     };
 
     questions.push(question);
