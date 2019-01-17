@@ -19,6 +19,7 @@
     "comma-dangle": "off",
     "indent": ["off", ["tab", 2, 4, 8]],
     "global-require": "off",
-    "eol-last": "off"
+    "eol-last": "off",
+    "object-curly-newline": "off"
   }
 }

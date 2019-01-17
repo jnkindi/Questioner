@@ -4,17 +4,8 @@ const databaseQuestion = require('../controllers/questions');
 
 const router = express.Router();
 
-const { meetups } = databaseMeetup;
-const { validateMeetup } = databaseMeetup;
-const { recordMeetup } = databaseMeetup;
-
-const { rsvps } = databaseMeetup;
-const { validateRsvp } = databaseMeetup;
-const { recordRsvp } = databaseMeetup;
-
-const { questions } = databaseQuestion;
-const { validateQuestion } = databaseQuestion;
-const { recordQuestion } = databaseQuestion;
+const { meetups, validateMeetup, recordMeetup, rsvps, validateRsvp, recordRsvp } = databaseMeetup;
+const { questions, validateQuestion, recordQuestion } = databaseQuestion;
 
 
 // Create a meetup record

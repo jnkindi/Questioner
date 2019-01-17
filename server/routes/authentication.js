@@ -3,10 +3,7 @@ const database = require('../controllers/users');
 
 const router = express.Router();
 
-const { validateLogin } = database;
-const { users } = database;
-const { validateUser } = database;
-const { recordUser } = database;
+const { validateLogin, users, validateUser, recordUser } = database;
 
 // Login Endpoint
 router.post('/login', (req, res) => {
