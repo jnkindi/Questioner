@@ -1,56 +1,79 @@
-const Joi = require('joi');
-const fs = require('fs');
 
-let usersFetched = [];
-try {
-    usersFetched = require('../models/users.json');
-} catch (err) {
-    usersFetched = [];
-}
+const usersHelpers = require('../helpers/users');
 
-if (typeof (usersFetched) !== 'object') {
-    usersFetched = [];
-}
+const { validateLogin, users, validateUser, recordUser } = usersHelpers;
+
+const userLogin = (req, res) => {
+    // Validate Data
+    const { error } = validateLogin(req.body);
+    if (error) {
+        return res.status(400).send({
+            status: 400,
+            error: error.details[0].message
+        });
+    }
+    const user = users.find(u => (u.username === req.body.username)
+    && (u.password === req.body.password));
+    if (!user) {
+        return res.status(404).send({
+            status: 404,
+            error: 'Invalid credentials'
+        });
+    }
+    const response = {
+        status: 200,
+        data: [{
+            id: user.id,
+            firstname: user.firstname,
+            lastname: user.lastname,
+            othername: user.othername
+        }]
+    };
+    return res.send(response);
+};
+
+const userSignup = (req, res) => {
+    // Validate Data
+    const { error } = validateUser(req.body);
+    if (error) {
+        return res.status(400).send({
+            status: 400,
+            error: error.details[0].message
+        });
+    }
+    const user = {
+        id: users.length + 1,
+        firstname: req.body.firstname,
+        lastname: req.body.lastname,
+        othername: req.body.othername,
+        email: req.body.email,
+        phoneNumber: req.body.phoneNumber,
+        username: req.body.username,
+        password: req.body.password,
+        registered: new Date().toISOString().replace('T', ' ').replace(/\..*$/, ''),
+        isAdmin: req.body.isAdmin
+    };
+
+    users.push(user);
+    if (recordUser(users)) {
+        const response = {
+            status: 200,
+            data: [{
+                firstname: req.body.firstname,
+                lastname: req.body.lastname,
+                othername: req.body.othername,
+                email: req.body.email,
+                phoneNumber: req.body.phoneNumber,
+                username: req.body.username,
+                isAdmin: req.body.isAdmin
+            }]
+        };
+        res.send(response);
+    }
+    return true;
+};
 
 module.exports = {
-    users: usersFetched,
-    validateUser: (user) => {
-        // Validation F(x) for User
-        const schema = {
-            firstname: Joi.string().min(5).required(),
-            lastname: Joi.string().min(5).required(),
-            othername: Joi.string(),
-            email: Joi.string().email({
-                minDomainAtoms: 2
-            }).required(),
-            phoneNumber: Joi.number().required(),
-            username: Joi.string().min(5).required(),
-            password: Joi.string().min(8).required(),
-            registered: Joi.date(),
-            isAdmin: Joi.boolean().required()
-        };
-        return Joi.validate(user, schema);
-        // End Create an user record
-    },
-    validateLogin: (access) => {
-        // Validation F(x) for login
-        const schema = {
-            username: Joi.string().min(5).required(),
-            password: Joi.string().min(8).required()
-        };
-        return Joi.validate(access, schema);
-        // End validation F(x) for login
-    },
-    recordUser: (data) => {
-        fs.writeFile('./server/models/users.json', JSON.stringify(data, null, 2), (err) => {
-            if (err) {
-                return {
-                    status: 500,
-                    error: err
-                };
-            }
-            return true;
-        });
-        return true;
-    }
+    userLogin,
+    userSignup
 };

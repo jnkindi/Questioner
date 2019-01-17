@@ -1,32 +1,59 @@
-const Joi = require('joi');
-const fs = require('fs');
+const questionHelpers = require('../helpers/questions');
 
-let questionsFetched = [];
-try {
-    questionsFetched = require('../models/questions.json');
-} catch (err) {
-    questionsFetched = [];
-}
+const { questions, recordQuestion } = questionHelpers;
 
-if (typeof (questionsFetched) !== 'object') {
-    questionsFetched = [];
-}
+const upvoteQuestion = (req, res) => {
+    const arrIndex = questions.findIndex(q => q.id === parseInt(req.params.id, 10));
+    const question = questions.find(q => q.id === parseInt(req.params.id, 10));
+    if (!question) {
+        return res.status(404).send({
+            status: 404,
+            error: 'Question with given ID was not found'
+        });
+    }
+    // Adding a vote
+    questions[arrIndex].upvotes += 1;
+    if (recordQuestion(questions)) {
+        const response = {
+            status: 200,
+            data: [{
+                meetup: question.meetup,
+                title: question.title,
+                body: question.body,
+                votes: question.votes
+            }]
+        };
+        res.send(response);
+    }
+    return true;
+};
+const downvoteQuestion = (req, res) => {
+    const arrIndex = questions.findIndex(q => q.id === parseInt(req.params.id, 10));
+    const question = questions.find(q => q.id === parseInt(req.params.id, 10));
+    if (!question) {
+      return res.status(404).send({
+            status: 404,
+            error: 'Question with given ID was not found'
+        });
+    }
+    // Adding a vote
+    questions[arrIndex].downvotes += 1;
+    if (recordQuestion(questions)) {
+        const response = {
+            status: 200,
+            data: [{
+                meetup: question.meetup,
+                title: question.title,
+                body: question.body,
+                votes: question.votes
+            }]
+        };
+        res.send(response);
+    }
+    return true;
+};
 
 module.exports = {
-    questions: questionsFetched,
-    validateQuestion: (question) => {
-        // Validation F(x) for Question
-        const schema = {
-            createdBy: Joi.number().required(),
-            title: Joi.string().min(5).required(),
-            body: Joi.string().min(10).required()
-        };
-        return Joi.validate(question, schema);
-    },
-    recordQuestion: (data) => {
-        fs.writeFile('./server/models/questions.json', JSON.stringify(data, null, 2), (err) => {
-            if (err) throw err;
-        });
-        return true;
-    }
+    upvoteQuestion,
+    downvoteQuestion
 };
