@@ -4,7 +4,6 @@ const app = express();
 
 const meetups = require('./routes/meetups');
 const questions = require('./routes/questions');
-const users = require('./routes/users');
 const authentication = require('./routes/authentication');
 
 
@@ -16,7 +15,6 @@ app.use(express.urlencoded({
 
 app.use('/api/v1/meetups', meetups);
 app.use('/api/v1/questions', questions);
-app.use('/api/v1/users', users);
 app.use('/auth', authentication);
 
 
