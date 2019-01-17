@@ -13,7 +13,6 @@ const meetupPost = {
 
 const questionPost = {
     createdBy: 5,
-    meetup: 3,
     title: 'Test Fellowship Talks',
     body: 'We shall talk about everything on fellowship and how to get started'
 };

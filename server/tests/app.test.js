@@ -62,8 +62,21 @@ describe('Questioner API Tests', () => {
 
     it('Adding new question...', (done) => {
         request(app)
-            .post('/api/v1/questions')
+            .post('/api/v1/meetups/3/questions')
             .send(fixtures.question_post)
+            .set('Accept', 'application/json')
+            .expect('Content-Type', /json/)
+            .expect(200)
+            .end((err, res) => {
+                expect(res.body).to.be.a('object');
+                expect(res.body.status).to.be.equal(200);
+                done();
+            });
+    });
+
+    it('Fetching meetup questions...', (done) => {
+        request(app)
+            .get('/api/v1/meetups/3/questions')
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
             .expect(200)
