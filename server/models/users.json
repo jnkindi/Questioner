@@ -694,5 +694,17 @@
     "password": "12345678",
     "registered": "2019-01-17 22:09:56",
     "isAdmin": false
+  },
+  {
+    "id": 59,
+    "firstname": "TEST Jacques",
+    "lastname": "Nyilinkindi",
+    "othername": "Munezero Jean",
+    "email": "jack@u.com",
+    "phoneNumber": "078887878",
+    "username": "j_nkindi",
+    "password": "12345678",
+    "registered": "2019-01-17 22:13:18",
+    "isAdmin": false
   }
 ]
