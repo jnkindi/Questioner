@@ -19,7 +19,7 @@ router.patch('/:id/upvote', (req, res) => {
         });
     }
     // Adding a vote
-    questions[arrIndex].votes += 1;
+    questions[arrIndex].upvotes += 1;
     if (recordQuestion(questions)) {
         const response = {
             status: 200,
@@ -50,7 +50,7 @@ router.patch('/:id/downvote', (req, res) => {
         });
     }
     // Adding a vote
-    questions[arrIndex].votes -= 1;
+    questions[arrIndex].downvotes += 1;
     if (recordQuestion(questions)) {
         const response = {
             status: 200,
