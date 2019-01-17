@@ -3,8 +3,7 @@ const database = require('../controllers/questions');
 
 const router = express.Router();
 
-const { questions } = database;
-const { recordQuestion } = database;
+const { questions, recordQuestion } = database;
 
 
 // Upvote (increase votes by 1) a specific question.
