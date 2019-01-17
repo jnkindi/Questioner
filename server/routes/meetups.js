@@ -1,15 +1,20 @@
 const express = require('express');
-const database = require('../controllers/meetups');
+const databaseMeetup = require('../controllers/meetups');
+const databaseQuestion = require('../controllers/questions');
 
 const router = express.Router();
 
-const { meetups } = database;
-const { validateMeetup } = database;
-const { recordMeetup } = database;
+const { meetups } = databaseMeetup;
+const { validateMeetup } = databaseMeetup;
+const { recordMeetup } = databaseMeetup;
 
-const { rsvps } = database;
-const { validateRsvp } = database;
-const { recordRsvp } = database;
+const { rsvps } = databaseMeetup;
+const { validateRsvp } = databaseMeetup;
+const { recordRsvp } = databaseMeetup;
+
+const { questions } = databaseQuestion;
+const { validateQuestion } = databaseQuestion;
+const { recordQuestion } = databaseQuestion;
 
 
 // Create a meetup record
@@ -194,5 +199,74 @@ router.delete('/:id', (req, res) => {
 
 // End Delete meetup.
 
+
+// Create a question for a specific meetup.
+router.post('/:id/questions', (req, res) => {
+    // Validate Data
+    const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
+    if (!meetup) {
+        return res.status(404).send({
+            status: 404,
+            error: 'Meetup with given ID was not found'
+        });
+    }
+    // Validate Data
+    const { error } = validateQuestion(req.body);
+    if (error) {
+        return res.status(400).send({
+            status: 400,
+            error: error.details[0].message
+        });
+    }
+    const question = {
+        id: questions.length + 1,
+        createdOn: new Date().toISOString().replace('T', ' ').replace(/\..*$/, ''),
+        createdBy: req.body.createdBy,
+        meetup: parseInt(req.params.id, 10),
+        title: req.body.title,
+        body: req.body.body,
+        votes: 0
+    };
+
+    questions.push(question);
+
+    if (recordQuestion(questions)) {
+        const response = {
+            status: 200,
+            data: [{
+                user: req.body.createdBy,
+                meetup: req.body.id,
+                title: req.body.title,
+                body: req.body.body
+            }]
+        };
+        res.send(response);
+    }
+    return true;
+});
+
+// End Create a question for a specific meetup.
+
+
+// Fetch a specific meetup record.
+
+router.get('/:id/questions', (req, res) => {
+    const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
+    if (!meetup) {
+        return res.status(404).send({
+            status: 404,
+            error: 'Meetup with given ID was not found'
+        });
+    }
+    const questionList = questions.filter(q => q.meetup === parseInt(req.params.id, 10)) || [];
+
+    const response = {
+        status: 200,
+        data: [questionList]
+    };
+    return res.send(response);
+});
+
+// End Fetch a specific meetup record.
 
 module.exports = router;
