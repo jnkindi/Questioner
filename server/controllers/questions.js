@@ -18,7 +18,6 @@ module.exports = {
         // Validation F(x) for Question
         const schema = {
             createdBy: Joi.number().required(),
-            meetup: Joi.number().required(),
             title: Joi.string().min(5).required(),
             body: Joi.string().min(10).required()
         };
