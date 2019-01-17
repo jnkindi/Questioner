@@ -129,7 +129,7 @@ describe('Questioner API Tests', () => {
 
     it('Adding new user...', (done) => {
         request(app)
-            .post('/auth/signup')
+            .post('/api/v1/auth/signup')
             .send(fixtures.user_post)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -156,7 +156,7 @@ describe('Questioner API Tests', () => {
 describe('Login API Tests', () => {
     it('Testing Invalid Credentials...', (done) => {
         request(app)
-            .post('/auth/login')
+            .post('/api/v1/auth/login')
             .send(fixtures.user_login_invalid)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)
@@ -169,7 +169,7 @@ describe('Login API Tests', () => {
     });
     it('Testing Valid Credentials...', (done) => {
         request(app)
-            .post('/auth/login')
+            .post('/api/v1/auth/login')
             .send(fixtures.user_login)
             .set('Accept', 'application/json')
             .expect('Content-Type', /json/)

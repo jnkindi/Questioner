@@ -1,10 +1,8 @@
 const express = require('express');
 
-const app = express();
+const routes = require('./routes/index');
 
-const meetups = require('./routes/meetups');
-const questions = require('./routes/questions');
-const authentication = require('./routes/authentication');
+const app = express();
 
 
 app.use(express.json());
@@ -13,10 +11,7 @@ app.use(express.urlencoded({
 }));
 
 
-app.use('/api/v1/meetups', meetups);
-app.use('/api/v1/questions', questions);
-app.use('/auth', authentication);
-
+app.use('/api/v1/', routes);
 
 // Welcoming
 app.get('/', (req, res) => {
