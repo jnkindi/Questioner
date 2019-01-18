@@ -7,9 +7,10 @@ const userLogin = (req, res) => {
     // Validate Data
     const { error } = validateLogin(req.body);
     if (error) {
+        const errorMessage = error.details.map(d => d.message);
         return res.status(400).send({
             status: 400,
-            error: error.details[0].message
+            error: errorMessage
         });
     }
     const user = users.find(u => (u.username === req.body.username)
@@ -36,9 +37,10 @@ const userSignup = (req, res) => {
     // Validate Data
     const { error } = validateUser(req.body);
     if (error) {
+        const errorMessage = error.details.map(d => d.message);
         return res.status(400).send({
             status: 400,
-            error: error.details[0].message
+            error: errorMessage
         });
     }
     const user = {

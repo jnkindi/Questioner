@@ -388,5 +388,11 @@
     "meetup": "1",
     "user": 1,
     "response": "maybe"
+  },
+  {
+    "id": 66,
+    "meetup": "106",
+    "user": 1,
+    "response": "yes"
   }
 ]
