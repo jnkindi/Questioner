@@ -20,6 +20,8 @@
     "indent": ["off", ["tab", 2, 4, 8]],
     "global-require": "off",
     "eol-last": "off",
-    "object-curly-newline": "off"
+    "object-curly-newline": "off",
+    "max-len": "off",
+    "prefer-template": "off"
   }
 }

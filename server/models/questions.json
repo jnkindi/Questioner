@@ -1,69 +1,79 @@
 [
   {
     "id": 1,
-    "createdOn": "2019-01-17 22:13:55",
+    "createdOn": "2019-01-18 13:21:49",
     "createdBy": 5,
-    "meetup": 1,
-    "title": "Fellowship Talks",
+    "meetup": 6,
+    "title": "Test Fellowship Talks",
     "body": "We shall talk about everything on fellowship and how to get started",
-    "upvotes": 3,
-    "downvotes": 2
+    "upvotes": 1,
+    "downvotes": 1
   },
   {
     "id": 2,
-    "createdOn": "2019-01-17 22:13:57",
+    "createdOn": "2019-01-18 13:23:44",
     "createdBy": 5,
-    "meetup": 1,
-    "title": "Fellowship Talks",
+    "meetup": 6,
+    "title": "Test Fellowship Talks",
     "body": "We shall talk about everything on fellowship and how to get started",
-    "upvotes": 1,
-    "downvotes": 0
+    "upvotes": 4,
+    "downvotes": 4
   },
   {
     "id": 3,
-    "createdOn": "2019-01-17 22:13:58",
+    "createdOn": "2019-01-18 13:37:59",
     "createdBy": 5,
-    "meetup": 1,
-    "title": "Fellowship Talks",
+    "meetup": 22,
+    "title": "Test Fellowship Talks",
     "body": "We shall talk about everything on fellowship and how to get started",
-    "upvotes": 0,
-    "downvotes": 0
+    "upvotes": 1,
+    "downvotes": 1
   },
   {
     "id": 4,
-    "createdOn": "2019-01-17 22:13:59",
+    "createdOn": "2019-01-18 13:38:04",
     "createdBy": 5,
-    "meetup": 1,
-    "title": "Fellowship Talks",
+    "meetup": 22,
+    "title": "Test Fellowship Talks",
     "body": "We shall talk about everything on fellowship and how to get started",
-    "upvotes": 0,
-    "downvotes": 0
+    "upvotes": 1,
+    "downvotes": 1
   },
   {
     "id": 5,
-    "createdOn": "2019-01-17 22:14:36",
+    "createdOn": "2019-01-18 13:39:07",
     "createdBy": 5,
-    "meetup": 3,
+    "meetup": 22,
     "title": "Test Fellowship Talks",
     "body": "We shall talk about everything on fellowship and how to get started",
-    "upvotes": 0,
-    "downvotes": 0
+    "upvotes": 1,
+    "downvotes": 1
   },
   {
     "id": 6,
-    "createdOn": "2019-01-18 00:09:34",
+    "createdOn": "2019-01-18 13:39:31",
     "createdBy": 5,
-    "meetup": 3,
+    "meetup": 22,
     "title": "Test Fellowship Talks",
     "body": "We shall talk about everything on fellowship and how to get started",
-    "upvotes": 0,
-    "downvotes": 0
+    "upvotes": 1,
+    "downvotes": 1
   },
   {
     "id": 7,
-    "createdOn": "2019-01-18 00:11:16",
+    "createdOn": "2019-01-18 13:39:43",
     "createdBy": 5,
-    "meetup": 3,
+    "meetup": 22,
+    "title": "Test Fellowship Talks",
+    "body": "We shall talk about everything on fellowship and how to get started",
+    "upvotes": 1,
+    "downvotes": 1
+  },
+  {
+    "id": 8,
+    "createdOn": "2019-01-18 13:55:32",
+    "createdBy": 5,
+    "meetup": 22,
     "title": "Test Fellowship Talks",
     "body": "We shall talk about everything on fellowship and how to get started",
     "upvotes": 0,

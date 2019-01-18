@@ -47,7 +47,7 @@ const addMeetup = (req, res) => {
 const getMeetups = (req, res) => {
     const response = {
         status: 200,
-        meetups
+        data: meetups
     };
     res.send(response);
 };
@@ -211,7 +211,7 @@ const getQuestions = (req, res) => {
     const questionList = questions.filter(q => q.meetup === parseInt(req.params.id, 10)) || [];
     const response = {
         status: 200,
-        data: [questionList]
+        data: questionList
     };
     return res.send(response);
 };

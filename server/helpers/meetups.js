@@ -58,7 +58,6 @@ module.exports = {
     validateRsvp: (rsvp) => {
         // Validation F(x) for Rsvp
         const schema = {
-            meetup: Joi.number().required(),
             user: Joi.number().required(),
             response: Joi.string().trim().required().valid(['yes', 'no', 'maybe'])
         };

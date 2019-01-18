@@ -16,8 +16,8 @@ const userLogin = (req, res) => {
     const user = users.find(u => (u.username === req.body.username)
     && (u.password === req.body.password));
     if (!user) {
-        return res.status(404).send({
-            status: 404,
+        return res.status(400).send({
+            status: 400,
             error: 'Invalid credentials'
         });
     }
@@ -25,6 +25,7 @@ const userLogin = (req, res) => {
         status: 200,
         data: [{
             id: user.id,
+            username: user.username,
             firstname: user.firstname,
             lastname: user.lastname,
             othername: user.othername
