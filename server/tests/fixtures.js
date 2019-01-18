@@ -40,14 +40,14 @@ const userLoginInvalid = {
 };
 
 const userLogin = {
-    username: 'JacquesNY',
-    password: 'Nyilinkindi'
+    username: 'j_nkindi',
+    password: '12345678'
 };
 
 module.exports = {
-    meetup_post: meetupPost,
-    question_post: questionPost,
-    rsvp_post: rsvpPost,
+    meetupPost,
+    questionPost,
+    rsvpPost,
     user_post: userPost,
     user_login: userLogin,
     user_login_invalid: userLoginInvalid

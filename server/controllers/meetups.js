@@ -47,7 +47,7 @@ const addMeetup = (req, res) => {
 const getMeetups = (req, res) => {
     const response = {
         status: 200,
-        meetups
+        data: meetups
     };
     res.send(response);
 };
