@@ -17,28 +17,36 @@ module.exports = {
     validateUser: (user) => {
         // Validation F(x) for User
         const schema = {
-            firstname: Joi.string().min(5).required(),
-            lastname: Joi.string().min(5).required(),
-            othername: Joi.string(),
-            email: Joi.string().email({
+            firstname: Joi.string().trim().min(5).required(),
+            lastname: Joi.string().trim().min(5).required(),
+            othername: Joi.string().trim(),
+            email: Joi.string().trim().email({
                 minDomainAtoms: 2
             }).required(),
             phoneNumber: Joi.number().required(),
-            username: Joi.string().min(5).required(),
-            password: Joi.string().min(8).required(),
+            username: Joi.string().trim().min(5).required(),
+            password: Joi.string().trim().min(8).required(),
             registered: Joi.date(),
             isAdmin: Joi.boolean().required()
         };
-        return Joi.validate(user, schema);
+        const options = {
+            allowUnknown: true,
+            abortEarly: false
+        };
+        return Joi.validate(user, schema, options);
         // End Create an user record
     },
     validateLogin: (access) => {
         // Validation F(x) for login
         const schema = {
-            username: Joi.string().min(5).required(),
-            password: Joi.string().min(8).required()
+            username: Joi.string().trim().min(5).required(),
+            password: Joi.string().trim().min(8).required()
         };
-        return Joi.validate(access, schema);
+        const options = {
+            allowUnknown: true,
+            abortEarly: false
+        };
+        return Joi.validate(access, schema, options);
         // End validation F(x) for login
     },
     recordUser: (data) => {

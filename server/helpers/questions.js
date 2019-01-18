@@ -18,10 +18,14 @@ module.exports = {
         // Validation F(x) for Question
         const schema = {
             createdBy: Joi.number().required(),
-            title: Joi.string().min(5).required(),
-            body: Joi.string().min(10).required()
+            title: Joi.string().trim().min(5).required(),
+            body: Joi.string().trim().min(10).required()
         };
-        return Joi.validate(question, schema);
+        const options = {
+            allowUnknown: true,
+            abortEarly: false
+        };
+        return Joi.validate(question, schema, options);
     },
     recordQuestion: (data) => {
         fs.writeFile('./server/models/questions.json', JSON.stringify(data, null, 2), (err) => {

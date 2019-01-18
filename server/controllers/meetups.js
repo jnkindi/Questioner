@@ -11,9 +11,10 @@ const addMeetup = (req, res) => {
         error
     } = validateMeetup(req.body);
     if (error) {
+        const errorMessage = error.details.map(d => d.message);
         return res.status(400).send({
             status: 400,
-            error: error.details[0].message
+            error: errorMessage
         });
     }
     const meetup = {
@@ -99,9 +100,10 @@ const rsvpMeetup = (req, res) => {
         error
     } = validateRsvp(req.body);
     if (error) {
+        const errorMessage = error.details.map(d => d.message);
         return res.status(400).send({
             status: 400,
-            error: error.details[0].message
+            error: errorMessage
         });
     }
     const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
