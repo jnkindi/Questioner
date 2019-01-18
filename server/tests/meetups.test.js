@@ -16,7 +16,7 @@ const meetupMaxID = meetups.length + 1;
 
 const meetupTest = () => {
     describe('Meetup Tests', () => {
-        it('Adding new meetup...', (done) => {
+        it('Should add new meetup...', (done) => {
             request(app)
                 .post('/api/v1/meetups')
                 .send(meetupPost)

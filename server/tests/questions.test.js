@@ -11,7 +11,7 @@ const questionHelpers = require('../helpers/questions');
 const meetupHelpers = require('../helpers/meetups');
 
 const { questions } = questionHelpers;
-const questionMaxID = questions.length + 1;
+const questionMaxID = questions.length;
 
 const { meetups } = meetupHelpers;
 const meetupmaxID = meetups.length;
@@ -45,12 +45,9 @@ const questionTest = () => {
                     expect(res.body).to.be.a('object');
                     expect(res.body.status).to.be.equal(200);
                     const maxLen = res.body.data.length - 1;
-                    // console.log(res.body.data);
-                    // console.log(res.body.data[maxLen].createdBy);
-                    // console.log(questionPost.createdBy);
-                    // expect(res.body.data[maxLen].createdBy).to.be.equal(questionPost.createdBy);
-                    // expect(res.body.data[maxLen].title).to.be.equal(questionPost.title);
-                    // expect(res.body.data[maxLen].body).to.be.equal(questionPost.body);
+                    expect(res.body.data[maxLen].createdBy).to.be.equal(questionPost.createdBy);
+                    expect(res.body.data[maxLen].title).to.be.equal(questionPost.title);
+                    expect(res.body.data[maxLen].body).to.be.equal(questionPost.body);
                     done();
                 });
         });

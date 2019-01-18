@@ -40,15 +40,15 @@ const userLoginInvalid = {
 };
 
 const userLogin = {
-    username: 'j_nkindi',
-    password: '12345678'
+    username: userPost.username,
+    password: userPost.password
 };
 
 module.exports = {
     meetupPost,
     questionPost,
     rsvpPost,
-    user_post: userPost,
-    user_login: userLogin,
-    user_login_invalid: userLoginInvalid
+    userPost,
+    userLogin,
+    userLoginInvalid
 };
