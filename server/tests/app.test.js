@@ -163,7 +163,7 @@ describe('Login API Tests', () => {
             .expect(404)
             .end((err, res) => {
                 expect(res.body).to.be.a('object');
-                expect(res.body.error).to.be.equal('"username" length must be at least 5 characters long');
+                expect(res.body.error[0]).to.be.equal('"username" length must be at least 5 characters long');
                 done();
             });
     });
