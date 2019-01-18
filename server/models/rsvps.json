@@ -394,5 +394,17 @@
     "meetup": "106",
     "user": 1,
     "response": "yes"
+  },
+  {
+    "id": 67,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
+  },
+  {
+    "id": 68,
+    "meetup": "1",
+    "user": 1,
+    "response": "maybe"
   }
 ]
