@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node ./server/config/index",
     "dev": "clear && nodemon",
-    "test": "mocha ./server/tests/app.test --exit",
+    "test": "nyc mocha ./server/tests/app.test --exit",
     "cover": "istanbul cover _mocha ./server/tests/app.test",
     "coveralls": "npm run cover -- --report lcovonly"
   },

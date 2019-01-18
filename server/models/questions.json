@@ -66,6 +66,16 @@
     "meetup": 22,
     "title": "Test Fellowship Talks",
     "body": "We shall talk about everything on fellowship and how to get started",
+    "upvotes": 1,
+    "downvotes": 1
+  },
+  {
+    "id": 8,
+    "createdOn": "2019-01-18 13:55:32",
+    "createdBy": 5,
+    "meetup": 22,
+    "title": "Test Fellowship Talks",
+    "body": "We shall talk about everything on fellowship and how to get started",
     "upvotes": 0,
     "downvotes": 0
   }
