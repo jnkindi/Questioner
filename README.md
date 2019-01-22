@@ -1,10 +1,12 @@
 <img src="https://jnkindi.github.io/Questioner/UI/images/logo-transparent.png" align="right" width= "30%"/>
 
-# Questioner [![Build Status](https://travis-ci.org/jnkindi/Questioner.svg?branch=develop)](https://travis-ci.org/jnkindi/Questioner)   [![Maintainability](https://api.codeclimate.com/v1/badges/384a63f4eddd9d87d29e/maintainability)](https://codeclimate.com/github/jnkindi/Questioner/maintainability)   [![Test Coverage](https://api.codeclimate.com/v1/badges/384a63f4eddd9d87d29e/test_coverage)](https://codeclimate.com/github/jnkindi/Questioner/test_coverage)   [![Coverage Status](https://coveralls.io/repos/github/jnkindi/Questioner/badge.svg?branch=develop)](https://coveralls.io/github/jnkindi/Questioner?branch=develop)
+# Questioner
 
 > Crowd-source questions for a meetup
 
 Questioner helps meetup organizer prioritize questions to be answered. Users can upvote or downvote on asked questions and they are set to the top or bottom of the list.
+
+[![Build Status](https://travis-ci.org/jnkindi/Questioner.svg?branch=develop)](https://travis-ci.org/jnkindi/Questioner)   [![Maintainability](https://api.codeclimate.com/v1/badges/384a63f4eddd9d87d29e/maintainability)](https://codeclimate.com/github/jnkindi/Questioner/maintainability)   [![Test Coverage](https://api.codeclimate.com/v1/badges/384a63f4eddd9d87d29e/test_coverage)](https://codeclimate.com/github/jnkindi/Questioner/test_coverage)   [![Coverage Status](https://coveralls.io/repos/github/jnkindi/Questioner/badge.svg?branch=develop)](https://coveralls.io/github/jnkindi/Questioner?branch=develop)
 
 # Documentation Content
 
