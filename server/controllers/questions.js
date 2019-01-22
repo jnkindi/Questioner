@@ -1,7 +1,7 @@
-const questionHelpers = require('../helpers/questions');
+const helpers = require('../helpers/index');
 
-const { questions, recordQuestion } = questionHelpers;
-
+const { questionsHelpers, writeInDb } = helpers;
+const { questions } = questionsHelpers;
 const upvoteQuestion = (req, res) => {
     const arrIndex = questions.findIndex(q => q.id === parseInt(req.params.id, 10));
     const question = questions.find(q => q.id === parseInt(req.params.id, 10));
@@ -13,7 +13,7 @@ const upvoteQuestion = (req, res) => {
     }
     // Adding a vote
     questions[arrIndex].upvotes += 1;
-    if (recordQuestion(questions)) {
+    if (writeInDb('question', questions)) {
         const response = {
             status: 200,
             data: [{
@@ -38,7 +38,7 @@ const downvoteQuestion = (req, res) => {
     }
     // Adding a vote
     questions[arrIndex].downvotes += 1;
-    if (recordQuestion(questions)) {
+    if (writeInDb('question', questions)) {
         const response = {
             status: 200,
             data: [{

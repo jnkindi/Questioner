@@ -1,23 +1,18 @@
 
-const meetupHelpers = require('../helpers/meetups');
-const questionHelpers = require('../helpers/questions');
-const usersHelpers = require('../helpers/users');
+const helpers = require('../helpers/index');
 
-const { meetups, validateMeetup, recordMeetup, rsvps, validateRsvp, recordRsvp } = meetupHelpers;
-const { questions, validateQuestion, recordQuestion } = questionHelpers;
+const { meetupsHelpers, questionsHelpers, usersHelpers, validator, writeInDb, validationErrors } = helpers;
+const { meetups, rsvps } = meetupsHelpers;
+const { questions } = questionsHelpers;
 const { users } = usersHelpers;
 
 const addMeetup = (req, res) => {
     // Validate Data
     const {
         error
-    } = validateMeetup(req.body);
+    } = validator('meetup', req.body);
     if (error) {
-        const errorMessage = error.details.map(d => d.message);
-        return res.status(400).send({
-            status: 400,
-            error: errorMessage
-        });
+        return validationErrors(res, error);
     }
     const meetup = {
         id: meetups.length + 1,
@@ -30,7 +25,7 @@ const addMeetup = (req, res) => {
         tags: req.body.tags,
     };
     meetups.push(meetup);
-    if (recordMeetup(meetups)) {
+    if (writeInDb('meetup', meetups)) {
         const response = {
             status: 200,
             data: [{
@@ -116,13 +111,9 @@ const rsvpMeetup = (req, res) => {
     // Validate Data
     const {
         error
-    } = validateRsvp(req.body);
+    } = validator('rsvps', req.body);
     if (error) {
-        const errorMessage = error.details.map(d => d.message);
-        return res.status(400).send({
-            status: 400,
-            error: errorMessage
-        });
+        return validationErrors(res, error);
     }
     const {
         topic
@@ -134,7 +125,7 @@ const rsvpMeetup = (req, res) => {
         response: req.body.response,
     };
     rsvps.push(rsvp);
-    if (recordRsvp(rsvps)) {
+    if (writeInDb('rsvps', rsvps)) {
         const response = {
             status: 200,
             data: [{
@@ -159,7 +150,7 @@ const deleteMeetup = (req, res) => {
     }
     const index = meetups.indexOf(meetup);
     meetups.splice(index, 1);
-    if (recordMeetup(meetups)) {
+    if (writeInDb('meetup', meetups)) {
         const response = {
             status: 200,
             data: 'Meetup deleted'
@@ -179,12 +170,9 @@ const addQuestion = (req, res) => {
         });
     }
     // Validate Data
-    const { error } = validateQuestion(req.body);
+    const { error } = validator('question', req.body);
     if (error) {
-        return res.status(400).send({
-            status: 400,
-            error: error.details[0].message
-        });
+        return validationErrors(res, error);
     }
     const question = {
         id: questions.length + 1,
@@ -197,7 +185,7 @@ const addQuestion = (req, res) => {
         downvotes: 0
     };
     questions.push(question);
-    if (recordQuestion(questions)) {
+    if (writeInDb('question', questions)) {
         const response = {
             status: 200,
             data: [{

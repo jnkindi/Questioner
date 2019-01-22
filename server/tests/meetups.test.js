@@ -8,9 +8,11 @@ const fixtures = require('./fixtures');
 const { meetupPost } = fixtures;
 const { rsvpPost } = fixtures;
 
-const meetupHelpers = require('../helpers/meetups');
+const helpers = require('../helpers/index');
 
-const { meetups } = meetupHelpers;
+const { meetupsHelpers } = helpers;
+const { meetups } = meetupsHelpers;
+
 const meetupMaxID = meetups.length + 1;
 
 

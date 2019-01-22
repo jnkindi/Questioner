@@ -1,17 +1,14 @@
 
-const usersHelpers = require('../helpers/users');
+const helpers = require('../helpers/index');
 
-const { validateLogin, users, validateUser, recordUser } = usersHelpers;
+const { usersHelpers, validator, writeInDb, validationErrors } = helpers;
+const { users } = usersHelpers;
 
 const userLogin = (req, res) => {
     // Validate Data
-    const { error } = validateLogin(req.body);
+    const { error } = validator('login', req.body);
     if (error) {
-        const errorMessage = error.details.map(d => d.message);
-        return res.status(400).send({
-            status: 400,
-            error: errorMessage
-        });
+        return validationErrors(res, error);
     }
     const user = users.find(u => (u.username === req.body.username)
     && (u.password === req.body.password));
@@ -36,13 +33,9 @@ const userLogin = (req, res) => {
 
 const userSignup = (req, res) => {
     // Validate Data
-    const { error } = validateUser(req.body);
+    const { error } = validator('user', req.body);
     if (error) {
-        const errorMessage = error.details.map(d => d.message);
-        return res.status(400).send({
-            status: 400,
-            error: errorMessage
-        });
+        return validationErrors(res, error);
     }
     const user = {
         id: users.length + 1,
@@ -58,7 +51,7 @@ const userSignup = (req, res) => {
     };
 
     users.push(user);
-    if (recordUser(users)) {
+    if (writeInDb('user', users)) {
         const response = {
             status: 200,
             data: [{
