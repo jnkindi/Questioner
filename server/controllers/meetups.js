@@ -1,9 +1,11 @@
 
 const meetupHelpers = require('../helpers/meetups');
 const questionHelpers = require('../helpers/questions');
+const usersHelpers = require('../helpers/users');
 
 const { meetups, validateMeetup, recordMeetup, rsvps, validateRsvp, recordRsvp } = meetupHelpers;
 const { questions, validateQuestion, recordQuestion } = questionHelpers;
+const { users } = usersHelpers;
 
 const addMeetup = (req, res) => {
     // Validate Data
@@ -95,6 +97,22 @@ const specificMeetup = (req, res) => {
 };
 
 const rsvpMeetup = (req, res) => {
+    // Check meetup exists
+    const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
+    if (!meetup) {
+        return res.status(404).send({
+            status: 404,
+            error: 'Meetup with given ID was not found'
+        });
+    }
+    // Check user exists
+    const user = users.find(u => u.id === parseInt(req.body.user, 10));
+    if (!user) {
+        return res.status(404).send({
+            status: 404,
+            error: 'User with given ID was not found'
+        });
+    }
     // Validate Data
     const {
         error
@@ -104,13 +122,6 @@ const rsvpMeetup = (req, res) => {
         return res.status(400).send({
             status: 400,
             error: errorMessage
-        });
-    }
-    const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
-    if (!meetup) {
-        return res.status(404).send({
-            status: 404,
-            error: 'Meetup with given ID was not found'
         });
     }
     const {
