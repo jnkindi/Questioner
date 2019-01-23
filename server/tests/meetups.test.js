@@ -1,17 +1,9 @@
-const request = require('supertest');
-const { expect } = require('chai');
+import request from 'supertest';
+import { expect } from 'chai';
 
-const app = require('../app');
-
-const fixtures = require('./fixtures');
-
-const { meetupPost } = fixtures;
-const { rsvpPost } = fixtures;
-
-const helpers = require('../helpers/index');
-
-const { meetupsHelpers } = helpers;
-const { meetups } = meetupsHelpers;
+import app from '../app';
+import { meetupPost, rsvpPost } from './fixtures';
+import { meetups } from '../helpers/index';
 
 const meetupMaxID = meetups.length + 1;
 
@@ -118,6 +110,4 @@ const meetupTest = () => {
     });
 };
 
-module.exports = {
-    meetupTest
-};
+export default meetupTest;

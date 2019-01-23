@@ -3,14 +3,17 @@
   "version": "1.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./server/config/index",
-    "dev": "clear && nodemon",
-    "test": "nyc mocha ./server/tests/app.test --exit",
-    "cover": "istanbul cover _mocha ./server/tests/app.test",
+    "start": "node --require babel-register ./server/config/index",
+    "dev": "clear && nodemon --exec babel-node --presets env ./server/config/index",
+    "test": "nyc --reporter=text --reporter=lcov mocha --timeout 25000 --require babel-register ./server/tests/app.test --exit",
+    "cover": "istanbul cover _mocha ./server/tests/app.test --compilers js:babel-core/register --timeout 12000 --exit ",
     "coveralls": "npm run cover -- --report lcovonly"
   },
   "dependencies": {
-    "debug": "^4.1.1",
+    "babel-cli": "^6.26.0",
+    "babel-eslint": "^10.0.1",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
     "express": "~4.16.0",
     "joi": "^14.3.1"
   },

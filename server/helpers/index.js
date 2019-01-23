@@ -1,9 +1,10 @@
-const Joi = require('joi');
-const fs = require('fs');
 
-const meetupsHelpers = require('./meetups');
-const questionsHelpers = require('./questions');
-const usersHelpers = require('./users');
+import Joi from 'joi';
+import fs from 'fs';
+
+import { meetups, rsvps } from './meetups';
+import questions from './questions';
+import users from './users';
 
 const validator = (identifier, data) => {
     let schema = false;
@@ -97,7 +98,7 @@ const writeInDb = (identifier, data) => {
             break;
         }
         case 'user': {
-            file = './server/models/questions.json';
+            file = './server/models/users.json';
             break;
         }
         default: {
@@ -115,10 +116,11 @@ const validationErrors = (res, error) => {
     });
 };
 
-module.exports = {
-    meetupsHelpers,
-    questionsHelpers,
-    usersHelpers,
+export {
+    meetups,
+    rsvps,
+    questions,
+    users,
     validator,
     writeInDb,
     validationErrors

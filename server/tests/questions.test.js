@@ -1,19 +1,14 @@
-const request = require('supertest');
-const { expect } = require('chai');
+import request from 'supertest';
+import { expect } from 'chai';
 
-const app = require('../app');
+import app from '../app';
 
-const fixtures = require('./fixtures');
+import { questionPost } from './fixtures';
+import questions from '../helpers/questions';
+import { meetups } from '../helpers/meetups';
 
-const { questionPost } = fixtures;
-
-const questionHelpers = require('../helpers/questions');
-const meetupHelpers = require('../helpers/meetups');
-
-const { questions } = questionHelpers;
 const questionMaxID = questions.length;
 
-const { meetups } = meetupHelpers;
 const meetupmaxID = meetups.length;
 
 const questionTest = () => {
@@ -80,6 +75,4 @@ const questionTest = () => {
     });
 };
 
-module.exports = {
-    questionTest
-};
+export default questionTest;

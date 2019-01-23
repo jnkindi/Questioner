@@ -1,14 +1,6 @@
-let questionsFetched = [];
-try {
-    questionsFetched = require('../models/questions.json');
-} catch (err) {
-    questionsFetched = [];
-}
 
-if (typeof (questionsFetched) !== 'object') {
-    questionsFetched = [];
-}
+import questionsList from '../models/questions.json';
 
-module.exports = {
-    questions: questionsFetched
-};
+const questions = ((typeof (questionsList) !== 'object') ? [] : questionsList);
+
+export default questions;

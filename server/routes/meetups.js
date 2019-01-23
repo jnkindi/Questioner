@@ -1,12 +1,10 @@
 
-const express = require('express');
+import express from 'express';
+
+import { addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions } from '../controllers/meetups';
 
 const router = express.Router();
 
-const meetupsRoutes = require('../controllers/meetups');
-
-const { addMeetup, getMeetups, upcomingMeetups, specificMeetup } = meetupsRoutes;
-const { rsvpMeetup, deleteMeetup, addQuestion, getQuestions } = meetupsRoutes;
 // Create a meetup record
 router.post('/', addMeetup);
 
@@ -31,4 +29,4 @@ router.post('/:id/questions', addQuestion);
 // Fetch a specific meetup record.
 router.get('/:id/questions', getQuestions);
 
-module.exports = router;
+export default router;

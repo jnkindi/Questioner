@@ -1,8 +1,8 @@
-const express = require('express');
+import express from 'express';
 
-const meetups = require('./meetups');
-const questions = require('./questions');
-const authentication = require('./authentication');
+import meetups from './meetups';
+import questions from './questions';
+import authentication from './authentication';
 
 const app = express();
 
@@ -11,4 +11,4 @@ app.use('/meetups', meetups);
 app.use('/questions', questions);
 app.use('/auth', authentication);
 
-module.exports = app;
+export default app;

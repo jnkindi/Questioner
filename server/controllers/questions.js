@@ -1,7 +1,6 @@
-const helpers = require('../helpers/index');
 
-const { questionsHelpers, writeInDb } = helpers;
-const { questions } = questionsHelpers;
+import { questions, writeInDb } from '../helpers/index';
+
 const upvoteQuestion = (req, res) => {
     const arrIndex = questions.findIndex(q => q.id === parseInt(req.params.id, 10));
     const question = questions.find(q => q.id === parseInt(req.params.id, 10));
@@ -53,7 +52,7 @@ const downvoteQuestion = (req, res) => {
     return true;
 };
 
-module.exports = {
+export {
     upvoteQuestion,
     downvoteQuestion
 };

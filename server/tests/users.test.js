@@ -1,11 +1,9 @@
-const request = require('supertest');
-const { expect } = require('chai');
+import request from 'supertest';
+import { expect } from 'chai';
 
-const app = require('../app');
+import app from '../app';
 
-const fixtures = require('./fixtures');
-
-const { userPost, userLoginInvalid, userLogin } = fixtures;
+import { userPost, userLoginInvalid, userLogin } from './fixtures';
 
 const usersTest = () => {
     describe('Users Tests', () => {
@@ -57,7 +55,7 @@ const loginTest = () => {
     });
 };
 
-module.exports = {
+export {
     usersTest,
     loginTest
 };
