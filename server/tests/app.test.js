@@ -1,6 +1,6 @@
-const { meetupTest } = require('./meetups.test');
-const { questionTest } = require('./questions.test');
-const { usersTest, loginTest } = require('./users.test');
+import meetupTest from './meetups.test';
+import questionTest from './questions.test';
+import { usersTest, loginTest } from './users.test';
 
 (() => {
     meetupTest();

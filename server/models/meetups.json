@@ -18,24 +18,6 @@
     ]
   },
   {
-    "id": 2,
-    "createdOn": "2019-01-22 22:43:03",
-    "location": "Telecom House, Kigali Rwanda",
-    "images": [
-      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
-      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
-      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
-    ],
-    "topic": "Fellowship Talks",
-    "description": "We shall talk about everything on fellowship and how to get started",
-    "happeningOn": "01-01-2019",
-    "tags": [
-      "Andela",
-      "Fellowship",
-      "jgjj"
-    ]
-  },
-  {
     "id": 3,
     "createdOn": "2019-01-22 22:44:50",
     "location": "Telecom House, Kigali Rwanda",
@@ -83,6 +65,42 @@
     "topic": "Fellowship Talks",
     "description": "We shall talk about everything on fellowship and how to get started",
     "happeningOn": "01-01-2019",
+    "tags": [
+      "Andela",
+      "Fellowship",
+      "jgjj"
+    ]
+  },
+  {
+    "id": 6,
+    "createdOn": "2019-01-23 12:27:34",
+    "location": "Telecom House, Kigali Rwanda",
+    "images": [
+      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
+    ],
+    "topic": "Fellowship Talks",
+    "description": "We shall talk about everything on fellowship and how to get started",
+    "happeningOn": "01-01-2019",
+    "tags": [
+      "Andela",
+      "Fellowship",
+      "jgjj"
+    ]
+  },
+  {
+    "id": 2,
+    "createdOn": "2019-01-22 22:43:03",
+    "location": "Telecom House, Kigali Rwanda",
+    "images": [
+      "https://jnkindi.github.io/Questioner/UI/images/slider-1.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png",
+      "https://jnkindi.github.io/Questioner/UI/images/slider-2.png"
+    ],
+    "topic": "Fellowship Talks",
+    "description": "We shall talk about everything on fellowship and how to get started",
+    "happeningOn": "01-29-2019",
     "tags": [
       "Andela",
       "Fellowship",

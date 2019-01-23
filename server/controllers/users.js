@@ -1,8 +1,5 @@
 
-const helpers = require('../helpers/index');
-
-const { usersHelpers, validator, writeInDb, validationErrors } = helpers;
-const { users } = usersHelpers;
+import { users, validator, writeInDb, validationErrors } from '../helpers/index';
 
 const userLogin = (req, res) => {
     // Validate Data
@@ -69,7 +66,7 @@ const userSignup = (req, res) => {
     return true;
 };
 
-module.exports = {
+export {
     userLogin,
     userSignup
 };

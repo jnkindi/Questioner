@@ -1,14 +1,6 @@
-let usersFetched = [];
-try {
-    usersFetched = require('../models/users.json');
-} catch (err) {
-    usersFetched = [];
-}
 
-if (typeof (usersFetched) !== 'object') {
-    usersFetched = [];
-}
+import usersList from '../models/users.json';
 
-module.exports = {
-    users: usersFetched
-};
+const users = ((typeof (usersList) !== 'object') ? [] : usersList);
+
+export default users;

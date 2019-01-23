@@ -1,26 +1,11 @@
-let rsvpsFetched = [];
-let meetupsFetched = [];
-try {
-    meetupsFetched = require('../models/meetups.json');
-} catch (err) {
-    meetupsFetched = [];
-}
 
-if (typeof (meetupsFetched) !== 'object') {
-    meetupsFetched = [];
-}
+import meetupsList from '../models/meetups.json';
+import rsvpsList from '../models/rsvps.json';
 
-try {
-    rsvpsFetched = require('../models/rsvps.json');
-} catch (err) {
-    rsvpsFetched = [];
-}
+const meetups = ((typeof (meetupsList) !== 'object') ? [] : meetupsList);
+const rsvps = ((typeof (rsvpsList) !== 'object') ? [] : rsvpsList);
 
-if (typeof (rsvpsFetched) !== 'object') {
-    rsvpsFetched = [];
-}
-
-module.exports = {
-    meetups: meetupsFetched,
-    rsvps: rsvpsFetched
+export {
+    meetups,
+    rsvps
 };

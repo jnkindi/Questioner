@@ -1,6 +1,6 @@
-const express = require('express');
+import express from 'express';
 
-const routes = require('./routes/index');
+import routes from './routes/index';
 
 const app = express();
 
@@ -34,4 +34,4 @@ app.use((err, req, res, next) => {
   });
 });
 
-module.exports = app;
+export default app;

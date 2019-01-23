@@ -1,10 +1,8 @@
-const express = require('express');
+import express from 'express';
+
+import { userLogin, userSignup } from '../controllers/users';
 
 const router = express.Router();
-
-const usersRoutes = require('../controllers/users');
-
-const { userLogin, userSignup } = usersRoutes;
 
 // Login Endpoint
 router.post('/login', userLogin);
@@ -14,4 +12,4 @@ router.post('/signup', userSignup);
 
 // End Create a user record
 
-module.exports = router;
+export default router;

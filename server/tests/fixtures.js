@@ -44,7 +44,7 @@ const userLogin = {
     password: userPost.password
 };
 
-module.exports = {
+export {
     meetupPost,
     questionPost,
     rsvpPost,

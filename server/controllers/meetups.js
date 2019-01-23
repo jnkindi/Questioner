@@ -1,10 +1,5 @@
 
-const helpers = require('../helpers/index');
-
-const { meetupsHelpers, questionsHelpers, usersHelpers, validator, writeInDb, validationErrors } = helpers;
-const { meetups, rsvps } = meetupsHelpers;
-const { questions } = questionsHelpers;
-const { users } = usersHelpers;
+import { meetups, rsvps, questions, users, validator, writeInDb, validationErrors } from '../helpers/index';
 
 const addMeetup = (req, res) => {
     // Validate Data
@@ -215,7 +210,7 @@ const getQuestions = (req, res) => {
     return res.send(response);
 };
 
-module.exports = {
+export {
     addMeetup,
     getMeetups,
     upcomingMeetups,
