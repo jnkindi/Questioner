@@ -1252,5 +1252,17 @@
     "meetup": "6",
     "user": 1,
     "response": "maybe"
+  },
+  {
+    "id": 210,
+    "meetup": "6",
+    "user": 1,
+    "response": "maybe"
+  },
+  {
+    "id": 211,
+    "meetup": "6",
+    "user": 1,
+    "response": "maybe"
   }
 ]
