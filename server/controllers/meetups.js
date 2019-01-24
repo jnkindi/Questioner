@@ -1,222 +1,277 @@
+import moment from 'moment';
+import { validator, validationErrors } from '../helpers/index';
+import db from '../models/db';
 
-import { meetups, rsvps, questions, users, validator, writeInDb, validationErrors } from '../helpers/index';
-
-const addMeetup = (req, res) => {
-    // Validate Data
-    const {
-        error
-    } = validator('meetup', req.body);
-    if (error) {
-        return validationErrors(res, error);
-    }
-    const meetup = {
-        id: meetups.length + 1,
-        createdOn: new Date().toISOString().replace('T', ' ').replace(/\..*$/, ''),
-        location: req.body.location,
-        images: req.body.images,
-        topic: req.body.topic,
-        description: req.body.description,
-        happeningOn: req.body.happeningOn,
-        tags: req.body.tags,
-    };
-    meetups.push(meetup);
-    if (writeInDb('meetup', meetups)) {
-        const response = {
-            status: 200,
-            data: [{
-                topic: req.body.topic,
-                description: req.body.description,
-                location: req.body.location,
-                happeningOn: req.body.happeningOn,
-                tags: req.body.tags
-            }]
-        };
-        res.send(response);
-    }
-    return true;
-};
-
-const getMeetups = (req, res) => {
-    const response = {
-        status: 200,
-        data: meetups
-    };
-    res.send(response);
-};
-
-const upcomingMeetups = (req, res) => {
-    // Sort by date in ascending order for getting upcoming
-    meetups.sort((a, b) => {
-        const result = new Date(a.happeningOn) - new Date(b.happeningOn);
-        return result;
-    });
-    const data = [];
-    meetups.forEach((meetup) => {
-        // Showing only upcoming
-        if (new Date(meetup.happeningOn) >= new Date()) {
-            data.push(meetup);
+const Meetups = {
+    /**
+     * Create A Meetup
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetup object
+     */
+    async addMeetup(req, res) {
+        // Validate Data
+        const { error } = validator('meetup', req.body);
+        if (error) {
+            return validationErrors(res, error);
         }
-    });
-    const response = {
-        status: 200,
-        data
-    };
-    res.send(response);
+        const text = 'INSERT INTO meetups (createdon, location, images, topic, description, happeningon, tags) VALUES ($1, $2, $3, $4, $5, $6, $7)';
+        const values = [
+            moment().format('YYYY-MM-DD'),
+            req.body.location,
+            req.body.images,
+            req.body.topic,
+            req.body.description,
+            req.body.happeningon,
+            req.body.tags
+        ];
+        try {
+            await db.query(text, values);
+            const response = {
+                status: 200,
+                data: [{
+                    topic: req.body.topic,
+                    description: req.body.description,
+                    location: req.body.location,
+                    happeningOn: req.body.happeningon,
+                    tags: req.body.tags
+                }]
+            };
+            return res.send(response);
+        } catch (errorMessage) {
+            return res.status(400).send({ status: 400, error: errorMessage });
+        }
+    },
+    /**
+     * Get All Meetups
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetups array
+     */
+    async getMeetups(req, res) {
+        const findAllQuery = 'SELECT * FROM meetups ORDER BY id DESC';
+        try {
+            const { rows } = await db.query(findAllQuery);
+            const response = {
+                status: 200,
+                data: rows
+            };
+            return res.send(response);
+        } catch (error) {
+            return res.status(400).send(error);
+        }
+    },
+    /**
+     * Get All Upcoming Meetups
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetups array
+     */
+    async upcomingMeetups(req, res) {
+        const findAllQuery = 'SELECT * FROM meetups WHERE happeningOn > $1 ORDER BY happeningOn ASC';
+        const values = [
+            moment().format('YYYY-MM-DD')
+        ];
+        try {
+            const { rows } = await db.query(findAllQuery, values);
+            const response = {
+                status: 200,
+                data: rows
+            };
+            return res.send(response);
+        } catch (error) {
+            return res.status(400).send(error);
+        }
+    },
+    /**
+     * Get A Specific Meetup details
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} meetup object
+     */
+    async specificMeetup(req, res) {
+        const text = 'SELECT * FROM meetups WHERE id = $1';
+        try {
+            const { rows } = await db.query(text, [req.params.id]);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'Meetup with given ID was not found'
+                });
+            }
+            const response = {
+                status: 200,
+                data: rows[0]
+            };
+            return res.send(response);
+        } catch (error) {
+            return res.status(400).send({
+                status: 400,
+                error
+            });
+        }
+    },
+    /**
+     * RSVP A Meetup
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetup object
+     */
+    async rsvpMeetup(req, res) {
+        const { error } = validator('rsvps', req.body);
+        if (error) {
+            return validationErrors(res, error);
+        }
+        const text = 'INSERT INTO rsvps(meetupid, userid, response) VALUES($1, $2, $3)';
+        const values = [
+            req.params.id,
+            req.body.user,
+            req.body.response,
+        ];
+        try {
+            const findOneQuery = 'SELECT * FROM meetups WHERE id=$1';
+            const meetupResult = await db.query(findOneQuery, [req.params.id]);
+            const meetupData = meetupResult.rows;
+            if (!meetupData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'Meetup with given ID was not found'
+                });
+            }
+
+            const findUserQuery = 'SELECT * FROM users WHERE id=$1';
+            const userResult = await db.query(findUserQuery, [req.body.user]);
+            const userData = userResult.rows;
+            if (!userData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'User with given ID was not found'
+                });
+            }
+
+            const { topic } = meetupData[0];
+            await db.query(text, values);
+            const response = {
+                status: 200,
+                data: [{
+                    meetup: req.params.id,
+                    topic,
+                    status: req.body.response
+                }]
+            };
+            return res.send(response);
+        } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
+        }
+    },
+    /**
+     * Delete A Meetup
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetup object
+     */
+    async deleteMeetup(req, res) {
+        const text = 'DELETE FROM meetups WHERE id = $1 returning *';
+        try {
+            const { rows } = await db.query(text, [req.params.id]);
+            if (!rows[0]) {
+              return res.status(404).send({
+                status: 404,
+                error: 'Meetup with given ID was not found'
+            });
+            }
+            return res.status(200).send({
+                status: 200,
+                data: 'Meetup deleted'
+            });
+          } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
+        }
+    },
+    /**
+     * Add a question to a Meetup
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetup object
+     */
+    async addQuestion(req, res) {
+        const { error } = validator('question', req.body);
+        if (error) {
+            return validationErrors(res, error);
+        }
+        const text = 'INSERT INTO questions(createdon, createdby, meetupid, title, body, upvotes, downvotes) VALUES($1, $2, $3, $4, $5, $6, $7)';
+        const values = [
+            moment().format('YYYY-MM-DD'),
+            req.body.createdby,
+            parseInt(req.params.id, 10),
+            req.body.title,
+            req.body.body,
+            0,
+            0
+        ];
+        try {
+            const findUserQuery = 'SELECT * FROM users WHERE id=$1';
+            const userResult = await db.query(findUserQuery, [req.body.createdby]);
+            const userData = userResult.rows;
+            if (!userData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'User with given ID was not found'
+                });
+            }
+
+            const findMeetupQuery = 'SELECT * FROM meetups WHERE id=$1';
+            const meetupResult = await db.query(findMeetupQuery, [req.params.id]);
+            const meetupData = meetupResult.rows;
+            if (!meetupData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'Meetup with given ID was not found'
+                });
+            }
+            await db.query(text, values);
+            const response = {
+                status: 200,
+                data: [{
+                    user: req.body.createdByy,
+                    meetup: req.params.id,
+                    title: req.body.title,
+                    body: req.body.body
+                }]
+            };
+            return res.send(response);
+        } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
+        }
+    },
+    /**
+     * Get All Questions
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Questions array
+     */
+    async getQuestions(req, res) {
+        const findAllQuery = 'SELECT * FROM questions WHERE meetupid = $1';
+        try {
+            const { rows } = await db.query(findAllQuery, [req.params.id]);
+            const response = {
+                status: 200,
+                data: rows
+            };
+            return res.send(response);
+        } catch (error) {
+            return res.status(400).send(error);
+        }
+    }
 };
 
-const specificMeetup = (req, res) => {
-    const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
-    if (!meetup) {
-        return res.status(404).send({
-            status: 404,
-            error: 'Meetup with given ID was not found'
-        });
-    }
-    const response = {
-        status: 200,
-        data: [{
-            id: meetup.id,
-            topic: meetup.topic,
-            description: meetup.description,
-            location: meetup.location,
-            happeningOn: meetup.happeningOn,
-            tags: meetup.tags
-        }]
-    };
-    return res.send(response);
-};
-
-const rsvpMeetup = (req, res) => {
-    // Check meetup exists
-    const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
-    if (!meetup) {
-        return res.status(404).send({
-            status: 404,
-            error: 'Meetup with given ID was not found'
-        });
-    }
-    // Check user exists
-    const user = users.find(u => u.id === parseInt(req.body.user, 10));
-    if (!user) {
-        return res.status(404).send({
-            status: 404,
-            error: 'User with given ID was not found'
-        });
-    }
-    // Validate Data
-    const {
-        error
-    } = validator('rsvps', req.body);
-    if (error) {
-        return validationErrors(res, error);
-    }
-    const {
-        topic
-    } = meetups.find(m => m.id === parseInt(req.params.id, 10));
-    const rsvp = {
-        id: rsvps.length + 1,
-        meetup: req.params.id,
-        user: req.body.user,
-        response: req.body.response,
-    };
-    rsvps.push(rsvp);
-    if (writeInDb('rsvps', rsvps)) {
-        const response = {
-            status: 200,
-            data: [{
-                meetup: req.body.meetup,
-                topic,
-                status: req.body.response,
-            }]
-        };
-        res.send(response);
-    }
-    return true;
-};
-
-const deleteMeetup = (req, res) => {
-    // Validate Data
-    const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
-    if (!meetup) {
-        return res.status(404).send({
-            status: 404,
-            error: 'Meetup with given ID was not found'
-        });
-    }
-    const index = meetups.indexOf(meetup);
-    meetups.splice(index, 1);
-    if (writeInDb('meetup', meetups)) {
-        const response = {
-            status: 200,
-            data: 'Meetup deleted'
-        };
-        res.send(response);
-    }
-    return true;
-};
-
-const addQuestion = (req, res) => {
-    // Validate Data
-    const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
-    if (!meetup) {
-        return res.status(404).send({
-            status: 404,
-            error: 'Meetup with given ID was not found'
-        });
-    }
-    // Validate Data
-    const { error } = validator('question', req.body);
-    if (error) {
-        return validationErrors(res, error);
-    }
-    const question = {
-        id: questions.length + 1,
-        createdOn: new Date().toISOString().replace('T', ' ').replace(/\..*$/, ''),
-        createdBy: req.body.createdBy,
-        meetup: parseInt(req.params.id, 10),
-        title: req.body.title,
-        body: req.body.body,
-        upvotes: 0,
-        downvotes: 0
-    };
-    questions.push(question);
-    if (writeInDb('question', questions)) {
-        const response = {
-            status: 200,
-            data: [{
-                user: req.body.createdBy,
-                meetup: req.body.id,
-                title: req.body.title,
-                body: req.body.body
-            }]
-        };
-        res.send(response);
-    }
-    return true;
-};
-const getQuestions = (req, res) => {
-    const meetup = meetups.find(m => m.id === parseInt(req.params.id, 10));
-    if (!meetup) {
-        return res.status(404).send({
-            status: 404,
-            error: 'Meetup with given ID was not found'
-        });
-    }
-    const questionList = questions.filter(q => q.meetup === parseInt(req.params.id, 10)) || [];
-    const response = {
-        status: 200,
-        data: questionList
-    };
-    return res.send(response);
-};
-
-export {
-    addMeetup,
-    getMeetups,
-    upcomingMeetups,
-    specificMeetup,
-    rsvpMeetup,
-    deleteMeetup,
-    addQuestion,
-    getQuestions
-};
+export default Meetups;

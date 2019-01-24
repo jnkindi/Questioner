@@ -1,10 +1,5 @@
 
 import Joi from 'joi';
-import fs from 'fs';
-
-import { meetups, rsvps } from './meetups';
-import questions from './questions';
-import users from './users';
 
 const validator = (identifier, data) => {
     let schema = false;
@@ -19,7 +14,7 @@ const validator = (identifier, data) => {
                 images: Joi.array().required(),
                 topic: Joi.string().trim().min(5).required(),
                 description: Joi.string().trim().required(),
-                happeningOn: Joi.date().required(),
+                happeningon: Joi.date().required(),
                 tags: Joi.array()
             };
             break;
@@ -33,7 +28,7 @@ const validator = (identifier, data) => {
         }
         case 'question': {
             schema = {
-                createdBy: Joi.number().required(),
+                createdby: Joi.number().required(),
                 title: Joi.string().trim().min(5).required(),
                 body: Joi.string().trim().min(10).required()
             };
@@ -41,17 +36,17 @@ const validator = (identifier, data) => {
         }
         case 'user': {
             schema = {
-                firstname: Joi.string().trim().min(5).required(),
-                lastname: Joi.string().trim().min(5).required(),
+                firstname: Joi.string().trim().min(3).required(),
+                lastname: Joi.string().trim().min(3).required(),
                 othername: Joi.string().trim(),
                 email: Joi.string().trim().email({
                     minDomainAtoms: 2
                 }).required(),
-                phoneNumber: Joi.number().required(),
+                phonenumber: Joi.number().required(),
                 username: Joi.string().trim().min(5).required(),
                 password: Joi.string().trim().min(8).required(),
                 registered: Joi.date(),
-                isAdmin: Joi.boolean().required()
+                isadmin: Joi.boolean().required()
             };
             break;
         }
@@ -69,45 +64,6 @@ const validator = (identifier, data) => {
     return Joi.validate(data, schema, options);
 };
 
-const writeInFile = (file, data) => {
-    fs.writeFile(file, JSON.stringify(data, null, 2), (err) => {
-        if (err) {
-            return {
-                status: 500,
-                error: err
-            };
-        }
-        return true;
-    });
-    return true;
-};
-
-const writeInDb = (identifier, data) => {
-    let file = '';
-    switch (identifier) {
-        case 'meetup': {
-            file = './server/models/meetups.json';
-            break;
-        }
-        case 'rsvps': {
-            file = './server/models/rsvps.json';
-            break;
-        }
-        case 'question': {
-            file = './server/models/questions.json';
-            break;
-        }
-        case 'user': {
-            file = './server/models/users.json';
-            break;
-        }
-        default: {
-            file = 'unknown.json';
-        }
-    }
-    return writeInFile(file, data);
-};
-
 const validationErrors = (res, error) => {
     const errorMessage = error.details.map(d => d.message);
     return res.status(400).send({
@@ -117,11 +73,6 @@ const validationErrors = (res, error) => {
 };
 
 export {
-    meetups,
-    rsvps,
-    questions,
-    users,
     validator,
-    writeInDb,
     validationErrors
 };

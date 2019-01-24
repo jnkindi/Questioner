@@ -1,7 +1,9 @@
 
 import express from 'express';
 
-import { addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions } from '../controllers/meetups';
+import Meetups from '../controllers/meetups';
+
+const { addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions } = Meetups;
 
 const router = express.Router();
 

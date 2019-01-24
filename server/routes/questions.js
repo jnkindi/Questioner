@@ -1,6 +1,8 @@
 import express from 'express';
 
-import { upvoteQuestion, downvoteQuestion } from '../controllers/questions';
+import Questions from '../controllers/questions';
+
+const { upvoteQuestion, downvoteQuestion } = Questions;
 
 const router = express.Router();
 
