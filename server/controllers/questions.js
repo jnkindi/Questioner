@@ -11,14 +11,32 @@ const Questions = {
      * @returns {object} Question object
      */
     async upvoteQuestion(req, res) {
+        const { error } = validator('upvote', req.body);
+        if (error) {
+            return validationErrors(res, error);
+        }
+        const findUpvoteQuery = 'SELECT * FROM questionVoters WHERE userid = $1 AND questionid = $2 AND votetype = $3';
+        const upvoteResult = await db.query(findUpvoteQuery, [req.body.user, req.params.id, 'upvote']);
+        const userUpvoteData = upvoteResult.rows;
+        if (userUpvoteData[0]) {
+            return res.status(200).send({
+                status: 200,
+                error: 'Question already voted'
+            });
+        }
+
+        const recordVoter = 'INSERT INTO questionVoters(userid, questionid, votetype) VALUES($1, $2)';
+        await db.query(recordVoter, [req.body.user, req.params.id]);
+
         const text = 'UPDATE questions SET upvotes = upvotes + 1 WHERE id = $1';
+        const values = [req.params.id];
         try {
             const findQuestionQuery = 'SELECT * FROM questions WHERE id=$1';
             const questionResult = await db.query(findQuestionQuery, [req.params.id]);
             const questionData = questionResult.rows;
             if (!questionData[0]) {
-                return res.status(404).send({
-                    status: 404,
+                return res.status(200).send({
+                    status: 200,
                     error: 'Question with given ID was not found'
                 });
             }
@@ -35,7 +53,7 @@ const Questions = {
             }
 
 
-            await db.query(text, [req.params.id]);
+            await db.query(text, values);
             const response = {
                 status: 200,
                 data: [{
@@ -53,13 +71,31 @@ const Questions = {
         }
     },
     /**
-     * Add downvote to question of a Meetup
+     * Add upvotevote to question of a Meetup
      * @param {object} req
      * @param {object} res
      * @returns {object} Question object
      */
     async downvoteQuestion(req, res) {
+        const { error } = validator('upvote', req.body);
+        if (error) {
+            return validationErrors(res, error);
+        }
+        const findUpvoteQuery = 'SELECT * FROM questionVoters WHERE userid = $1 AND questionid = $2';
+        const upvoteResult = await db.query(findUpvoteQuery, [req.body.user, req.params.id]);
+        const userUpvoteData = upvoteResult.rows;
+        if (userUpvoteData[0]) {
+            return res.status(404).send({
+                status: 404,
+                error: 'Question already voted'
+            });
+        }
+
+        const recordVoter = 'INSERT INTO questionVoters(userid, questionid, votetype) VALUES($1, $2, $3)';
+        await db.query(recordVoter, [req.body.user, req.params.id, 'downvote']);
+
         const text = 'UPDATE questions SET downvotes = downvotes + 1 WHERE id = $1';
+        const values = [req.params.id];
         try {
             const findQuestionQuery = 'SELECT * FROM questions WHERE id=$1';
             const questionResult = await db.query(findQuestionQuery, [req.params.id]);
@@ -83,7 +119,7 @@ const Questions = {
             }
 
 
-            await db.query(text, [req.params.id]);
+            await db.query(text, values);
             const response = {
                 status: 200,
                 data: [{

@@ -125,6 +125,12 @@ const validator = (identifier, data) => {
             };
             break;
         }
+        case 'upvote': {
+            schema = {
+                user: Joi.number().required()
+            };
+            break;
+        }
         default: {
             schema = false;
         }
