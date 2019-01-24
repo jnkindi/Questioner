@@ -123,12 +123,22 @@ const Meetups = {
         if (error) {
             return validationErrors(res, error);
         }
-        const text = 'INSERT INTO rsvps(meetupid, userid, response) VALUES($1, $2, $3)';
-        const values = [
+        let text = 'INSERT INTO rsvps(meetupid, userid, response) VALUES($1, $2, $3)';
+        let values = [
             req.params.id,
             req.body.user,
             req.body.response,
         ];
+
+        const findRsvpsQuery = 'SELECT * FROM rsvps WHERE meetupid=$1 AND userid=$2';
+        const rsvpsResult = await db.query(findRsvpsQuery, [req.params.id, req.body.user]);
+        const rsvpsData = rsvpsResult.rows;
+        if (rsvpsData[0]) {
+            const rsvpId = rsvpsData[0].id;
+            text = `UPDATE rsvps SET response = $1 WHERE id = ${rsvpId}`;
+            values = [req.body.response];
+        }
+
         try {
             const findOneQuery = 'SELECT * FROM meetups WHERE id=$1';
             const meetupResult = await db.query(findOneQuery, [req.params.id]);
