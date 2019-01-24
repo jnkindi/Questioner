@@ -1,5 +1,7 @@
 
 import Joi from 'joi';
+import bcrypt from 'bcrypt';
+import jwt from 'jsonwebtoken';
 
 const validator = (identifier, data) => {
     let schema = false;
@@ -146,7 +148,26 @@ const validationErrors = (res, error) => {
     });
 };
 
+const hashPassword = (password) => {
+    const hashedPassword = bcrypt.hashSync(password, bcrypt.genSaltSync(8));
+    return hashedPassword;
+};
+
+const comparePassword = (passwordHash, password) => {
+    const comparedPassword = bcrypt.compareSync(password, passwordHash);
+    return comparedPassword;
+};
+
+const generateToken = (userinfo) => {
+    const Issuetoken = jwt.sign(userinfo,
+        process.env.SECRET, { expiresIn: '1d' });
+    return Issuetoken;
+};
+
 export {
     validator,
     validationErrors,
+    hashPassword,
+    comparePassword,
+    generateToken,
 };

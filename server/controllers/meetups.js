@@ -10,6 +10,9 @@ const Meetups = {
      * @returns {object} Meetup object
      */
     async addMeetup(req, res) {
+        if (req.user.role !== 'admin') {
+            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+        }
         // Validate Data
         const { error } = validator('meetup', req.body);
         if (error) {
@@ -126,12 +129,12 @@ const Meetups = {
         let text = 'INSERT INTO rsvps(meetupid, userid, response) VALUES($1, $2, $3)';
         let values = [
             req.params.id,
-            req.body.user,
+            req.user.user,
             req.body.response,
         ];
 
         const findRsvpsQuery = 'SELECT * FROM rsvps WHERE meetupid=$1 AND userid=$2';
-        const rsvpsResult = await db.query(findRsvpsQuery, [req.params.id, req.body.user]);
+        const rsvpsResult = await db.query(findRsvpsQuery, [req.params.id, req.user.user]);
         const rsvpsData = rsvpsResult.rows;
         if (rsvpsData[0]) {
             const rsvpId = rsvpsData[0].id;
@@ -151,7 +154,7 @@ const Meetups = {
             }
 
             const findUserQuery = 'SELECT * FROM users WHERE id=$1';
-            const userResult = await db.query(findUserQuery, [req.body.user]);
+            const userResult = await db.query(findUserQuery, [req.user.user]);
             const userData = userResult.rows;
             if (!userData[0]) {
                 return res.status(404).send({
@@ -185,6 +188,9 @@ const Meetups = {
      * @returns {object} Meetup object
      */
     async deleteMeetup(req, res) {
+        if (req.user.role !== 'admin') {
+            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+        }
         const text = 'DELETE FROM meetups WHERE id = $1 returning *';
         try {
             const { rows } = await db.query(text, [req.params.id]);
@@ -219,7 +225,7 @@ const Meetups = {
         const text = 'INSERT INTO questions(createdon, createdby, meetupid, title, body, upvotes, downvotes) VALUES($1, $2, $3, $4, $5, $6, $7)';
         const values = [
             moment().format('YYYY-MM-DD'),
-            req.body.createdby,
+            req.user.user,
             parseInt(req.params.id, 10),
             req.body.title,
             req.body.body,
@@ -228,7 +234,7 @@ const Meetups = {
         ];
         try {
             const findUserQuery = 'SELECT * FROM users WHERE id=$1';
-            const userResult = await db.query(findUserQuery, [req.body.createdby]);
+            const userResult = await db.query(findUserQuery, [req.user.user]);
             const userData = userResult.rows;
             if (!userData[0]) {
                 return res.status(404).send({
@@ -250,7 +256,7 @@ const Meetups = {
             const response = {
                 status: 200,
                 data: [{
-                    user: req.body.createdByy,
+                    user: req.user.user,
                     meetup: req.params.id,
                     title: req.body.title,
                     body: req.body.body,
@@ -291,6 +297,9 @@ const Meetups = {
      * @returns {object} Meetup object
      */
     async addMeetupImages(req, res) {
+        if (req.user.role !== 'admin') {
+            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+        }
         const { error } = validator('addMeetupImages', req.body);
         if (error) {
             return validationErrors(res, error);
@@ -333,6 +342,9 @@ const Meetups = {
      * @returns {object} Meetup object
      */
     async removeMeetupImages(req, res) {
+        if (req.user.role !== 'admin') {
+            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+        }
         const { error } = validator('removeMeetupImages', req.body);
         if (error) {
             return validationErrors(res, error);
@@ -376,6 +388,9 @@ const Meetups = {
      * @returns {object} Meetup object
      */
     async addMeetupTags(req, res) {
+        if (req.user.role !== 'admin') {
+            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+        }
         const { error } = validator('addMeetupTags', req.body);
         if (error) {
             return validationErrors(res, error);
@@ -418,6 +433,9 @@ const Meetups = {
      * @returns {object} Meetup object
      */
     async removeMeetupTags(req, res) {
+        if (req.user.role !== 'admin') {
+            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+        }
         const { error } = validator('removeMeetupTags', req.body);
         if (error) {
             return validationErrors(res, error);
