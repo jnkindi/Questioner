@@ -250,6 +250,57 @@ const Questions = {
                 error: errorMessage
             });
         }
+    },
+    /**
+     * Add upvotevote to question of a Meetup
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Question object
+     */
+    async updateQuestion(req, res) {
+        const { error } = validator('updateQuestion', req.body);
+        if (error) {
+            return validationErrors(res, error);
+        }
+        const text = 'UPDATE questions SET title = $1, body = $2 WHERE id = $3';
+        try {
+            const findQuestionQuery = 'SELECT * FROM questions WHERE id=$1';
+            const questionResult = await db.query(findQuestionQuery, [req.params.id]);
+            const questionData = questionResult.rows;
+            if (!questionData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'Question with given ID was not found'
+                });
+            }
+
+            const meetupID = questionData[0].meetupid;
+            const findMeetupQuery = 'SELECT * FROM meetups WHERE id=$1';
+            const meetupResult = await db.query(findMeetupQuery, [meetupID]);
+            const meetupData = meetupResult.rows;
+            if (!meetupData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'Meetup associated to question was not found'
+                });
+            }
+
+            await db.query(text, [req.body.title, req.body.body, req.params.id]);
+            const response = {
+                status: 200,
+                data: [{
+                    meetup: meetupData[0].topic,
+                    questionTitle: req.body.title,
+                    questionBody: req.body.body
+                }]
+            };
+            return res.send(response);
+        } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
+        }
     }
 };
 export default Questions;

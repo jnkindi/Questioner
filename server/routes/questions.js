@@ -2,9 +2,12 @@ import express from 'express';
 
 import Questions from '../controllers/questions';
 
-const { upvoteQuestion, downvoteQuestion, addComment, getComments, deleteComment, updateComment } = Questions;
+const { upvoteQuestion, downvoteQuestion, addComment, getComments, deleteComment, updateComment, updateQuestion } = Questions;
 
 const router = express.Router();
+
+// Updating question info
+router.put('/:id', updateQuestion);
 
 // Upvote (increase votes by 1) a specific question.
 router.patch('/:id/upvote', upvoteQuestion);

@@ -103,6 +103,28 @@ const validator = (identifier, data) => {
             };
             break;
         }
+        case 'updateQuestion': {
+            schema = {
+                createdby: Joi.number().required(),
+                title: Joi.string().trim().min(5).required(),
+                body: Joi.string().trim().min(10).required()
+            };
+            break;
+        }
+        case 'updateUser': {
+            schema = {
+                firstname: Joi.string().trim().min(3).required(),
+                lastname: Joi.string().trim().min(3).required(),
+                othername: Joi.string().trim(),
+                email: Joi.string().trim().email({
+                    minDomainAtoms: 2
+                }).required(),
+                phonenumber: Joi.number().required(),
+                username: Joi.string().trim().min(5).required(),
+                isadmin: Joi.boolean().required()
+            };
+            break;
+        }
         default: {
             schema = false;
         }
