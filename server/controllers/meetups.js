@@ -442,7 +442,58 @@ const Meetups = {
                 error: errorMessage
             });
         }
-    }
+    },
+    /**
+     * Update a meetup
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetup object
+     */
+    async updateMeetup(req, res) {
+        const { error } = validator('updateMeetup', req.body);
+        if (error) {
+            return validationErrors(res, error);
+        }
+        const text = 'UPDATE meetups SET createdon = $1, location = $2, topic = $3, description = $4, happeningon = $5 WHERE id = $6';
+        const values = [
+            req.body.createon,
+            req.body.location,
+            req.body.topic,
+            req.body.description,
+            req.body.happeningon,
+            req.params.id
+        ];
+        try {
+            const findOneQuery = 'SELECT * FROM meetups WHERE id=$1';
+            const meetupResult = await db.query(findOneQuery, [req.params.id]);
+            const meetupData = meetupResult.rows;
+            if (!meetupData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'Meetup with given ID was not found'
+                });
+            }
+
+            await db.query(text, values);
+            const response = {
+                status: 200,
+                data: [{
+                    topic: req.body.topic,
+                    description: req.body.description,
+                    location: req.body.location,
+                    happeningon: req.body.happeningon,
+                    images: meetupData[0].images,
+                    tags: meetupData[0].tags
+                }]
+            };
+            return res.send(response);
+        } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
+        }
+    },
 };
 
 export default Meetups;

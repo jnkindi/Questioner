@@ -94,6 +94,15 @@ const validator = (identifier, data) => {
             };
             break;
         }
+        case 'updateMeetup': {
+            schema = {
+                location: Joi.string().trim().min(5).required(),
+                topic: Joi.string().trim().min(5).required(),
+                description: Joi.string().trim().required(),
+                happeningon: Joi.date().required()
+            };
+            break;
+        }
         default: {
             schema = false;
         }

@@ -3,7 +3,7 @@ import express from 'express';
 
 import Meetups from '../controllers/meetups';
 
-const { addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions, addMeetupImages, removeMeetupImages, addMeetupTags, removeMeetupTags } = Meetups;
+const { addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions, addMeetupImages, removeMeetupImages, addMeetupTags, removeMeetupTags, updateMeetup } = Meetups;
 
 const router = express.Router();
 
@@ -42,5 +42,8 @@ router.post('/:id/tags', addMeetupTags);
 
 // Delete tags on  a specific meetup record.
 router.delete('/:id/tags', removeMeetupTags);
+
+// Delete meetup.
+router.put('/:id', updateMeetup);
 
 export default router;
