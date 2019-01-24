@@ -57,6 +57,30 @@ const validator = (identifier, data) => {
             };
             break;
         }
+        case 'addMeetupImages': {
+            schema = {
+                images: Joi.array().required()
+            };
+            break;
+        }
+        case 'removeMeetupImages': {
+            schema = {
+                images: Joi.string().trim().required()
+            };
+            break;
+        }
+        case 'addMeetupTags': {
+            schema = {
+                tags: Joi.array().required()
+            };
+            break;
+        }
+        case 'removeMeetupTags': {
+            schema = {
+                tags: Joi.string().trim().required()
+            };
+            break;
+        }
         default: {
             schema = false;
         }

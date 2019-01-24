@@ -33,7 +33,8 @@ const Meetups = {
                     topic: req.body.topic,
                     description: req.body.description,
                     location: req.body.location,
-                    happeningOn: req.body.happeningon,
+                    happeningon: req.body.happeningon,
+                    images: req.body.images,
                     tags: req.body.tags
                 }]
             };
@@ -270,6 +271,176 @@ const Meetups = {
             return res.send(response);
         } catch (error) {
             return res.status(400).send(error);
+        }
+    },
+
+    /**
+     * Add a images to a Meetup
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetup object
+     */
+    async addMeetupImages(req, res) {
+        const { error } = validator('addMeetupImages', req.body);
+        if (error) {
+            return validationErrors(res, error);
+        }
+        const text = 'UPDATE meetups SET images = array_cat(images, $1) returning *';
+        try {
+            const findMeetupQuery = 'SELECT * FROM meetups WHERE id=$1';
+            const meetupResult = await db.query(findMeetupQuery, [req.params.id]);
+            const meetupData = meetupResult.rows;
+            if (!meetupData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'Meetup with given ID was not found'
+                });
+            }
+            await db.query(text, [req.body.images]);
+            const response = {
+                status: 200,
+                data: [{
+                    topic: meetupData[0].topic,
+                    description: meetupData[0].description,
+                    location: meetupData[0].location,
+                    happeningon: meetupData[0].happeningon,
+                    images: meetupData[0].images,
+                    tags: meetupData[0].tags
+                }]
+            };
+            return res.send(response);
+        } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
+        }
+    },
+    /**
+     * Remove an image to a Meetup
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetup object
+     */
+    async removeMeetupImages(req, res) {
+        const { error } = validator('removeMeetupImages', req.body);
+        if (error) {
+            return validationErrors(res, error);
+        }
+        const text = 'UPDATE meetups SET images = array_remove(images, $1) returning *';
+        try {
+            const findMeetupQuery = 'SELECT * FROM meetups WHERE id=$1';
+            const meetupResult = await db.query(findMeetupQuery, [req.params.id]);
+            const meetupData = meetupResult.rows;
+            if (!meetupData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'Meetup with given ID was not found'
+                });
+            }
+            await db.query(text, [req.body.images]);
+            const response = {
+                status: 200,
+                data: [{
+                    topic: meetupData[0].topic,
+                    description: meetupData[0].description,
+                    location: meetupData[0].location,
+                    happeningon: meetupData[0].happeningon,
+                    images: meetupData[0].images,
+                    tags: meetupData[0].tags
+                }]
+            };
+            return res.send(response);
+        } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
+        }
+    },
+
+    /**
+     * Add a tag to a Meetup
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetup object
+     */
+    async addMeetupTags(req, res) {
+        const { error } = validator('addMeetupTags', req.body);
+        if (error) {
+            return validationErrors(res, error);
+        }
+        const text = 'UPDATE meetups SET tags = array_cat(tags, $1) WHERE id = $2 returning *';
+        try {
+            const findMeetupQuery = 'SELECT * FROM meetups WHERE id=$1';
+            const meetupResult = await db.query(findMeetupQuery, [req.params.id]);
+            const meetupData = meetupResult.rows;
+            if (!meetupData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'Meetup with given ID was not found'
+                });
+            }
+            await db.query(text, [req.body.tags, req.params.id]);
+            const response = {
+                status: 200,
+                data: [{
+                    topic: meetupData[0].topic,
+                    description: meetupData[0].description,
+                    location: meetupData[0].location,
+                    happeningon: meetupData[0].happeningon,
+                    images: meetupData[0].images,
+                    tags: meetupData[0].tags
+                }]
+            };
+            return res.send(response);
+        } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
+        }
+    },
+    /**
+     * Remove a tag from a Meetup
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetup object
+     */
+    async removeMeetupTags(req, res) {
+        const { error } = validator('removeMeetupTags', req.body);
+        if (error) {
+            return validationErrors(res, error);
+        }
+        const text = 'UPDATE meetups SET tags = array_remove(tags, $1) WHERE id = $2 returning *';
+        try {
+            const findMeetupQuery = 'SELECT * FROM meetups WHERE id=$1';
+            const meetupResult = await db.query(findMeetupQuery, [req.params.id]);
+            const meetupData = meetupResult.rows;
+            if (!meetupData[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'Meetup with given ID was not found'
+                });
+            }
+            await db.query(text, [req.body.tags, req.params.id]);
+            const response = {
+                status: 200,
+                data: [{
+                    topic: meetupData[0].topic,
+                    description: meetupData[0].description,
+                    location: meetupData[0].location,
+                    happeningon: meetupData[0].happeningon,
+                    images: meetupData[0].images,
+                    tags: meetupData[0].tags
+                }]
+            };
+            return res.send(response);
+        } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
         }
     }
 };
