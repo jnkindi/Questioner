@@ -539,6 +539,25 @@ const Meetups = {
             });
         }
     },
+    /**
+     * Get Trending Questions
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Questions array
+     */
+    async getTrendingQuestions(req, res) {
+        const findAllQuery = 'SELECT createdon, createdby, meetupid, title, body, upvotes, downvotes, (upvotes+downvotes) AS totalvotes FROM questions WHERE meetupid = $1 ORDER BY totalvotes DESC';
+        try {
+            const { rows } = await db.query(findAllQuery, [req.params.id]);
+            const response = {
+                status: 200,
+                data: rows
+            };
+            return res.send(response);
+        } catch (error) {
+            return res.status(400).send(error);
+        }
+    },
 };
 
 export default Meetups;
