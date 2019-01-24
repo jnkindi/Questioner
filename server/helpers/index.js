@@ -81,6 +81,19 @@ const validator = (identifier, data) => {
             };
             break;
         }
+        case 'comment': {
+            schema = {
+                user: Joi.number().required(),
+                comment: Joi.string().trim().min(3).required(),
+            };
+            break;
+        }
+        case 'updateComment': {
+            schema = {
+                comment: Joi.string().trim().min(3).required(),
+            };
+            break;
+        }
         default: {
             schema = false;
         }
