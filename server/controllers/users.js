@@ -56,6 +56,26 @@ const Meetups = {
         if (error) {
             return validationErrors(res, error);
         }
+        const findUsernameQuery = 'SELECT * FROM users WHERE username=$1';
+        const userResult = await db.query(findUsernameQuery, [req.body.username]);
+        const userData = userResult.rows;
+        if (userData[0]) {
+            return res.status(400).send({
+                status: 400,
+                error: 'Username already taken'
+            });
+        }
+
+        const findEmailQuery = 'SELECT * FROM users WHERE email=$1';
+        const userEmailResult = await db.query(findEmailQuery, [req.body.email]);
+        const userEmailData = userEmailResult.rows;
+        if (userEmailData[0]) {
+            return res.status(400).send({
+                status: 400,
+                error: 'Email already taken'
+            });
+        }
+
         const text = 'INSERT INTO users (firstname, lastname, othername, email, phonenumber, username, password, registered, isadmin) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)';
         const values = [
             req.body.firstname,
