@@ -2,7 +2,9 @@ import express from 'express';
 
 import Questions from '../controllers/questions';
 
-const { upvoteQuestion, downvoteQuestion, addComment, getComments, deleteComment, updateComment, updateQuestion, deleteQuestion } = Questions;
+const {
+    upvoteQuestion, downvoteQuestion, addComment, getComments, deleteComment, updateComment, updateQuestion, deleteQuestion,
+} = Questions;
 
 const router = express.Router();
 

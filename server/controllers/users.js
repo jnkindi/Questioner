@@ -29,13 +29,13 @@ const Meetups = {
                         username: rows[0].username,
                         firstname: rows[0].firstname,
                         lastname: rows[0].lastname,
-                        othername: rows[0].othername
-                    }]
+                        othername: rows[0].othername,
+                    }],
                 };
             } else {
                 response = {
                     status: 404,
-                    message: 'Invalid username or password'
+                    message: 'Invalid username or password',
                 };
                 return res.send(response);
             }
@@ -62,7 +62,7 @@ const Meetups = {
         if (userData[0]) {
             return res.status(400).send({
                 status: 400,
-                error: 'Username already taken'
+                error: 'Username already taken',
             });
         }
 
@@ -72,7 +72,7 @@ const Meetups = {
         if (userEmailData[0]) {
             return res.status(400).send({
                 status: 400,
-                error: 'Email already taken'
+                error: 'Email already taken',
             });
         }
 
@@ -86,7 +86,7 @@ const Meetups = {
             req.body.username,
             req.body.password,
             moment().format('YYYY-MM-DD'),
-            req.body.isadmin
+            req.body.isadmin,
         ];
         try {
             await db.query(text, values);
@@ -99,8 +99,8 @@ const Meetups = {
                     email: req.body.email,
                     phoneNumber: req.body.phoneNumber,
                     username: req.body.username,
-                    isAdmin: req.body.isadmin
-                }]
+                    isAdmin: req.body.isadmin,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
@@ -136,7 +136,7 @@ const Meetups = {
             if (!userData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'User with given ID was not found'
+                    error: 'User with given ID was not found',
                 });
             }
 
@@ -150,14 +150,14 @@ const Meetups = {
                     email: req.body.email,
                     phoneNumber: req.body.phoneNumber,
                     username: req.body.username,
-                    isAdmin: req.body.isadmin
-                }]
+                    isAdmin: req.body.isadmin,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -174,17 +174,17 @@ const Meetups = {
             if (!rows[0]) {
               return res.status(404).send({
                 status: 404,
-                error: 'User with given ID was not found'
+                error: 'User with given ID was not found',
             });
             }
             return res.status(200).send({
                 status: 200,
-                data: 'User deleted'
+                data: 'User deleted',
             });
           } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -201,7 +201,7 @@ const Meetups = {
             if (!rows[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'User with given ID was not found'
+                    error: 'User with given ID was not found',
                 });
             }
             const response = {
@@ -213,14 +213,14 @@ const Meetups = {
                     email: rows[0].email,
                     phoneNumber: rows[0].phoneNumber,
                     username: rows[0].username,
-                    isAdmin: rows[0].isadmin
-                }]
+                    isAdmin: rows[0].isadmin,
+                }],
             };
             return res.send(response);
         } catch (error) {
             return res.status(400).send({
                 status: 400,
-                error
+                error,
             });
         }
     },

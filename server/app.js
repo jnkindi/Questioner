@@ -7,7 +7,7 @@ const app = express();
 
 app.use(express.json());
 app.use(express.urlencoded({
-  extended: false
+  extended: false,
 }));
 
 
@@ -30,7 +30,7 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.json({
     status: err.status,
-    message: err.message
+    message: err.message,
   });
 });
 

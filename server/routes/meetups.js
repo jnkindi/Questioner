@@ -3,7 +3,9 @@ import express from 'express';
 
 import Meetups from '../controllers/meetups';
 
-const { addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions, addMeetupImages, removeMeetupImages, addMeetupTags, removeMeetupTags, updateMeetup, searchMeetup, getTrendingQuestions } = Meetups;
+const {
+    addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions, addMeetupImages, removeMeetupImages, addMeetupTags, removeMeetupTags, updateMeetup, searchMeetup, getTrendingQuestions,
+} = Meetups;
 
 const router = express.Router();
 

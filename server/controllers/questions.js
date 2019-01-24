@@ -21,7 +21,7 @@ const Questions = {
         if (userUpvoteData[0]) {
             return res.status(200).send({
                 status: 200,
-                error: 'Question already voted'
+                error: 'Question already voted',
             });
         }
 
@@ -37,7 +37,7 @@ const Questions = {
             if (!questionData[0]) {
                 return res.status(200).send({
                     status: 200,
-                    error: 'Question with given ID was not found'
+                    error: 'Question with given ID was not found',
                 });
             }
 
@@ -48,7 +48,7 @@ const Questions = {
             if (!meetupData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup associated to question was not found'
+                    error: 'Meetup associated to question was not found',
                 });
             }
 
@@ -59,14 +59,14 @@ const Questions = {
                 data: [{
                     meetup: meetupData[0].topic,
                     questionTitle: questionData[0].title,
-                    questionBody: questionData[0].body
-                }]
+                    questionBody: questionData[0].body,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -87,7 +87,7 @@ const Questions = {
         if (userUpvoteData[0]) {
             return res.status(404).send({
                 status: 404,
-                error: 'Question already voted'
+                error: 'Question already voted',
             });
         }
 
@@ -103,7 +103,7 @@ const Questions = {
             if (!questionData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Question with given ID was not found'
+                    error: 'Question with given ID was not found',
                 });
             }
 
@@ -114,7 +114,7 @@ const Questions = {
             if (!meetupData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup associated to question was not found'
+                    error: 'Meetup associated to question was not found',
                 });
             }
 
@@ -125,14 +125,14 @@ const Questions = {
                 data: [{
                     meetup: meetupData[0].topic,
                     questionTitle: questionData[0].title,
-                    questionBody: questionData[0].body
-                }]
+                    questionBody: questionData[0].body,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -152,7 +152,7 @@ const Questions = {
             req.params.id,
             req.body.user,
             req.body.comment,
-            moment().format('YYYY-MM-DD')
+            moment().format('YYYY-MM-DD'),
         ];
         try {
             const findOneQuery = 'SELECT * FROM questions WHERE id=$1';
@@ -161,7 +161,7 @@ const Questions = {
             if (!questionData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Question with given ID was not found'
+                    error: 'Question with given ID was not found',
                 });
             }
 
@@ -171,7 +171,7 @@ const Questions = {
             if (!userData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'User with given ID was not found'
+                    error: 'User with given ID was not found',
                 });
             }
 
@@ -182,14 +182,14 @@ const Questions = {
                 data: [{
                     comment: req.body.comment,
                     title,
-                    createdon: moment().format('YYYY-MM-DD')
-                }]
+                    createdon: moment().format('YYYY-MM-DD'),
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -206,18 +206,18 @@ const Questions = {
             if (!rows[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup with given ID was not found'
+                    error: 'Meetup with given ID was not found',
                 });
             }
             const response = {
                 status: 200,
-                data: rows[0]
+                data: rows[0],
             };
             return res.send(response);
         } catch (error) {
             return res.status(400).send({
                 status: 400,
-                error
+                error,
             });
         }
     },
@@ -234,17 +234,17 @@ const Questions = {
             if (!rows[0]) {
               return res.status(404).send({
                 status: 404,
-                error: 'Comment with given ID was not found'
+                error: 'Comment with given ID was not found',
             });
             }
             return res.status(200).send({
                 status: 200,
-                data: 'Comment deleted'
+                data: 'Comment deleted',
             });
           } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -267,7 +267,7 @@ const Questions = {
             if (!commentData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Comment with given ID was not found'
+                    error: 'Comment with given ID was not found',
                 });
             }
 
@@ -276,14 +276,14 @@ const Questions = {
                 status: 200,
                 data: [{
                     comment: req.body.comment,
-                    createdon: commentData[0].createdon
-                }]
+                    createdon: commentData[0].createdon,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -306,7 +306,7 @@ const Questions = {
             if (!questionData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Question with given ID was not found'
+                    error: 'Question with given ID was not found',
                 });
             }
 
@@ -317,7 +317,7 @@ const Questions = {
             if (!meetupData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup associated to question was not found'
+                    error: 'Meetup associated to question was not found',
                 });
             }
 
@@ -327,14 +327,14 @@ const Questions = {
                 data: [{
                     meetup: meetupData[0].topic,
                     questionTitle: req.body.title,
-                    questionBody: req.body.body
-                }]
+                    questionBody: req.body.body,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -351,17 +351,17 @@ const Questions = {
             if (!rows[0]) {
               return res.status(404).send({
                 status: 404,
-                error: 'Question with given ID was not found'
+                error: 'Question with given ID was not found',
             });
             }
             return res.status(200).send({
                 status: 200,
-                data: 'Question deleted'
+                data: 'Question deleted',
             });
           } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },

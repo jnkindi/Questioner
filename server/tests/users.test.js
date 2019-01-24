@@ -57,5 +57,5 @@ const loginTest = () => {
 
 export {
     usersTest,
-    loginTest
+    loginTest,
 };

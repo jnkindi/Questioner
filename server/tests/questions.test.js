@@ -4,8 +4,7 @@ import { expect } from 'chai';
 import app from '../app';
 
 import { questionPost } from './fixtures';
-import questions from '../helpers/questions';
-import { meetups } from '../helpers/meetups';
+import { questions, meetups } from '../helpers/index';
 
 const questionMaxID = questions.length;
 

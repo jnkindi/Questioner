@@ -23,7 +23,7 @@ const Meetups = {
             req.body.topic,
             req.body.description,
             req.body.happeningon,
-            req.body.tags
+            req.body.tags,
         ];
         try {
             await db.query(text, values);
@@ -35,8 +35,8 @@ const Meetups = {
                     location: req.body.location,
                     happeningon: req.body.happeningon,
                     images: req.body.images,
-                    tags: req.body.tags
-                }]
+                    tags: req.body.tags,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
@@ -55,7 +55,7 @@ const Meetups = {
             const { rows } = await db.query(findAllQuery);
             const response = {
                 status: 200,
-                data: rows
+                data: rows,
             };
             return res.send(response);
         } catch (error) {
@@ -71,13 +71,13 @@ const Meetups = {
     async upcomingMeetups(req, res) {
         const findAllQuery = 'SELECT * FROM meetups WHERE happeningOn > $1 ORDER BY happeningOn ASC';
         const values = [
-            moment().format('YYYY-MM-DD')
+            moment().format('YYYY-MM-DD'),
         ];
         try {
             const { rows } = await db.query(findAllQuery, values);
             const response = {
                 status: 200,
-                data: rows
+                data: rows,
             };
             return res.send(response);
         } catch (error) {
@@ -97,18 +97,18 @@ const Meetups = {
             if (!rows[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup with given ID was not found'
+                    error: 'Meetup with given ID was not found',
                 });
             }
             const response = {
                 status: 200,
-                data: rows[0]
+                data: rows[0],
             };
             return res.send(response);
         } catch (error) {
             return res.status(400).send({
                 status: 400,
-                error
+                error,
             });
         }
     },
@@ -146,7 +146,7 @@ const Meetups = {
             if (!meetupData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup with given ID was not found'
+                    error: 'Meetup with given ID was not found',
                 });
             }
 
@@ -156,7 +156,7 @@ const Meetups = {
             if (!userData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'User with given ID was not found'
+                    error: 'User with given ID was not found',
                 });
             }
 
@@ -167,14 +167,14 @@ const Meetups = {
                 data: [{
                     meetup: req.params.id,
                     topic,
-                    status: req.body.response
-                }]
+                    status: req.body.response,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -191,17 +191,17 @@ const Meetups = {
             if (!rows[0]) {
               return res.status(404).send({
                 status: 404,
-                error: 'Meetup with given ID was not found'
+                error: 'Meetup with given ID was not found',
             });
             }
             return res.status(200).send({
                 status: 200,
-                data: 'Meetup deleted'
+                data: 'Meetup deleted',
             });
           } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -224,7 +224,7 @@ const Meetups = {
             req.body.title,
             req.body.body,
             0,
-            0
+            0,
         ];
         try {
             const findUserQuery = 'SELECT * FROM users WHERE id=$1';
@@ -233,7 +233,7 @@ const Meetups = {
             if (!userData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'User with given ID was not found'
+                    error: 'User with given ID was not found',
                 });
             }
 
@@ -243,7 +243,7 @@ const Meetups = {
             if (!meetupData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup with given ID was not found'
+                    error: 'Meetup with given ID was not found',
                 });
             }
             await db.query(text, values);
@@ -253,14 +253,14 @@ const Meetups = {
                     user: req.body.createdByy,
                     meetup: req.params.id,
                     title: req.body.title,
-                    body: req.body.body
-                }]
+                    body: req.body.body,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -276,7 +276,7 @@ const Meetups = {
             const { rows } = await db.query(findAllQuery, [req.params.id]);
             const response = {
                 status: 200,
-                data: rows
+                data: rows,
             };
             return res.send(response);
         } catch (error) {
@@ -303,7 +303,7 @@ const Meetups = {
             if (!meetupData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup with given ID was not found'
+                    error: 'Meetup with given ID was not found',
                 });
             }
             await db.query(text, [req.body.images]);
@@ -315,14 +315,14 @@ const Meetups = {
                     location: meetupData[0].location,
                     happeningon: meetupData[0].happeningon,
                     images: meetupData[0].images,
-                    tags: meetupData[0].tags
-                }]
+                    tags: meetupData[0].tags,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -345,7 +345,7 @@ const Meetups = {
             if (!meetupData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup with given ID was not found'
+                    error: 'Meetup with given ID was not found',
                 });
             }
             await db.query(text, [req.body.images]);
@@ -357,14 +357,14 @@ const Meetups = {
                     location: meetupData[0].location,
                     happeningon: meetupData[0].happeningon,
                     images: meetupData[0].images,
-                    tags: meetupData[0].tags
-                }]
+                    tags: meetupData[0].tags,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -388,7 +388,7 @@ const Meetups = {
             if (!meetupData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup with given ID was not found'
+                    error: 'Meetup with given ID was not found',
                 });
             }
             await db.query(text, [req.body.tags, req.params.id]);
@@ -400,14 +400,14 @@ const Meetups = {
                     location: meetupData[0].location,
                     happeningon: meetupData[0].happeningon,
                     images: meetupData[0].images,
-                    tags: meetupData[0].tags
-                }]
+                    tags: meetupData[0].tags,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -430,7 +430,7 @@ const Meetups = {
             if (!meetupData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup with given ID was not found'
+                    error: 'Meetup with given ID was not found',
                 });
             }
             await db.query(text, [req.body.tags, req.params.id]);
@@ -442,14 +442,14 @@ const Meetups = {
                     location: meetupData[0].location,
                     happeningon: meetupData[0].happeningon,
                     images: meetupData[0].images,
-                    tags: meetupData[0].tags
-                }]
+                    tags: meetupData[0].tags,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -471,7 +471,7 @@ const Meetups = {
             req.body.topic,
             req.body.description,
             req.body.happeningon,
-            req.params.id
+            req.params.id,
         ];
         try {
             const findOneQuery = 'SELECT * FROM meetups WHERE id=$1';
@@ -480,7 +480,7 @@ const Meetups = {
             if (!meetupData[0]) {
                 return res.status(404).send({
                     status: 404,
-                    error: 'Meetup with given ID was not found'
+                    error: 'Meetup with given ID was not found',
                 });
             }
 
@@ -493,14 +493,14 @@ const Meetups = {
                     location: req.body.location,
                     happeningon: req.body.happeningon,
                     images: meetupData[0].images,
-                    tags: meetupData[0].tags
-                }]
+                    tags: meetupData[0].tags,
+                }],
             };
             return res.send(response);
         } catch (errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: errorMessage
+                error: errorMessage,
             });
         }
     },
@@ -515,7 +515,7 @@ const Meetups = {
         if (!errorMessage) {
             return res.status(400).send({
                 status: 400,
-                error: 'Provide search topic'
+                error: 'Provide search topic',
             });
         }
         const text = `SELECT * FROM meetups WHERE topic like '%${req.query.topic}%'`;
@@ -524,18 +524,18 @@ const Meetups = {
             if (!rows[0]) {
                 return res.status(404).send({
                     status: 404,
-                    data: 'No meetup found'
+                    data: 'No meetup found',
                 });
             }
             const response = {
                 status: 200,
-                data: rows
+                data: rows,
             };
             return res.send(response);
         } catch (error) {
             return res.status(400).send({
                 status: 400,
-                error
+                error,
             });
         }
     },
@@ -551,7 +551,7 @@ const Meetups = {
             const { rows } = await db.query(findAllQuery, [req.params.id]);
             const response = {
                 status: 200,
-                data: rows
+                data: rows,
             };
             return res.send(response);
         } catch (error) {
