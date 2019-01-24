@@ -3,7 +3,7 @@ import express from 'express';
 
 import Meetups from '../controllers/meetups';
 
-const { addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions, addMeetupImages, removeMeetupImages, addMeetupTags, removeMeetupTags, updateMeetup } = Meetups;
+const { addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions, addMeetupImages, removeMeetupImages, addMeetupTags, removeMeetupTags, updateMeetup, searchMeetup } = Meetups;
 
 const router = express.Router();
 
@@ -12,6 +12,9 @@ router.post('/', addMeetup);
 
 // Fetch all meetups records.
 router.get('/', getMeetups);
+
+// Search Meetup by topic.
+router.get('/search/', searchMeetup);
 
 // Fetch all upcomint meetup records.
 router.get('/upcoming/', upcomingMeetups);

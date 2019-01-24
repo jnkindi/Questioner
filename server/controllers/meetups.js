@@ -494,6 +494,41 @@ const Meetups = {
             });
         }
     },
+    /**
+     * Get A Specific Meetup details
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} meetup object
+     */
+    async searchMeetup(req, res) {
+        const errorMessage = req.query.topic || false;
+        if (!errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: 'Provide search topic'
+            });
+        }
+        const text = `SELECT * FROM meetups WHERE topic like '%${req.query.topic}%'`;
+        try {
+            const { rows } = await db.query(text);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    data: 'No meetup found'
+                });
+            }
+            const response = {
+                status: 200,
+                data: rows
+            };
+            return res.send(response);
+        } catch (error) {
+            return res.status(400).send({
+                status: 400,
+                error
+            });
+        }
+    },
 };
 
 export default Meetups;
