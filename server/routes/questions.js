@@ -2,7 +2,7 @@ import express from 'express';
 
 import Questions from '../controllers/questions';
 
-const { upvoteQuestion, downvoteQuestion, addComment, getComments, deleteComment, updateComment, updateQuestion } = Questions;
+const { upvoteQuestion, downvoteQuestion, addComment, getComments, deleteComment, updateComment, updateQuestion, deleteQuestion } = Questions;
 
 const router = express.Router();
 
@@ -26,4 +26,8 @@ router.delete('/:id/comments/:commentid', deleteComment);
 
 // Updating comment on a specific question.
 router.put('/:id/comments/:commentid', updateComment);
+
+// Updating comment on a specific question.
+router.delete('/:id', deleteQuestion);
+
 export default router;

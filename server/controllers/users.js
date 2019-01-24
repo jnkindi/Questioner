@@ -130,7 +130,7 @@ const Meetups = {
                     email: req.body.email,
                     phoneNumber: req.body.phoneNumber,
                     username: req.body.username,
-                    isAdmin: req.body.isadmines
+                    isAdmin: req.body.isadmin
                 }]
             };
             return res.send(response);
@@ -140,7 +140,70 @@ const Meetups = {
                 error: errorMessage
             });
         }
-    }
+    },
+    /**
+     * Delete a User
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} User object
+     */
+    async deleteUser(req, res) {
+        const text = 'DELETE FROM users WHERE id = $1 returning *';
+        try {
+            const { rows } = await db.query(text, [req.params.id]);
+            if (!rows[0]) {
+              return res.status(404).send({
+                status: 404,
+                error: 'User with given ID was not found'
+            });
+            }
+            return res.status(200).send({
+                status: 200,
+                data: 'User deleted'
+            });
+          } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
+        }
+    },
+    /**
+     * Get A Specific Meetup details
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} meetup object
+     */
+    async userInformation(req, res) {
+        const text = 'SELECT * FROM users WHERE id = $1';
+        try {
+            const { rows } = await db.query(text, [req.params.id]);
+            if (!rows[0]) {
+                return res.status(404).send({
+                    status: 404,
+                    error: 'User with given ID was not found'
+                });
+            }
+            const response = {
+                status: 200,
+                data: [{
+                    firstname: rows[0].firstname,
+                    lastname: rows[0].lastname,
+                    othername: rows[0].othername,
+                    email: rows[0].email,
+                    phoneNumber: rows[0].phoneNumber,
+                    username: rows[0].username,
+                    isAdmin: rows[0].isadmin
+                }]
+            };
+            return res.send(response);
+        } catch (error) {
+            return res.status(400).send({
+                status: 400,
+                error
+            });
+        }
+    },
 };
 
 export default Meetups;

@@ -301,6 +301,33 @@ const Questions = {
                 error: errorMessage
             });
         }
-    }
+    },
+    /**
+     * Delete a Question
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Question object
+     */
+    async deleteQuestion(req, res) {
+        const text = 'DELETE FROM questions WHERE id = $1 returning *';
+        try {
+            const { rows } = await db.query(text, [req.params.id]);
+            if (!rows[0]) {
+              return res.status(404).send({
+                status: 404,
+                error: 'Question with given ID was not found'
+            });
+            }
+            return res.status(200).send({
+                status: 200,
+                data: 'Question deleted'
+            });
+          } catch (errorMessage) {
+            return res.status(400).send({
+                status: 400,
+                error: errorMessage
+            });
+        }
+    },
 };
 export default Questions;
