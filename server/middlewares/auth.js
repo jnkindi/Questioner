@@ -12,19 +12,19 @@ const Auth = {
     async verifyToken(req, res, next) {
         const token = req.headers['auth-access'];
         if (!token) {
-            return res.status(400).send({ message: 'No token was provided' });
+            return res.status(404).send({ status: 404, error: 'No token was provided' });
         }
         try {
             const decoded = await jwt.verify(token, process.env.SECRET);
             const text = 'SELECT * FROM users WHERE id = $1';
             const { rows } = await db.query(text, [decoded.user]);
             if (!rows[0]) {
-                return res.status(400).send({ message: 'The token you provided is invalid' });
+                return res.status(403).send({ status: 403, error: 'The token you provided is invalid' });
             }
             req.user = { id: decoded.user, role: decoded.role };
             next();
         } catch (error) {
-            return res.status(400).send(error);
+            return res.status(400).send({ status: 400, error });
         }
         return true;
     },

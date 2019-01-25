@@ -25,13 +25,13 @@ const Meetups = {
             if (!rows[0]) {
                 return res.status(404).send({
                     status: 404,
-                    message: 'Invalid username or password',
+                    error: 'Invalid username or password',
                 });
             }
             if (!comparePassword(rows[0].password, req.body.password)) {
                 return res.status(404).send({
                     status: 404,
-                    message: 'Invalid username or password',
+                    error: 'Invalid username or password',
                 });
             }
             const role = ((rows[0].isadmin) ? 'admin' : 'standard');
@@ -188,7 +188,7 @@ const Meetups = {
      */
     async deleteUser(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
         }
         const text = 'DELETE FROM users WHERE id = $1 returning *';
         try {
@@ -227,7 +227,7 @@ const Meetups = {
                 });
             }
             const response = {
-                status: 200,
+                status: 201,
                 data: [{
                     firstname: rows[0].firstname,
                     lastname: rows[0].lastname,

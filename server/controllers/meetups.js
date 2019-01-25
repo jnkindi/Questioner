@@ -11,7 +11,7 @@ const Meetups = {
      */
     async addMeetup(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
         }
         // Validate Data
         const { error } = validator('meetup', req.body);
@@ -31,7 +31,7 @@ const Meetups = {
         try {
             await db.query(text, values);
             const response = {
-                status: 200,
+                status: 201,
                 data: [{
                     topic: req.body.topic,
                     description: req.body.description,
@@ -62,7 +62,7 @@ const Meetups = {
             };
             return res.send(response);
         } catch (error) {
-            return res.status(400).send(error);
+            return res.status(400).send({ status: 400, error });
         }
     },
     /**
@@ -84,7 +84,7 @@ const Meetups = {
             };
             return res.send(response);
         } catch (error) {
-            return res.status(400).send(error);
+            return res.status(400).send({ status: 400, error });
         }
     },
     /**
@@ -166,7 +166,7 @@ const Meetups = {
             const { topic } = meetupData[0];
             await db.query(text, values);
             const response = {
-                status: 200,
+                status: 201,
                 data: [{
                     meetup: req.params.id,
                     topic,
@@ -189,7 +189,7 @@ const Meetups = {
      */
     async deleteMeetup(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
         }
         const text = 'DELETE FROM meetups WHERE id = $1 returning *';
         try {
@@ -254,7 +254,7 @@ const Meetups = {
             }
             await db.query(text, values);
             const response = {
-                status: 200,
+                status: 201,
                 data: [{
                     user: req.user.user,
                     meetup: req.params.id,
@@ -286,7 +286,10 @@ const Meetups = {
             };
             return res.send(response);
         } catch (error) {
-            return res.status(400).send(error);
+            return res.status(400).send({
+                status: 400,
+                error,
+            });
         }
     },
 
@@ -298,7 +301,7 @@ const Meetups = {
      */
     async addMeetupImages(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
         }
         const { error } = validator('addMeetupImages', req.body);
         if (error) {
@@ -317,7 +320,7 @@ const Meetups = {
             }
             await db.query(text, [req.body.images]);
             const response = {
-                status: 200,
+                status: 201,
                 data: [{
                     topic: meetupData[0].topic,
                     description: meetupData[0].description,
@@ -343,7 +346,7 @@ const Meetups = {
      */
     async removeMeetupImages(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
         }
         const { error } = validator('removeMeetupImages', req.body);
         if (error) {
@@ -389,7 +392,7 @@ const Meetups = {
      */
     async addMeetupTags(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
         }
         const { error } = validator('addMeetupTags', req.body);
         if (error) {
@@ -408,7 +411,7 @@ const Meetups = {
             }
             await db.query(text, [req.body.tags, req.params.id]);
             const response = {
-                status: 200,
+                status: 201,
                 data: [{
                     topic: meetupData[0].topic,
                     description: meetupData[0].description,
@@ -434,7 +437,7 @@ const Meetups = {
      */
     async removeMeetupTags(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(400).send({ status: 400, error: 'Unauthorized Access' });
+            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
         }
         const { error } = validator('removeMeetupTags', req.body);
         if (error) {
@@ -573,7 +576,10 @@ const Meetups = {
             };
             return res.send(response);
         } catch (error) {
-            return res.status(400).send(error);
+            return res.status(400).send({
+                status: 400,
+                error,
+            });
         }
     },
 };
