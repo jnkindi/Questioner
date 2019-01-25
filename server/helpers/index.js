@@ -83,7 +83,6 @@ const validator = (identifier, data) => {
         }
         case 'comment': {
             schema = {
-                user: Joi.number().required(),
                 comment: Joi.string().trim().min(3).required(),
             };
             break;
@@ -105,7 +104,6 @@ const validator = (identifier, data) => {
         }
         case 'updateQuestion': {
             schema = {
-                createdby: Joi.number().required(),
                 title: Joi.string().trim().min(5).required(),
                 body: Joi.string().trim().min(10).required(),
             };
@@ -122,12 +120,6 @@ const validator = (identifier, data) => {
                 phonenumber: Joi.number().required(),
                 username: Joi.string().trim().min(5).required(),
                 isadmin: Joi.boolean().required(),
-            };
-            break;
-        }
-        case 'upvote': {
-            schema = {
-                user: Joi.number().required(),
             };
             break;
         }

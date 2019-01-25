@@ -11,10 +11,6 @@ const Questions = {
      * @returns {object} Question object
      */
     async upvoteQuestion(req, res) {
-        const { error } = validator('upvote', req.body);
-        if (error) {
-            return validationErrors(res, error);
-        }
         const findUpvoteQuery = 'SELECT * FROM questionVoters WHERE userid = $1 AND questionid = $2 AND votetype = $3';
         const upvoteResult = await db.query(findUpvoteQuery, [req.user.id, req.params.id, 'upvote']);
         const userUpvoteData = upvoteResult.rows;
@@ -77,10 +73,6 @@ const Questions = {
      * @returns {object} Question object
      */
     async downvoteQuestion(req, res) {
-        const { error } = validator('upvote', req.body);
-        if (error) {
-            return validationErrors(res, error);
-        }
         const findUpvoteQuery = 'SELECT * FROM questionVoters WHERE userid = $1 AND questionid = $2';
         const upvoteResult = await db.query(findUpvoteQuery, [req.user.id, req.params.id]);
         const userUpvoteData = upvoteResult.rows;
