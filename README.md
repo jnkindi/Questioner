@@ -119,7 +119,7 @@ Heroku
 | /api/v1/meetups/:id | DELETE | Delete a meetup |
 | /api/v1/meetups/:id/questions | POST | Add a new question on meetup 
 | /api/v1/meetups/:id/questions | GET | Fetch all meetup questions  |
-| /api/v1/meetups/search/>topic | GET | Searches all meetup by topic  
+| /api/v1/meetups/search/?topic=?:topic | GET | Searches all meetup by topic  
 | /api/v1/meetups/:id/images | POST | Add a new images on question |
 | /api/v1/meetups/:id/images | DELETE | Delete image on question |
 | /api/v1/meetups/:id/tags | POST | Add a new tags on question |

@@ -1,5 +1,6 @@
 import { Pool } from 'pg';
 import ENV from 'dotenv';
+import { hashPassword } from '../../helpers/index';
 
 ENV.config();
 

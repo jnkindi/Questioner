@@ -12,7 +12,7 @@ const Auth = {
     async verifyToken(req, res, next) {
         const token = req.headers['auth-access'];
         if (!token) {
-            return res.status(404).send({ status: 404, error: 'No token was provided' });
+            return res.status(401).send({ status: 401, error: 'No token was provided' });
         }
         try {
             const decoded = await jwt.verify(token, process.env.SECRET);
