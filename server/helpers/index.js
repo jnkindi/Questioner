@@ -23,7 +23,6 @@ const validator = (identifier, data) => {
         }
         case 'rsvps': {
             schema = {
-                user: Joi.number().required(),
                 response: Joi.string().trim().required().valid(['yes', 'no', 'maybe']),
             };
             break;

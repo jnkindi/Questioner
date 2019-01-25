@@ -16,7 +16,7 @@ const Questions = {
             return validationErrors(res, error);
         }
         const findUpvoteQuery = 'SELECT * FROM questionVoters WHERE userid = $1 AND questionid = $2 AND votetype = $3';
-        const upvoteResult = await db.query(findUpvoteQuery, [req.user.user, req.params.id, 'upvote']);
+        const upvoteResult = await db.query(findUpvoteQuery, [req.user.id, req.params.id, 'upvote']);
         const userUpvoteData = upvoteResult.rows;
         if (userUpvoteData[0]) {
             return res.status(200).send({
@@ -26,7 +26,7 @@ const Questions = {
         }
 
         const recordVoter = 'INSERT INTO questionVoters(userid, questionid, votetype) VALUES($1, $2)';
-        await db.query(recordVoter, [req.user.user, req.params.id]);
+        await db.query(recordVoter, [req.user.id, req.params.id]);
 
         const text = 'UPDATE questions SET upvotes = upvotes + 1 WHERE id = $1';
         const values = [req.params.id];
@@ -82,7 +82,7 @@ const Questions = {
             return validationErrors(res, error);
         }
         const findUpvoteQuery = 'SELECT * FROM questionVoters WHERE userid = $1 AND questionid = $2';
-        const upvoteResult = await db.query(findUpvoteQuery, [req.user.user, req.params.id]);
+        const upvoteResult = await db.query(findUpvoteQuery, [req.user.id, req.params.id]);
         const userUpvoteData = upvoteResult.rows;
         if (userUpvoteData[0]) {
             return res.status(404).send({
@@ -92,7 +92,7 @@ const Questions = {
         }
 
         const recordVoter = 'INSERT INTO questionVoters(userid, questionid, votetype) VALUES($1, $2, $3)';
-        await db.query(recordVoter, [req.user.user, req.params.id, 'downvote']);
+        await db.query(recordVoter, [req.user.id, req.params.id, 'downvote']);
 
         const text = 'UPDATE questions SET downvotes = downvotes + 1 WHERE id = $1';
         const values = [req.params.id];
@@ -150,7 +150,7 @@ const Questions = {
         const text = 'INSERT INTO questioncomments(questionid, userid, comment, createdon) VALUES($1, $2, $3, $4)';
         const values = [
             req.params.id,
-            req.user.user,
+            req.user.id,
             req.body.comment,
             moment().format('YYYY-MM-DD'),
         ];
@@ -166,7 +166,7 @@ const Questions = {
             }
 
             const findUserQuery = 'SELECT * FROM users WHERE id=$1';
-            const userResult = await db.query(findUserQuery, [req.user.user]);
+            const userResult = await db.query(findUserQuery, [req.user.id]);
             const userData = userResult.rows;
             if (!userData[0]) {
                 return res.status(404).send({

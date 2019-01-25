@@ -129,12 +129,12 @@ const Meetups = {
         let text = 'INSERT INTO rsvps(meetupid, userid, response) VALUES($1, $2, $3)';
         let values = [
             req.params.id,
-            req.user.user,
+            req.user.id,
             req.body.response,
         ];
 
         const findRsvpsQuery = 'SELECT * FROM rsvps WHERE meetupid=$1 AND userid=$2';
-        const rsvpsResult = await db.query(findRsvpsQuery, [req.params.id, req.user.user]);
+        const rsvpsResult = await db.query(findRsvpsQuery, [req.params.id, req.user.id]);
         const rsvpsData = rsvpsResult.rows;
         if (rsvpsData[0]) {
             const rsvpId = rsvpsData[0].id;
@@ -154,7 +154,7 @@ const Meetups = {
             }
 
             const findUserQuery = 'SELECT * FROM users WHERE id=$1';
-            const userResult = await db.query(findUserQuery, [req.user.user]);
+            const userResult = await db.query(findUserQuery, [req.user.id]);
             const userData = userResult.rows;
             if (!userData[0]) {
                 return res.status(404).send({
@@ -225,7 +225,7 @@ const Meetups = {
         const text = 'INSERT INTO questions(createdon, createdby, meetupid, title, body, upvotes, downvotes) VALUES($1, $2, $3, $4, $5, $6, $7)';
         const values = [
             moment().format('YYYY-MM-DD'),
-            req.user.user,
+            req.user.id,
             parseInt(req.params.id, 10),
             req.body.title,
             req.body.body,
@@ -234,7 +234,7 @@ const Meetups = {
         ];
         try {
             const findUserQuery = 'SELECT * FROM users WHERE id=$1';
-            const userResult = await db.query(findUserQuery, [req.user.user]);
+            const userResult = await db.query(findUserQuery, [req.user.id]);
             const userData = userResult.rows;
             if (!userData[0]) {
                 return res.status(404).send({
@@ -256,7 +256,7 @@ const Meetups = {
             const response = {
                 status: 201,
                 data: [{
-                    user: req.user.user,
+                    user: req.user.id,
                     meetup: req.params.id,
                     title: req.body.title,
                     body: req.body.body,
