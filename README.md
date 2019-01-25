@@ -117,10 +117,24 @@ Heroku
 | /api/v1/meetups/:id | GET | Fetch a specific meetup information |
 | /api/v1/meetups/:id/rsvps | POST | RSVP a meetup |
 | /api/v1/meetups/:id | DELETE | Delete a meetup |
-| /api/v1/meetups/:id/questions | POST | Add a new question on meetup |
+| /api/v1/meetups/:id/questions | POST | Add a new question on meetup 
 | /api/v1/meetups/:id/questions | GET | Fetch all meetup questions  |
+| /api/v1/meetups/search/>topic | GET | Searches all meetup by topic  
+| /api/v1/meetups/:id/images | POST | Add a new images on question |
+| /api/v1/meetups/:id/images | DELETE | Delete image on question |
+| /api/v1/meetups/:id/tags | POST | Add a new tags on question |
+| /api/v1/meetups/:id/tags | DELETE | Delete tag on question |
+| /api/v1/meetups/:id | PUT | Updates meetup |
+| /api/v1/meetups/:id/questions/trending | GET | Fetches trending question on meetup |
 | /api/v1/questions/:id/upvote | PATCH | Upvote on a meetup question |
 | /api/v1/questions/:id/downvote  | PATCH | Downvote on a meetup question |
+| /api/v1/questions/:id  | PUT | Update meetup information |
+| /api/v1/questions/:id/comments  | POST | Adds comment on question |
+| /api/v1/questions/:id/comments  | GET | Fetch all comment on question |
+| /api/v1/questions/:id/comments/:commentid  | PUT | Update comment on question |
+| /api/v1/users/:id  | PUT | Update user information |
+| /api/v1/users/:id  | DELETE | Delete user information |
+| /api/v1/users/:id  | GET | Fetch user information |
 
 ### Responses
 
