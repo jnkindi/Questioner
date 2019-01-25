@@ -11,7 +11,7 @@ const Questions = {
      * @returns {object} Question object
      */
     async upvoteQuestion(req, res) {
-        const findUpvoteQuery = 'SELECT * FROM questionVoters WHERE userid = $1 AND questionid = $2 AND votetype = $3';
+        const findUpvoteQuery = 'SELECT * FROM questionvoters WHERE userid = $1 AND questionid = $2 AND votetype = $3';
         const upvoteResult = await db.query(findUpvoteQuery, [req.user.id, req.params.id, 'upvote']);
         const userUpvoteData = upvoteResult.rows;
         if (userUpvoteData[0]) {
@@ -21,7 +21,7 @@ const Questions = {
             });
         }
 
-        const recordVoter = 'INSERT INTO questionVoters(userid, questionid, votetype) VALUES($1, $2)';
+        const recordVoter = 'INSERT INTO questionvoters(userid, questionid, votetype) VALUES($1, $2)';
         await db.query(recordVoter, [req.user.id, req.params.id]);
 
         const text = 'UPDATE questions SET upvotes = upvotes + 1 WHERE id = $1';
