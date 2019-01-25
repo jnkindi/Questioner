@@ -29,7 +29,6 @@ const validator = (identifier, data) => {
         }
         case 'question': {
             schema = {
-                createdby: Joi.number().required(),
                 title: Joi.string().trim().min(5).required(),
                 body: Joi.string().trim().min(10).required(),
             };
