@@ -14,7 +14,7 @@ router.put('/:id', Auth.verifyToken, updateUser);
 // Delete user
 router.delete('/:id', Auth.verifyToken, deleteUser);
 
-// Fetch user information
+// Fetch user info
 router.get('/:id', Auth.verifyToken, userInformation);
 
 
