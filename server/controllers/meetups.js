@@ -11,7 +11,7 @@ const Meetups = {
      */
     async addMeetup(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
+            return res.status(403).send({ status: 403, error: 'Unauthorized Access' });
         }
         // Validate Data
         const { error } = validator('meetup', req.body);
@@ -42,9 +42,9 @@ const Meetups = {
                     tags: req.body.tags,
                 }],
             };
-            return res.send(response);
+            return res.status(201).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({ status: 400, error: errorMessage });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -57,13 +57,14 @@ const Meetups = {
         const findAllQuery = 'SELECT * FROM meetups ORDER BY id DESC';
         try {
             const { rows } = await db.query(findAllQuery);
+            const data = ((rows.length !== 0) ? rows : 'No Meetups Found');
             const response = {
                 status: 200,
-                data: rows,
+                data,
             };
-            return res.send(response);
+            return res.status(200).send(response);
         } catch (error) {
-            return res.status(400).send({ status: 400, error });
+            return res.status(500).send({ status: 500, error });
         }
     },
     /**
@@ -79,13 +80,14 @@ const Meetups = {
         ];
         try {
             const { rows } = await db.query(findAllQuery, values);
+            const data = ((rows.length !== 0) ? rows : 'No Meetups Found');
             const response = {
                 status: 200,
-                data: rows,
+                data,
             };
-            return res.send(response);
+            return res.status(200).send(response);
         } catch (error) {
-            return res.status(400).send({ status: 400, error });
+            return res.status(500).send({ status: 500, error });
         }
     },
     /**
@@ -108,12 +110,9 @@ const Meetups = {
                 status: 200,
                 data: rows[0],
             };
-            return res.send(response);
+            return res.status(200).send(response);
         } catch (error) {
-            return res.status(400).send({
-                status: 400,
-                error,
-            });
+            return res.status(500).send({ status: 500, error });
         }
     },
     /**
@@ -174,12 +173,9 @@ const Meetups = {
                     status: req.body.response,
                 }],
             };
-            return res.send(response);
+            return res.status(201).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: errorMessage,
-            });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -190,7 +186,7 @@ const Meetups = {
      */
     async deleteMeetup(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
+            return res.status(403).send({ status: 403, error: 'Unauthorized Access' });
         }
         const text = 'DELETE FROM meetups WHERE id = $1 returning *';
         try {
@@ -201,15 +197,12 @@ const Meetups = {
                 error: 'Meetup with given ID was not found',
             });
             }
-            return res.status(200).send({
-                status: 200,
+            return res.status(204).send({
+                status: 204,
                 data: 'Meetup deleted',
             });
           } catch (errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: errorMessage,
-            });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -264,12 +257,9 @@ const Meetups = {
                     body: req.body.body,
                 }],
             };
-            return res.send(response);
+            return res.status(201).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: errorMessage,
-            });
+            return res.status(400).send({ status: 400, error: errorMessage });
         }
     },
     /**
@@ -291,16 +281,14 @@ const Meetups = {
         const findAllQuery = 'SELECT * FROM questions WHERE meetupid = $1';
         try {
             const { rows } = await db.query(findAllQuery, [req.params.id]);
+            const data = ((rows.length !== 0) ? rows : 'No Questions Found');
             const response = {
                 status: 200,
-                data: rows,
+                data,
             };
-            return res.send(response);
+            return res.status(200).send(response);
         } catch (error) {
-            return res.status(400).send({
-                status: 400,
-                error,
-            });
+            return res.status(500).send({ status: 500, error });
         }
     },
 
@@ -312,7 +300,7 @@ const Meetups = {
      */
     async addMeetupImages(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
+            return res.status(403).send({ status: 403, error: 'Unauthorized Access' });
         }
         const { error } = validator('addMeetupImages', req.body);
         if (error) {
@@ -341,12 +329,9 @@ const Meetups = {
                     tags: meetupData[0].tags,
                 }],
             };
-            return res.send(response);
+            return res.status(201).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: errorMessage,
-            });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -357,7 +342,7 @@ const Meetups = {
      */
     async removeMeetupImages(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
+            return res.status(403).send({ status: 403, error: 'Unauthorized Access' });
         }
         const { error } = validator('removeMeetupImages', req.body);
         if (error) {
@@ -376,7 +361,7 @@ const Meetups = {
             }
             await db.query(text, [req.body.images]);
             const response = {
-                status: 200,
+                status: 204,
                 data: [{
                     topic: meetupData[0].topic,
                     description: meetupData[0].description,
@@ -386,12 +371,9 @@ const Meetups = {
                     tags: meetupData[0].tags,
                 }],
             };
-            return res.send(response);
+            return res.status(204).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: errorMessage,
-            });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
 
@@ -403,7 +385,7 @@ const Meetups = {
      */
     async addMeetupTags(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
+            return res.status(403).send({ status: 403, error: 'Unauthorized Access' });
         }
         const { error } = validator('addMeetupTags', req.body);
         if (error) {
@@ -432,12 +414,9 @@ const Meetups = {
                     tags: meetupData[0].tags,
                 }],
             };
-            return res.send(response);
+            return res.status(201).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: errorMessage,
-            });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -448,7 +427,7 @@ const Meetups = {
      */
     async removeMeetupTags(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
+            return res.status(403).send({ status: 403, error: 'Unauthorized Access' });
         }
         const { error } = validator('removeMeetupTags', req.body);
         if (error) {
@@ -467,7 +446,7 @@ const Meetups = {
             }
             await db.query(text, [req.body.tags, req.params.id]);
             const response = {
-                status: 200,
+                status: 204,
                 data: [{
                     topic: meetupData[0].topic,
                     description: meetupData[0].description,
@@ -477,12 +456,9 @@ const Meetups = {
                     tags: meetupData[0].tags,
                 }],
             };
-            return res.send(response);
+            return res.status(204).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: errorMessage,
-            });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -528,12 +504,9 @@ const Meetups = {
                     tags: meetupData[0].tags,
                 }],
             };
-            return res.send(response);
+            return res.status(200).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: errorMessage,
-            });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -545,10 +518,7 @@ const Meetups = {
     async searchMeetup(req, res) {
         const errorMessage = req.query.topic || false;
         if (!errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: 'Provide search topic',
-            });
+            return res.status(400).send({ status: 400, error: 'Provide search topic' });
         }
         const text = `SELECT * FROM meetups WHERE topic like '%${req.query.topic}%'`;
         try {
@@ -563,12 +533,9 @@ const Meetups = {
                 status: 200,
                 data: rows,
             };
-            return res.send(response);
+            return res.status(200).send(response);
         } catch (error) {
-            return res.status(400).send({
-                status: 400,
-                error,
-            });
+            return res.status(500).send({ status: 400, error });
         }
     },
     /**
@@ -581,16 +548,14 @@ const Meetups = {
         const findAllQuery = 'SELECT createdon, createdby, meetupid, title, body, upvotes, downvotes, (upvotes+downvotes) AS totalvotes FROM questions WHERE meetupid = $1 ORDER BY totalvotes DESC';
         try {
             const { rows } = await db.query(findAllQuery, [req.params.id]);
+            const data = ((rows.length !== 0) ? rows : 'No Questions Found');
             const response = {
                 status: 200,
-                data: rows,
+                data,
             };
-            return res.send(response);
+            return res.status(200).send(response);
         } catch (error) {
-            return res.status(400).send({
-                status: 400,
-                error,
-            });
+            return res.status(500).send({ status: 500, error });
         }
     },
 };

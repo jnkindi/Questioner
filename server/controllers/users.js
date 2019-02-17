@@ -48,9 +48,9 @@ const Users = {
                 status: 200,
                 data: [{ issueToken }],
             };
-            return res.send(response);
+            return res.status(200).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({ status: 400, error: errorMessage });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -69,8 +69,8 @@ const Users = {
         const userResult = await db.query(findUsernameQuery, [req.body.username]);
         const userData = userResult.rows;
         if (userData[0]) {
-            return res.status(400).send({
-                status: 400,
+            return res.status(409).send({
+                status: 409,
                 error: 'Username already taken',
             });
         }
@@ -79,8 +79,8 @@ const Users = {
         const userEmailResult = await db.query(findEmailQuery, [req.body.email]);
         const userEmailData = userEmailResult.rows;
         if (userEmailData[0]) {
-            return res.status(400).send({
-                status: 400,
+            return res.status(409).send({
+                status: 409,
                 error: 'Email already taken',
             });
         }
@@ -114,12 +114,12 @@ const Users = {
             });
 
             const response = {
-                status: 200,
+                status: 201,
                 data: [{ issueToken }],
             };
-            return res.send(response);
+            return res.status(201).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({ status: 400, error: errorMessage });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -168,12 +168,9 @@ const Users = {
                     isAdmin: req.body.isadmin,
                 }],
             };
-            return res.send(response);
+            return res.status(200).send(response);
         } catch (errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: errorMessage,
-            });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -184,7 +181,7 @@ const Users = {
      */
     async deleteUser(req, res) {
         if (req.user.role !== 'admin') {
-            return res.status(401).send({ status: 401, error: 'Unauthorized Access' });
+            return res.status(403).send({ status: 403, error: 'Unauthorized Access' });
         }
         const text = 'DELETE FROM users WHERE id = $1 returning *';
         try {
@@ -195,15 +192,12 @@ const Users = {
                 error: 'User with given ID was not found',
             });
             }
-            return res.status(200).send({
-                status: 200,
+            return res.status(204).send({
+                status: 204,
                 data: 'User deleted',
             });
           } catch (errorMessage) {
-            return res.status(400).send({
-                status: 400,
-                error: errorMessage,
-            });
+            return res.status(500).send({ status: 500, error: errorMessage });
         }
     },
     /**
@@ -223,7 +217,7 @@ const Users = {
                 });
             }
             const response = {
-                status: 201,
+                status: 200,
                 data: [{
                     firstname: rows[0].firstname,
                     lastname: rows[0].lastname,
@@ -234,12 +228,9 @@ const Users = {
                     isAdmin: rows[0].isadmin,
                 }],
             };
-            return res.send(response);
+            return res.status(200).send(response);
         } catch (error) {
-            return res.status(400).send({
-                status: 400,
-                error,
-            });
+            return res.status(500).send({ status: 500, error });
         }
     },
 };

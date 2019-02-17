@@ -33,7 +33,7 @@ app.use((req, res, next) => {
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.json({
-    status: err.status,
+    status: err.status || 500,
     message: err.message,
   });
 });
