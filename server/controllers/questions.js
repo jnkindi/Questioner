@@ -21,8 +21,8 @@ const Questions = {
             });
         }
 
-        const recordVoter = 'INSERT INTO questionvoters(userid, questionid, votetype) VALUES($1, $2)';
-        await db.query(recordVoter, [req.user.id, req.params.id]);
+        const recordVoter = 'INSERT INTO questionvoters(userid, questionid, votetype) VALUES($1, $2, $3)';
+        await db.query(recordVoter, [req.user.id, req.params.id, 'upvote']);
 
         const text = 'UPDATE questions SET upvotes = upvotes + 1 WHERE id = $1';
         const values = [req.params.id];
@@ -139,7 +139,7 @@ const Questions = {
         if (error) {
             return validationErrors(res, error);
         }
-        const text = 'INSERT INTO questioncomments(questionid, userid, comment, createdon) VALUES($1, $2, $3, $4)';
+        const text = 'INSERT INTO questioncomments(questionid, userid, comment, createdon) VALUES($1, $2, $3, $4) returning *';
         const values = [
             req.params.id,
             req.user.id,
@@ -168,10 +168,11 @@ const Questions = {
             }
 
             const { title } = questionData[0];
-            await db.query(text, values);
+            const { rows } = await db.query(text, values);
             const response = {
                 status: 200,
                 data: [{
+                    id: rows[0].id,
                     comment: req.body.comment,
                     title,
                     createdon: moment().format('YYYY-MM-DD'),

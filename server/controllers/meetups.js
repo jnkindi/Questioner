@@ -18,7 +18,7 @@ const Meetups = {
         if (error) {
             return validationErrors(res, error);
         }
-        const text = 'INSERT INTO meetups (createdon, location, images, topic, description, happeningon, tags) VALUES ($1, $2, $3, $4, $5, $6, $7)';
+        const text = 'INSERT INTO meetups (createdon, location, images, topic, description, happeningon, tags) VALUES ($1, $2, $3, $4, $5, $6, $7) returning *';
         const values = [
             moment().format('YYYY-MM-DD'),
             req.body.location,
@@ -29,10 +29,11 @@ const Meetups = {
             req.body.tags,
         ];
         try {
-            await db.query(text, values);
+            const { rows } = await db.query(text, values);
             const response = {
                 status: 201,
                 data: [{
+                    id: rows[0].id,
                     topic: req.body.topic,
                     description: req.body.description,
                     location: req.body.location,
@@ -222,7 +223,7 @@ const Meetups = {
         if (error) {
             return validationErrors(res, error);
         }
-        const text = 'INSERT INTO questions(createdon, createdby, meetupid, title, body, upvotes, downvotes) VALUES($1, $2, $3, $4, $5, $6, $7)';
+        const text = 'INSERT INTO questions(createdon, createdby, meetupid, title, body, upvotes, downvotes) VALUES($1, $2, $3, $4, $5, $6, $7) returning *';
         const values = [
             moment().format('YYYY-MM-DD'),
             req.user.id,
@@ -252,10 +253,11 @@ const Meetups = {
                     error: 'Meetup with given ID was not found',
                 });
             }
-            await db.query(text, values);
+            const { rows } = await db.query(text, values);
             const response = {
                 status: 201,
                 data: [{
+                    id: rows[0].id,
                     user: req.user.id,
                     meetup: req.params.id,
                     title: req.body.title,
@@ -277,6 +279,15 @@ const Meetups = {
      * @returns {object} Questions array
      */
     async getQuestions(req, res) {
+        const findMeetupQuery = 'SELECT * FROM meetups WHERE id=$1';
+        const meetupResult = await db.query(findMeetupQuery, [req.params.id]);
+        const meetupData = meetupResult.rows;
+        if (!meetupData[0]) {
+            return res.status(404).send({
+                status: 404,
+                error: 'Meetup with given ID was not found',
+            });
+        }
         const findAllQuery = 'SELECT * FROM questions WHERE meetupid = $1';
         try {
             const { rows } = await db.query(findAllQuery, [req.params.id]);

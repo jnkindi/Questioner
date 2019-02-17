@@ -14,7 +14,7 @@ class Setup {
         });
 
         this.pool.on('connect', () => {
-            console.log('connected...');
+            // console.log('connected...');
         });
 
         this.createTables();
@@ -35,7 +35,7 @@ class Setup {
 
         this.pool.query(meetups)
         .then((res) => {
-            console.log(res);
+            // console.log(res);
         })
         .catch((error) => {
             console.log(error.message);
@@ -51,7 +51,7 @@ class Setup {
 
         this.pool.query(questionVoters)
         .then((res) => {
-            console.log(res);
+            // console.log(res);
         })
         .catch((error) => {
             console.log(error.message);
@@ -68,7 +68,7 @@ class Setup {
 
         this.pool.query(questioncomments)
         .then((res) => {
-            console.log(res);
+            // console.log(res);
         })
         .catch((error) => {
             console.log(error.message);
@@ -88,7 +88,7 @@ class Setup {
 
         this.pool.query(questions)
         .then((res) => {
-            console.log(res);
+            // console.log(res);
         })
         .catch((error) => {
             console.log(error.message);
@@ -104,7 +104,7 @@ class Setup {
 
         this.pool.query(rsvps)
         .then((res) => {
-            console.log(res);
+            // console.log(res);
         })
         .catch((error) => {
             console.log(error.message);
@@ -126,7 +126,7 @@ class Setup {
 
         this.pool.query(users)
         .then((res) => {
-            console.log(res);
+            // console.log(res);
         })
         .catch((error) => {
             console.log(error.message);

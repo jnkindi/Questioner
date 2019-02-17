@@ -6,12 +6,12 @@ import {
 } from '../helpers/index';
 import db from '../models/db';
 
-const Meetups = {
+const Users = {
     /**
-     * Get All Meetups
+     * User Login
      * @param {object} req
      * @param {object} res
-     * @returns {object} Meetups array
+     * @returns {object} Users array
      */
     async userLogin(req, res) {
         // Validate Data
@@ -41,8 +41,6 @@ const Meetups = {
                 firstname: rows[0].firstname,
                 lastname: rows[0].lastname,
                 othername: rows[0].othername,
-                email: rows[0].email,
-                phonenumber: rows[0].phonenumber,
                 role,
             });
 
@@ -112,8 +110,6 @@ const Meetups = {
                 firstname: rows[0].firstname,
                 lastname: rows[0].lastname,
                 othername: rows[0].othername,
-                email: rows[0].email,
-                phonenumber: rows[0].phonenumber,
                 role,
             });
 
@@ -248,4 +244,4 @@ const Meetups = {
     },
 };
 
-export default Meetups;
+export default Users;
