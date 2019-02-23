@@ -82,3 +82,6 @@ typings/
 
 # VS Code Settings
 .vscode/
+
+#Mac Settings
+.DS_Store
