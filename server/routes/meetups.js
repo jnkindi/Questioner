@@ -6,7 +6,7 @@ import Meetups from '../controllers/meetups';
 import Auth from '../middlewares/auth';
 
 const {
-    addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions, addMeetupImages, removeMeetupImages, addMeetupTags, removeMeetupTags, updateMeetup, searchMeetup, getTrendingQuestions,
+    addMeetup, getMeetups, upcomingMeetups, specificMeetup, rsvpMeetup, deleteMeetup, addQuestion, getQuestions, addMeetupImages, removeMeetupImages, addMeetupTags, removeMeetupTags, updateMeetup, searchMeetup, getTrendingQuestions, getPopularTags,
 } = Meetups;
 
 const router = express.Router();
@@ -55,5 +55,8 @@ router.put('/:id', Auth.verifyToken, updateMeetup);
 
 // Fetch a specific meetup record.
 router.get('/:id/questions/trending', Auth.verifyToken, getTrendingQuestions);
+
+// Fetch a popular tags list.
+router.get('/tags/popular', Auth.verifyToken, getPopularTags);
 
 export default router;

@@ -6,11 +6,7 @@ ENV.config();
 class Setup {
     constructor() {
         this.pool = new Pool({
-            user: process.env.PGUSER,
-            host: process.env.PGHOST,
-            database: process.env.PGDATABASE,
-            password: process.env.PGPASSWORD,
-            port: process.env.PGPORT,
+            connectionString: process.env.DATABASE_URL,
         });
 
         this.pool.on('connect', () => {

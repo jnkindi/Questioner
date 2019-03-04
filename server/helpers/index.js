@@ -154,10 +154,49 @@ const generateToken = (userinfo) => {
     return Issuetoken;
 };
 
+const popularTags = (tags) => {
+    const popularTagsList = [];
+    const popularTagsOccurency = [];
+    tags.forEach((tag) => {
+        if (!(popularTagsList.includes(tag))) {
+            popularTagsList.push(tag);
+            popularTagsOccurency.push(tagOccurency(tags, tag));
+        }
+    });
+
+    const processedPopular = [];
+    for (let count = 0; count < popularTagsList.length; count += 1) {
+        const tagProcessed = {
+            tags: popularTagsList[count],
+            occurency: popularTagsOccurency[count],
+        };
+        processedPopular.push(tagProcessed);
+    }
+
+    processedPopular.sort((a, b) => {
+        const occurency1 = a.occurency;
+        const occurency2 = b.occurency;
+        return occurency1 < occurency2 ? 1 : -1;
+    });
+
+    return processedPopular;
+};
+
+const tagOccurency = (tags, tag) => {
+    let counter = 0;
+    tags.forEach((singletag) => {
+        if (singletag === tag) {
+            counter += 1;
+        }
+    });
+    return counter;
+};
+
 export {
     validator,
     validationErrors,
     hashPassword,
     comparePassword,
     generateToken,
+    popularTags,
 };

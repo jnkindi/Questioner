@@ -1,5 +1,5 @@
 import moment from 'moment';
-import { validator, validationErrors } from '../helpers/index';
+import { validator, validationErrors, popularTags } from '../helpers/index';
 import db from '../models/db';
 
 const Meetups = {
@@ -552,6 +552,32 @@ const Meetups = {
             const response = {
                 status: 200,
                 data,
+            };
+            return res.status(200).send(response);
+        } catch (error) {
+            return res.status(500).send({ status: 500, error });
+        }
+    },
+    /**
+     * Get All Popular Tags
+     * @param {object} req
+     * @param {object} res
+     * @returns {object} Meetups array
+     */
+    async getPopularTags(req, res) {
+        const findAllQuery = 'SELECT tags FROM meetups ORDER BY id DESC';
+        try {
+            const { rows } = await db.query(findAllQuery);
+            const taglist = [];
+            rows.forEach((row) => {
+                const { tags } = row;
+                tags.forEach((tag) => {
+                    taglist.push(tag);
+                });
+            });
+            const response = {
+                status: 200,
+                tags: popularTags(taglist),
             };
             return res.status(200).send(response);
         } catch (error) {
