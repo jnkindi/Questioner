@@ -102,20 +102,19 @@ const Users = {
         try {
             const { rows } = await db.query(text, values);
 
-            const role = ((rows[0].isadmin) ? 'admin' : 'standard');
-
-            const issueToken = generateToken({
-                user: rows[0].id,
+            const userdata = {
                 username: rows[0].username,
                 firstname: rows[0].firstname,
                 lastname: rows[0].lastname,
                 othername: rows[0].othername,
-                role,
-            });
+                email: rows[0].email,
+                phonenumber: rows[0].phonenumber,
+                isadmin: rows[0].isadmin,
+            };
 
             const response = {
                 status: 201,
-                data: [{ issueToken }],
+                data: userdata,
             };
             return res.status(201).send(response);
         } catch (errorMessage) {
