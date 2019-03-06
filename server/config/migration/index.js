@@ -127,6 +127,24 @@ class Setup {
         .catch((error) => {
             console.log(error.message);
         });
+
+        const recoverPassword = `
+        CREATE TABLE IF NOT EXISTS recoverpassword (
+            id SERIAL PRIMARY KEY,
+            userid integer,
+            code integer,
+            hash text,
+            status text,
+            date date
+        );`;
+
+        this.pool.query(recoverPassword)
+        .then((res) => {
+            // console.log(res);
+        })
+        .catch((error) => {
+            console.log(error.message);
+        });
     }
 }
 
